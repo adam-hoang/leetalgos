@@ -110,3 +110,61 @@
 // console.log(numJewelsInStones("aA", "aAAbbbb"))
 // console.log(numJewelsInStones("z", "ZZ"))
 
+// var toLowerCase = function(str) {
+//     str = str.toLowerCase();
+//     return str;
+// };
+
+// console.log(toLowerCase("Hello"));
+
+// var numUniqueEmails = function(emails) {
+//     var arr = [];
+//     for(var email of emails){
+//         var domain = email.substring(email.indexOf("@"), email.length);
+//         var trimPlus = email.slice(0, email.indexOf("+"));
+//         var removeDot = trimPlus.replace(/\./g, "")
+//         var trimmed = removeDot.concat(domain);
+//         if(!arr.includes(trimmed)){
+//             arr.push(trimmed);
+//         }
+//     }
+//     return arr.length;
+// };
+
+// console.log(numUniqueEmails(["test.email+alex@leetcode.com","test.e.mail+bob.cathy@leetcode.com","testemail+david@lee.tcode.com"]))
+
+// // Reverse a linked list
+// var reverseList = function(head) {
+//     var prev = null;
+//     while (head) {
+//         var next = head.next;
+//         head.next = prev;
+//         prev = head;
+//         head = next;
+//     }
+//     return prev;
+// };
+
+// var sortedSquares = function(A) {
+//     for (var i=0; i<A.length; i++) {
+//         A[i] *= A[i];
+//     }
+//     A.sort(function(a, b){return a-b});
+//     return A;
+// };
+// console.log(sortedSquares([-4,-1,0,3,10]))
+
+// var reverseString = function(s) {
+//     return s.reverse();
+// };
+// console.log(reverseString(["h","e","l","l","o"]));
+
+// var reverseString = function(s) {
+//     for (var i=0, j=s.length-1; i<j; i++, j--) {
+//         temp = s[i];
+//         s[i] = s[j];
+//         s[j] = temp;
+//     }
+//     return s;
+// };
+// console.log(reverseString(["h","e","l","l","o"]));
