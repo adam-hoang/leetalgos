@@ -168,3 +168,97 @@
 //     return s;
 // };
 // console.log(reverseString(["h","e","l","l","o"]));
+
+// var singleNumber = function(nums) {
+//     var dict = {}
+//     for (var i=0; i<nums.length; i++) {
+//         if (dict[nums[i]] == null) {
+//             dict[nums[i]] = 1;
+//         } else {
+//             dict[nums[i]]++;
+//         }
+//     }
+//     for (var i in dict) {
+//         if (dict[i] == 1) {
+//             return i;
+//         }
+//     }
+//     return null;
+// };
+// console.log(singleNumber([2,2,1]))
+// console.log(singleNumber([4,1,2,1,2]))
+
+// var singleNumber = function(nums) {
+//     nums.sort();
+//     for (var i=0; i<nums.length; i += 2) {
+//         if (nums[i] != nums[i+1]) {
+//             return nums[i];
+//         }
+//     }
+// };
+// console.log(singleNumber([2,2,1]))
+// console.log(singleNumber([4,1,2,1,2]))
+
+// var fizzBuzz = function(n) {
+//     for (var i=1; i<=n; i++) {
+//         if (i % 15 == 0) {
+//             console.log("FizzBuzz");
+//         }
+//         else if (i % 3 == 0) {
+//             console.log("Fizz");
+//         }
+//         else if (i % 5 == 0) {
+//             console.log("Buzz");
+//         } else {
+//             console.log(i);
+//         }
+//     }
+// };
+// fizzBuzz(15);
+
+// var moveZeroes = function(nums) {
+// 	let start = 0;
+// 	for(let i = 0; i < nums.length; i++){
+// 		if(nums[i] !== 0){
+// 			nums[start] = nums[i];
+//             start++;
+// 		}
+// 	}
+// 	while(start < nums.length){
+// 		nums[start] = 0;
+// 		start++;
+//     }
+//     return nums;
+// };
+// console.log(moveZeroes([0,1,0,3,12]));
+
+// var moveZeroes = function(nums) {
+// 	let counter = 0;
+// 	for(let i = 0; i < nums.length-counter; i++){
+// 		if(nums[i] === 0){
+// 			nums.splice(i,1);
+// 			nums.push(0);
+// 			counter++
+//             i--;
+// 		}
+// 	}
+//     return nums;
+// };
+// console.log(moveZeroes([0,1,0,3,12]));
+
+// var moveZeroes = function(nums) {
+// 	let start = 0;
+// 		for (let i = 0; i < nums.length; i++) {
+// 		  let num = nums[i];
+		  
+// 		  if (num !== 0) {
+// 			nums[start] = num;
+// 			start++;
+// 		  }
+// 		}
+// 		for (let j = start; j < nums.length; j++) {
+// 		  nums[j] = 0;
+// 		}
+//     return nums;
+// };
+// console.log(moveZeroes([0,1,0,3,12]));

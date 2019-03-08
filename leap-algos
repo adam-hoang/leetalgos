@@ -1,0 +1,46 @@
+Find the total number of palindromes in a string. (Can be done in O(n))  
+delete from a linked list
+string palindromes  
+Round1
+* What is the difference between Java and c#?
+* How would you design a door without sign boards.(No code -it was just a discussion on different type of doors)
+* Reverse a string.
+* A web server is receiving requests. Whenever a request is received a method will be called, it does not take any parameters but should return the total number of requests received in last 60 min.
+Implement that method and… 
+strings and array questions
+first interviewer asked me to construct a method using data structures, and the second interviewer had me do a string manipulation question (determine if a string was an anagram) and discuss the Big O notation of various approaches. 
+After submitting 2 essays, I was chosen to interview for the current cohort of Microsoft LEAP. Two 45 minute interviews. Each one used about half the time for soft-skills/behavioral questions (tell me about yourself, tell me about a time you worked with a group, what role did you take, what difficulties did you encounter) and half the time for a whiteboarding question.
+
+Interview Questions
+
+write a function to determine if a word is a palindrome  
+Answer Question
+given an array of integers, return the first two integers that add up to 10.
+
+Write a program to determine if two football team can successfully take a picture with each person face showing. i.e. no taller player standing in front of a shorter one. You must keep each team on a separate line, but you can arrange the players in a team any way you want to. 
+The answer involves sorting and comparing. Sort the array, then check to make sure all the players on the team in front are shorter than all players in the team behind.
+
+The second question involved describing how you would design a payroll application. How you would generate a unique ID for each employee. and basically architectural tradeoffs you would consider.
+The answer involved reading from the database, processing the payroll in parallel, using mac address to generate unique ID's e.t.c
+
+How do you identify if any given point lies within a rectangle
+
+Write a function to determine if you can successfully take a picture of two football teams lined in front of each other. You can rearrange the players but you can not mix players from different teams on the same line. i.e one team must be in front of the other team. The function should just return true or false.  
+The key thing is to sort the players by height, then you can check to see it is possible to put one team in front of the other without any of the players being taller than the one behind.
+
+The second question was a system design question. Basically, how would you design a payroll system, then how to generate individual keys for a system, and he kept tagging more questions to the original system design question.  
+The answer included various things, reading from the database, issuing payout in parallel, authentication and authorization and every other thing I could think of. The key thing here was observing the interviewer and following his lead. i.e if he looks like he likes it then it's a good design if he doesn't just scrap it and think of something else.
+
+reverse linked list
+do 2 triangles overlap
+change string of number sand operators to do math
+
+
+SOFT behavioral
+when was the last time u were i a crisis?
+describe a recent umpopular decision u made
+tell me about ur proudest acheivement
+what are u expecting from the firm i nthe future?
+what would make u happy in a job?
+tell e about a time when u had to adapt to a difficult situation
+do u have any question?
