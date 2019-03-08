@@ -262,3 +262,83 @@
 //     return nums;
 // };
 // console.log(moveZeroes([0,1,0,3,12]));
+
+// // using set instead of dictionary for dict2
+// var uniqueMorseRepresentations = function(words) {
+// 	let dict = {};
+// 	let letters = "abcdefghijklmnopqrstuvwxyz";
+// 	let morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+// 	for (var i=0; i<morse.length; i++) {
+// 		dict[letters[i]] = morse[i];
+// 	}
+// 	let dict2 = new Set();
+// 	for (var j=0; j<words.length; j++) {
+// 		let result = "";
+// 		for (var i=0; i<words[j].length; i++) {
+// 			result += dict[words[j][i]];
+// 		}
+// 		dict2.add(result)
+// 	}
+// 	return dict2.size;
+// };
+// console.log(uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]));
+
+// // using indexOf instead of creating dict
+// var uniqueMorseRepresentations = function(words) {
+// 	let letters = "abcdefghijklmnopqrstuvwxyz";
+// 	let morse = [".-","-...","-.-.","-..",".","..-.","--.","....","..",".---","-.-",".-..","--","-.","---",".--.","--.-",".-.","...","-","..-","...-",".--","-..-","-.--","--.."];
+// 	let dict2 = new Set();
+// 	for (var j=0; j<words.length; j++) {
+// 		let result = "";
+// 		for (var i=0; i<words[j].length; i++) {
+// 			result += morse[letters.indexOf(words[j][i])];
+// 		}
+// 		dict2.add(result)
+// 	}
+// 	return dict2.size;
+// };
+// console.log(uniqueMorseRepresentations(["gin", "zen", "gig", "msg"]));
+
+// var sortArrayByParity = function(A) {
+// 	let counter=0;
+//     for (let i=0; i<A.length-counter; i++) {
+// 		if (A[i] % 2 != 0) {
+// 			A.push(A[i]);
+// 			A.splice(i,1)
+// 			counter++
+// 			i--
+// 		}
+// 	}
+// 	return A;
+// };
+// console.log(sortArrayByParity([3,1,2,4]));
+
+// var sortArrayByParity = function(A) {
+//     let even = A.filter(i => i % 2 === 0);
+//     let odd = A.filter(i => i % 2 === 1);
+//     return even.concat(odd);
+// };
+// console.log(sortArrayByParity([3,1,2,4]));
+
+// var sortArrayByParity = function(A) {
+// 	let even = [];
+//     let odd = [];
+    
+//     for(let i = 0; i < A.length; i++){
+//         if(A[i] % 2 === 0){
+//             even.push(A[i])
+//         } else {
+//             odd.push(A[i])
+//         }
+//     }
+// 	return even.concat(odd)
+// }
+// console.log(sortArrayByParity([3,1,2,4]));
+
+// // max depth of binary tree
+// var maxDepth = function(root) {
+//     if (root === null) {
+// 		return 0;
+// 	}
+// 	return Math.max(maxDepth(root.left), maxDepth(root.right)) +1;
+// };
