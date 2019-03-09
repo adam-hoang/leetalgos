@@ -342,3 +342,160 @@
 // 	}
 // 	return Math.max(maxDepth(root.left), maxDepth(root.right)) +1;
 // };
+
+// var repeatedNTimes = function(A) {
+// 	var dict = {};
+//     for (var i=0; i<A.length; i++) {
+// 		if (dict[A[i]]) {
+// 			return A[i];
+// 		} else {
+// 			dict[A[i]] = true;
+// 		}
+// 	}
+// };
+// console.log(repeatedNTimes([1,2,3,3]));
+// console.log(repeatedNTimes([2,1,2,5,3,2]));
+// console.log(repeatedNTimes([5,1,5,2,5,3,5,4]));
+
+// // delete node from linked list
+// var deleteNode = function(node) {
+// 	node.val = node.next.val;
+// 	node.next = node.next.next;
+// };
+
+// var romanToInt = function(s) {
+// 	let sum = 0;
+// 	let big = 0;
+// 	const dict = {
+// 		I: 1,
+// 		V: 5,
+// 		X: 10,
+// 		L: 50,
+// 		C: 100,
+// 		D: 500,
+// 		M: 1000,
+// 	};
+//     for (let i=s.length-1; i>=0; i--) {
+// 		let num = dict[s[i]];
+// 		if (num >= big) {
+// 			sum += num;
+// 			big = num;
+// 		} else {
+// 			sum -= num
+// 		}
+// 	}
+// 	return sum;
+// };
+// console.log(romanToInt("III"));
+// console.log(romanToInt("IV"));
+// console.log(romanToInt("IX"));
+// console.log(romanToInt("LVIII"));
+// console.log(romanToInt("MCMXCIV"));
+
+// var romanToInt = function(s) {
+// 	let sum = 0;
+// 	const dict = {
+// 		I: 1,
+// 		V: 5,
+// 		X: 10,
+// 		L: 50,
+// 		C: 100,
+// 		D: 500,
+// 		M: 1000,
+// 	};
+//     for (let i=0; i<s.length; i++) {
+// 		if (dict[s[i]] < dict[s[i+1]]) {
+// 			sum += (dict[s[i+1]] - dict[s[i]]);
+// 			i++
+// 		} else {
+// 			sum += dict[s[i]];
+// 		}
+// 	}
+// 	return sum;
+// };
+// console.log(romanToInt("III"));
+// console.log(romanToInt("IV"));
+// console.log(romanToInt("IX"));
+// console.log(romanToInt("LVIII"));
+// console.log(romanToInt("MCMXCIV"));
+
+// var majorityElement = function(nums) {
+// 	const dict = {};
+// 	for (let i=0; i<nums.length; i++) {
+// 		if (dict[nums[i]]) {
+// 			dict[nums[i]]++;
+// 		} else {
+// 			dict[nums[i]] = 1;
+// 		}
+// 		if (dict[nums[i]] > (nums.length/2)) {
+// 			return nums[i];
+// 		}
+// 	}
+// };
+// console.log(majorityElement([2,2,1,1,1,2,2]))
+
+// var majorityElement = function (nums) {
+//     let major = nums[0];
+//     let count = 1;
+//     for (let i=1; i<nums.length; i++) {
+//         if (major === nums[i]) {
+//             count++;
+//         } else {
+//             count--;
+//         }
+//         if (count === 0) {
+//             major = nums[i];
+//             count = 1;
+//         }
+//     }
+//     return major;
+// }
+
+// var getSum = function(a, b) {
+// 	while (b !== 0) {
+//         let carry = a & b;
+//         a = a ^ b;
+//         b = carry << 1;
+//     }
+//     return a;
+// };
+// console.log(getSum(1,2))
+
+// var isAnagram = function(s, t) {
+//     if (s.length !== t.length) {
+// 		return false;
+// 	}
+// 	const dict = {};
+// 	for (let i=0; i<s.length; i++) {
+// 		if (dict[s[i]]) {
+// 			dict[s[i]]++;
+// 		} else {
+// 			dict[s[i]] = 1;
+// 		}
+// 	}
+// 	for (let i=0; i<s.length; i++) {
+// 		if (!dict[t[i]] || dict[t[i]] < 0) {
+// 			return false;
+// 		} else {
+// 			dict[t[i]]--;
+// 		}	}
+// 	return true;
+// };
+// console.log(isAnagram("anagram", "nagaram"));
+// console.log(isAnagram("rat", "car"))
+
+// var isAnagram = function(s, t) {
+//     if (s.length !== t.length) return false;
+//     let counters = new Array(26).fill(0);
+    
+//     for (let i = 0; i < s.length; i++) {
+//        counters[s.charCodeAt(i) - 97]++;
+//        counters[t.charCodeAt(i) - 97]--;
+//     }
+//     for (let i = 0; i < counters.length; i++) {
+//        if (counters[i]) return false;
+// 	}
+//     return true;
+// }
+// console.log(isAnagram("anagram", "nagaram"));
+// console.log(isAnagram("asdfrat", "asdfcar"))
