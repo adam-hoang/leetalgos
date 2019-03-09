@@ -499,3 +499,215 @@
 // }
 // console.log(isAnagram("anagram", "nagaram"));
 // console.log(isAnagram("asdfrat", "asdfcar"))
+
+// // buy and sell stock 1
+// var maxProfit = function(prices) {
+// 	let max = 0;
+//     for (let i=0; i<prices.length; i++) {
+// 		for (let j=i+1; j<prices.length; j++) {
+// 			let profit = prices[j] - prices[i];
+// 			if ( profit > max) {
+// 				max = profit;
+// 			}
+// 		}
+// 	}
+// 	return max;
+// };
+// console.log(maxProfit([7,1,5,3,6,4]));
+
+// var maxProfit = function(prices) {
+// 	let max = 0;
+//     let min = Infinity;
+    
+//     for(let i = 0; i < prices.length; i++){
+//         if(prices[i] < min)
+//             min = prices[i];
+//         else if(prices[i] - min > max){
+//             max = prices[i] - min;
+//         }
+//     }
+//     return max;
+// };
+// console.log(maxProfit([7,1,5,3,6,4]));
+
+// // buy and sell stock 2
+// var maxProfit = function(prices) {
+// 	let total = 0;    
+//     for(let i = 0; i < prices.length-1; i++){
+//         if(prices[i+1] > prices[i]) {
+//         	total += prices[i+1] - prices[i];
+// 		}
+//     }
+//     return total;
+// };
+// console.log(maxProfit([7,1,5,3,6,4]));
+// console.log(maxProfit([1,2,3,4,5]));
+// console.log(maxProfit([7,6,4,3,1]));
+
+// // excel sheet column
+// var titleToNumber = function(s) {
+// 	const dict={
+// 		A:1,
+// 		B:2,
+// 		C:3,
+// 		D:4,
+// 		E:5,
+// 		F:6,
+// 		G:7,
+// 		H:8,
+// 		I:9,
+// 		J:10,
+// 		K:11,
+// 		L:12,
+// 		M:13,
+// 		N:14,
+// 		O:15,
+// 		P:16,
+// 		Q:17,
+// 		R:18,
+// 		S:19,
+// 		T:20,
+// 		U:21,
+// 		V:22,
+// 		W:23,
+// 		X:24,
+// 		Y:25,
+// 		Z:26
+// 	}
+// 	let result = 0;
+//     for (let i=0; i<s.length; i++) {
+// 		result = result*26 + dict[s[i]];
+// 	}
+// 	return result;
+// };
+// console.log(titleToNumber('A'));
+// console.log(titleToNumber('AB'));
+// console.log(titleToNumber('ZY'));
+
+// var titleToNumber = function(s) {
+//     let result = 0;
+//     for (let i = 0; i < s.length; i++) {
+//         result = (result * 26) + s[i].charCodeAt(0) - 64;
+//     }
+//     return result;
+// };
+// console.log(titleToNumber('A'));
+// console.log(titleToNumber('AB'));
+// console.log(titleToNumber('ZY'));
+
+// var containsDuplicate = function(nums) {
+// 	const dict = {};
+//     for (let i=0; i<nums.length; i++) {
+// 		if (dict[nums[i]]) {
+// 			return true;
+// 		} else {
+// 			dict[nums[i]] = 1;
+// 		}
+// 	}
+// 	return false;
+// };
+// console.log(containsDuplicate([1,2,3,1]));
+
+// var containsDuplicate = function(nums) {
+// 	let dict = new Set(nums);
+//     return dict.size !== nums.length;
+// };
+// console.log(containsDuplicate([1,2,3,1]));
+
+// var firstUniqChar = function(s) {
+// 	const dict ={};
+//     for (var i=0; i<s.length; i++) {
+// 		if (dict[s[i]]) {
+// 			dict[s[i]]++;
+// 		} else {
+// 			dict[s[i]] = 1;
+// 		}
+// 	}
+// 	for (var j=0; j<s.length; j++) {
+// 		if (dict[s[j]] === 1) {
+// 			return j;
+// 		}
+// 	}
+// 	return -1;
+// };
+// console.log(firstUniqChar("leetcode"));
+// console.log(firstUniqChar("loveleetcode"));
+
+// var firstUniqChar = function(s) {
+// 	for(var i=0; i<s.length; i++){
+// 		if(s.indexOf(s[i]) === s.lastIndexOf(s[i]))
+// 			return i;
+// 	}
+// 	return -1;
+// }
+// console.log(firstUniqChar("leetcode"));
+// console.log(firstUniqChar("loveleetcode"));
+
+// var missingNumber = function(nums) {
+// 	let sum = 0;
+// 	let eSum = nums.length;
+//     for (let i=0; i<nums.length; i++) {
+// 		sum += nums[i];
+// 		eSum += i;
+// 	}
+// 	return eSum - sum;
+// };
+// console.log(missingNumber([3,0,1]));
+// console.log(missingNumber([9,6,4,2,3,5,7,0,1]));
+
+// // intersection of 2 arrays 2
+// var intersect = function(nums1, nums2) {
+// 	const dict={};
+// 	let result = [];
+// 	for (var i=0; i<nums1.length; i++) {
+// 		if (dict[nums1[i]]) {
+// 			dict[nums1[i]]++;
+// 		} else {
+// 			dict[nums1[i]] = 1
+// 		}
+// 	}
+// 	for (var j=0; j<nums2.length; j++) {
+// 		if (dict[nums2[j]] > 0) {
+// 			result.push(nums2[j]);
+// 			dict[nums2[j]]--;
+// 		}
+// 	}
+// 	return result;
+// };
+// console.log(intersect([1,2,2,1], [2,2]));
+// console.log(intersect([4,9,5], [9,4,9,8,4]))
+
+// var removeDuplicates = function(nums) {
+//     for (var i=0; i<nums.length; i++) {
+// 		if (nums[i] === nums[i+1]) {
+// 			nums.splice(i,1)
+// 			i--;
+// 		}
+// 	}
+// 	return nums.length;
+// };
+// console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]))
+
+// var removeDuplicates = function(nums) {
+//     if(nums.length === 0) {
+// 		return 0;
+// 	}
+//     let i = 0;
+//     for(let j = 1; j < nums.length; j++) {
+//         if(nums[i] !== nums[j]){
+//             i++;
+//             nums[i] = nums[j];
+//         }
+//     }
+//     return i + 1; 
+// };
+
+// // rotate array
+// var rotate = function(nums, k) {
+//     for (let i=0; i<k; i++) {
+// 		nums.unshift(nums.pop());
+// 	}
+// 	return nums;
+// };
+// console.log(rotate([1,2,3,4,5,6,7], 3));
+
