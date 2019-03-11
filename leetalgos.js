@@ -711,3 +711,102 @@
 // };
 // console.log(rotate([1,2,3,4,5,6,7], 3));
 
+// // pascalls triangle
+// var generate = function(numRows) {
+// 	if (numRows === 0) {
+// 		return [];
+// 	}
+// 	const result =[[1]];
+//     for (let i=1; i<numRows; i++) {
+// 		result[i] =[];
+// 		for (let j=0; j<i+1; j++) {
+// 			result[i][j] = (result[i-1][j] || 0) + (result[i-1][j-1] || 0);
+// 		}
+// 	}
+// 	return result;
+// };
+// console.log(generate(5))
+
+// var generate = function(numRows) {
+//     if (numRows === 0) {
+// 		return [];
+// 	}
+//     let triangle = [[1]];
+//     for (let i = 1; i < numRows; i++) {
+// 		let newRow = [1];
+// 		let prevRow = triangle[i-1];
+//         for(let j=1; j<i; j++) {
+//             newRow.push(prevRow[j - 1] + prevRow[j]);
+//         }
+//         newRow.push(1);
+//         triangle.push(newRow);
+//     }
+//     return triangle;
+// };
+// console.log(generate(5))
+
+// var isHappy = function(n) {
+// 	function split (num) {
+// 		let str = num.toString().split("");
+// 		let total = 0;
+// 		for (let i=0; i<str.length; i++) {
+// 			let number = parseInt(str[i]);
+// 			total += number*number;
+// 		}
+// 		return total;
+// 	}
+	
+// 	const dict = {};
+// 	let current = split(n)
+
+// 	while (current !== 1) {
+// 		if (current in dict) {
+// 			return false
+// 		} else {
+// 			dict[current] = 1;
+// 			current = split(current)
+// 		}
+// 	}
+// 	return true;
+// };
+
+// console.log(isHappy(7));
+
+// var isHappy = function(n) {
+// 	while (n > 6) {
+// 	  let next = 0;
+// 	  while (n) {
+// 		next += (n % 10) * (n % 10);
+// 		n = ~~(n / 10);
+// 	  }
+// 	  n = next;
+// 	}
+// 	return n == 1;
+// };
+
+// var climbStairs = function(n) {
+//     if (n <=3) {
+// 		return n;
+// 	}
+// 	let arr = [1,2,3];
+// 	for (var i=3; i<n; i++) {
+// 		arr[i] = arr[i-1] + arr[i-2];
+// 	}
+// 	return arr[n-1];
+// };
+// console.log(climbStairs(2))
+
+var climbStairs = function(n) {
+	let current = 1;
+	let next = 1;
+    while (n > 0) {
+		current = (next += current) - current;
+		n--;
+	}
+    return current;
+};
+console.log(climbStairs(2))
+
+// 91. Decode Ways
+// 62. Unique Paths
+// 509. Fibonacci Number

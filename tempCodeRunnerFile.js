@@ -1,12 +1,10 @@
-var containsDuplicate = function(nums) {
-// 	const dict = {};
-//     for (let i=0; i<nums.length; i++) {
-// 		if (dict[nums[i]]) {
-// 			return true;
-// 		} else {
-// 			dict[nums[i]] = 1;
-// 		}
+var climbStairs = function(n) {
+// 	let a = 1;
+// 	let b = 1;
+//     while (n > 0) {
+// 		a = (b += a) - a;
+// 		n--;
 // 	}
-// 	return false;
+//     return a;
 // };
-// console.log(containsDuplicate([1,2,3,1]));
+// console.log(climbStairs(2))
