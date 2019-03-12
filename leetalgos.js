@@ -784,6 +784,25 @@
 // 	return n == 1;
 // };
 
+// // Similar to fibonacci
+// var climbStairs = function(n) {
+// 	if (n < 3) {
+// 		return n;
+// 	}
+// 	let oneStepBefore = 2;
+// 	let twoStepBefore = 1;
+// 	let targetStep = 0;
+// 	for (var i=2; i<n; i++) {
+// 		targetStep = oneStepBefore + twoStepBefore;
+// 		twoStepBefore = oneStepBefore;
+// 		oneStepBefore = targetStep;
+// 	}
+// 	return targetStep;
+// };
+// console.log(climbStairs(2));
+// console.log(climbStairs(3));
+// console.log(climbStairs(4));
+
 // var climbStairs = function(n) {
 //     if (n <=3) {
 // 		return n;
@@ -794,19 +813,267 @@
 // 	}
 // 	return arr[n-1];
 // };
-// console.log(climbStairs(2))
+// console.log(climbStairs(2));
+// console.log(climbStairs(3));
+// console.log(climbStairs(4));
 
-var climbStairs = function(n) {
-	let current = 1;
-	let next = 1;
-    while (n > 0) {
-		current = (next += current) - current;
-		n--;
-	}
-    return current;
-};
-console.log(climbStairs(2))
+// var maxSubArray = function(nums) {
+// 	let prev = 0;
+// 	let max = -Infinity;
+// 	for (var i=0; i<nums.length; i++) {
+// 		if ( (prev + nums[i]) > nums[i] ) {
+// 			prev += nums[i];
+// 		} else {
+// 			prev = nums[i];
+// 		}
+// 		if  (max < prev) {
+// 			max = prev;
+// 		}
+// 	}
+// 	return max;
+// };
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 
-// 91. Decode Ways
-// 62. Unique Paths
-// 509. Fibonacci Number
+// var maxSubArray = function(nums) {
+// 	let current = 0;
+// 	let max = nums[0];
+// 	for (var i=0; i<nums.length; i++) {
+// 		current += nums[i];
+// 		if ( current < 0 || current < nums[i]) {
+// 			current = nums[i];
+// 		}
+// 		if ( current > max) {
+// 			max = current;
+// 		}
+// 	}
+// 	return max;
+// };
+// console.log(maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
+
+// var hammingWeight = function(n) {
+// 	let count = 0;
+// 	let str = n.toString(2);
+
+// 	for (let i=0; i<str.length; i++) {
+// 		if (str[i] == "1") {
+// 			count++;
+// 		}
+// 	}
+// 	return count;
+// };
+
+// console.log(hammingWeight(00000000000000000000000000001011));
+// console.log(hammingWeight(00000000000000000000000010000000));
+// console.log(hammingWeight(11111111111111111111111111111101));
+
+
+// var hammingWeight = function(n) {
+// 	return n.toString(2).replace(/0/g, '').length
+// };
+// console.log(hammingWeight(00000000000000000000000000001011));
+// console.log(hammingWeight(00000000000000000000000010000000));
+// console.log(hammingWeight(11111111111111111111111111111101));
+
+// var isPowerOfThree = function(n) {
+// 	while (n>1) {
+// 		n = n/3;
+// 	}
+// 	if (n === 1) {
+// 		return true;
+// 	}
+// 	return false;
+// };
+// console.log(isPowerOfThree(27));
+// console.log(isPowerOfThree(243));
+// console.log(isPowerOfThree(59049));
+
+// var isPowerOfThree = function(n) {
+// 	console.log(Math.log10(n))
+// 	let res = Math.log10(n)/Math.log10(3);
+// 	if (Number.isInteger(res)) {
+// 		return true;
+// 	}
+// 	return false;
+// };
+// console.log(isPowerOfThree(27));
+// console.log(isPowerOfThree(243));
+// console.log(isPowerOfThree(59049));
+
+// var plusOne = function(digits) {
+// 	for (var i=digits.length-1; i>=0; i--) {
+// 		digits[i]++;
+// 		if (digits[i]>9) {
+// 			digits[i] = 0;
+// 			if (i === 0) {
+// 				digits.unshift(1)
+// 			}
+// 		} else {
+// 			break;
+// 		}
+// 	}
+// 	return digits;
+// };
+// console.log(plusOne([1,2,3,4]));
+// console.log(plusOne([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3]));
+// console.log(plusOne([1,1,9]));
+
+
+// var plusOne = function(digits) {
+// 	for(let i = digits.length - 1; i >= 0; i --){
+// 		if(digits[i] === 9){
+// 		  digits[i] = 0;
+// 		}
+// 		else {
+// 		  digits[i]++;
+// 		  return digits;
+// 		}
+// 	  }
+// 	  if (digits[0] == 0) {
+// 		  digits.unshift(1);
+// 	  }
+// 	  return digits;
+// };
+// console.log(plusOne([1,2,3,4]));
+// console.log(plusOne([6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3]));
+// console.log(plusOne([9]));
+
+// // doesn't work for big numbers
+// var trailingZeroes = function(n) {
+//     if (n === 0 || n === 1) {
+// 		return 0;
+// 	}
+// 	for (let i = n - 1; i >= 1; i--) {
+// 		n *= i;
+// 	}
+// 	let str = n.toString();
+// 	let count=0;
+// 	for (let i=str.length-1; i > 1; i--) {
+// 		if (str[i] === "0") {
+// 			count++
+// 		} else {
+// 			break;
+// 		}
+// 	}
+// 	return count;
+// };
+// console.log(trailingZeroes(3));
+// console.log(trailingZeroes(5));
+// console.log(trailingZeroes(0));
+// console.log(trailingZeroes(7));
+// console.log(trailingZeroes(30));
+
+// var trailingZeroes = function(n) {
+//     var x = 5;
+//     var zeros = 0;
+//     var count;
+//     while (x <= n) {
+//         count = n / x >> 0;
+//         if (count > 0) {
+//             zeros += count;
+//         }
+//         x *= 5;
+//     }
+    
+//     return zeros;
+// };
+// console.log(trailingZeroes(3));
+// console.log(trailingZeroes(5));
+// console.log(trailingZeroes(0));
+// console.log(trailingZeroes(7));
+// console.log(trailingZeroes(30));
+
+// var trailingZeroes = function(n) {
+//     if (n < 5) {
+// 		return 0;
+// 	}
+//     return Math.floor(n/5) + trailingZeroes(n/5);
+// };
+// console.log(trailingZeroes(3));
+// console.log(trailingZeroes(5));
+// console.log(trailingZeroes(0));
+// console.log(trailingZeroes(7));
+// console.log(trailingZeroes(30));
+
+// var compareVersion = function(version1, version2) {
+// 	let v1Split = version1.split(".");
+// 	let v2Split = version2.split(".");
+// 	let v1Num = 0;
+// 	let v2Num = 0;
+// 	let max = Math.max(v1Split.length, v2Split.length)
+// 	for ( let i=0; i<max; i++) {
+// 		if (v1Split[i] != null) {
+// 			v1Num = parseInt(v1Split[i]);
+// 		} else {
+// 			v1Num = null;
+// 		}
+// 		if (v2Split[i] != null) {
+// 			v2Num = parseInt(v2Split[i]);
+// 		} else {
+// 			v2Num = null;
+// 		}
+// 		if (v1Num>v2Num) {
+// 			return 1;
+// 		}
+// 		if (v1Num<v2Num) {
+// 			return -1;
+// 		}
+// 	}
+// 	return 0;
+// };
+// console.log(compareVersion("0.1", "1.1"));
+// console.log(compareVersion("1.01", "1"));
+// console.log(compareVersion("7.5.2.4", "7.5.3"));
+// console.log(compareVersion("1.01", "1.001"));
+// console.log(compareVersion("1.0", "1.0.0"));
+
+// // out limit for big strings
+// var isValid = function(s) {
+// 	const stack=[];
+//     for (var i=0; i<s.length; i++) {
+// 		if (s[i] === "[" || s[i] === "{" || s[i] === "(") {
+// 			stack.push(s[i]);
+// 		}
+// 		else if (s[i] === "]") {
+// 			if (stack.pop() !== "[") {
+// 				return false
+// 			}
+// 		}
+// 		else if (s[i] === ")") {
+// 			if (stack.pop() !== "(") {
+// 				return false
+// 			}
+// 		}
+// 		else if (s[i] === "}") {
+// 			if (stack.pop() !== "{") {
+// 				return false
+// 			}
+// 		}
+// 	}
+// 	return stack.length == 0;
+// };
+// console.log(isValid("()"))
+// console.log(isValid("()[]{}"))
+// console.log(isValid("(]"))
+// console.log(isValid("([)]"))
+// console.log(isValid("{[]}"))
+
+// function isValid(str) {
+// 	const stack = [];
+// 	for (let char of str) {
+// 	  if (char === '(') {
+// 		stack.push(')');
+// 	  } else if (char === '[') {
+// 		stack.push(']');
+// 	  } else if (char === '{') {
+// 		stack.push('}');
+// 	  } else if (char !== stack.pop()) {
+// 		return false;
+// 	  }
+// 	}
+// 	return stack.length === 0;
+//   };
+//   console.log(isValid("()"))
+// console.log(isValid("()[]{}"))
+// console.log(isValid("(]"))
+// console.log(isValid("([)]"))
+// console.log(isValid("{[]}"))
