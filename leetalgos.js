@@ -821,7 +821,7 @@
 // 	let prev = 0;
 // 	let max = -Infinity;
 // 	for (var i=0; i<nums.length; i++) {
-// 		if ( (prev + nums[i]) > nums[i] ) {
+// 		if (prev > 0) {
 // 			prev += nums[i];
 // 		} else {
 // 			prev = nums[i];
@@ -1077,3 +1077,41 @@
 // console.log(isValid("(]"))
 // console.log(isValid("([)]"))
 // console.log(isValid("{[]}"))
+
+// var productExceptSelf = function(nums) {
+// 	const arr = [];
+// 	let prod = 1;
+//     for (let i=0; i<nums.length; i++) {
+// 		arr[i] = prod;
+// 		prod *= nums[i];
+// 	}
+// 	prod = 1;
+// 	for (let j=nums.length-1; j>=0; j--) {
+// 		arr[j] *= prod;
+// 		prod *= nums[j];
+// 	}
+// 	return arr;
+// };
+// console.log(productExceptSelf([1,2,3,4]))
+
+// var productExceptSelf = function(nums) {
+//     let result = [];
+//     let left = nums[0];
+//     let right = nums[nums.length - 1];
+    
+//     for(let i = 0; i < nums.length ; i++) {
+//         result[i] = 1;
+//     }
+    
+//     for(let i = 1; i < nums.length; i++){
+//         result[i] *= left;
+//         result[nums.length - 1 - i] *= right;
+		
+//         left *= nums[i];
+//         right *= nums[nums.length - 1 - i];
+//     }
+    
+//     return result;
+// };
+// console.log(productExceptSelf([1,2,3,4]))
+
