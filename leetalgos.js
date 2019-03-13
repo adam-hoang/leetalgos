@@ -1115,3 +1115,85 @@
 // };
 // console.log(productExceptSelf([1,2,3,4]))
 
+// // NEED TO WORK ON THIS
+// var longestCommonPrefix = function(strs) {
+// 	const dict = {};
+// 	let prefix = "";
+// 	for (let i=0; i<strs.length; i++) {
+// 		for (let j=0; j<strs[i].length; j++) {
+// 			if (dict[strs[i][j]]) {
+// 				dict[strs[i][j]]++;
+// 			} else {
+// 				dict[strs[i][j]] = 1;
+// 			}
+// 		}
+// 		if (dict[strs[i][j]] !== strs.length) {
+// 			return prefix;
+// 		} else {
+// 			string += dict[strs[i][j]];
+// 		}
+// 	}
+// };
+// console.log(longestCommonPrefix(["flower","flow","flight"]));
+
+// // Brute force
+// var strStr = function(haystack, needle) {
+// 	if (!needle) {
+// 		return 0;
+// 	}
+// 	for (let i = 0; i < haystack.length - needle.length + 1; i++) {
+// 		if (haystack.slice(i, i + needle.length) === needle) {
+// 			return i;
+// 		}
+// 	}
+// 	return -1;
+// };
+// console.log(strStr("hello", "ll"));
+// console.log(strStr("aaaaa", "bba"));
+
+// var strStr = function(haystack, needle) {
+//     if (needle === '') return 0;
+// 	const split = haystack.split(needle);
+// 	// if the needle exists it splits the haystack and the length would be > 1
+// 	if (split.length > 1) {
+// 		return split[0].length;
+// 	} else {
+// 		return -1;
+// 	}
+// };
+// console.log(strStr("hello", "ll"));
+// console.log(strStr("aaaaa", "bba"));
+
+// var mySqrt = function(x) {
+//     return Math.trunc(Math.sqrt(x));
+// };
+// console.log(mySqrt(8));
+// console.log(mySqrt(4));
+
+// var isPalindrome = function(s) {
+// 	s = s.replace(/\W/g, '').toLowerCase().split(" ").join("");
+//     for (let i=0; i<s.length/2; i++) {
+// 		if (s[i] !== s[s.length-i-1]) {
+// 			return false
+// 		}
+// 	}
+// 	return true;
+// };
+// console.log(isPalindrome("A man, a plan, a canal: Panama"));
+// console.log(isPalindrome("race a car"))
+
+// var isPalindrome = function(s) {
+// 	// takes out spaces
+// 	s=s.replace(/\s/g,'');
+// 	// takes out everything thats not alphanumeric
+// 	s=s.replace(/[^0-9a-z\s]/gi, '');
+// 	s= s.toLowerCase();    
+//     for(let i=0; i<s.length/2; i++){
+//         if(!(s[i] === s[s.length-1-i])){
+//             return false;
+//         }
+//     }
+//     return true
+// };
+// console.log(isPalindrome("A man, a plan, a canal: Panama"));
+// console.log(isPalindrome("race a car"))
