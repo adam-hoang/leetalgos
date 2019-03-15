@@ -1,2 +1,3 @@
-
-var reverseBits = function(n) {
+arr.sort(function (a, b) {
+	// 	return a - b
+	// })
