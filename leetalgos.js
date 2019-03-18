@@ -1229,3 +1229,19 @@
 // 	return results
 // }
 // console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+
+// var flipAndInvertImage = function(A) {
+//     for (let i=0; i<A.length; i++) {
+//         A[i].reverse();
+//         for (let j=0; j<A[i].length; j++) {
+//             if (A[i][j] === 1) {
+//                 A[i][j] = 0;
+//             } else {
+//                 A[i][j] = 1
+//             }
+//         }
+//     }
+//     return A;
+// };
+// console.log(flipAndInvertImage([[1,1,0],[1,0,1],[0,0,0]]));
+// console.log(flipAndInvertImage([[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]));
