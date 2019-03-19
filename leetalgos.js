@@ -1287,3 +1287,16 @@
 // console.log(diStringMatch("III"));
 // console.log(diStringMatch("DDI"));
 
+// var peakIndexInMountainArray = function(A) {
+//     let peak=0;
+//     let idx=0;
+//     for (let i=0; i<A.length; i++) {
+//         if (A[i] > peak) {
+//             peak = A[i];
+//             idx = i;
+//         }
+//     }
+//     return idx;
+// };
+// console.log(peakIndexInMountainArray([0,1,0]));
+// console.log(peakIndexInMountainArray([0,2,1,0]));
