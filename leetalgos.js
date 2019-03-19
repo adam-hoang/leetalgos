@@ -1245,3 +1245,45 @@
 // };
 // console.log(flipAndInvertImage([[1,1,0],[1,0,1],[0,0,0]]));
 // console.log(flipAndInvertImage([[1,1,0,0],[1,0,0,1],[0,1,1,1],[1,0,1,0]]));
+
+// // Robot return to origin
+// var judgeCircle = function(moves) {
+//     let x=0;
+//     let y=0;
+//     for (let i=0; i<moves.length; i++) {
+//         if (moves[i] === "U") {
+//             y++;
+//         } else if (moves[i] === "D") {
+//             y--;
+//         } else if (moves[i] === "L") {
+//             x--;
+//         } else {
+//             x++;
+//         }
+//     }
+//     if (x === 0 && y === 0) {
+//         return true;
+//     }
+//     return false;
+// };
+// console.log(judgeCircle("UD"));
+
+// var diStringMatch = function(S) {
+//     let min=0;
+//     let max=S.length;
+//     let arr = [];
+//     for (let i=0; i<S.length+1; i++) {
+//         if (S[i] === "I") {
+//             arr.push(min);
+//             min++;
+//         } else {
+//             arr.push(max);
+//             max--;
+//         }
+//     }
+//     return arr;
+// };
+// console.log(diStringMatch("IDID"));
+// console.log(diStringMatch("III"));
+// console.log(diStringMatch("DDI"));
+
