@@ -1300,3 +1300,58 @@
 // };
 // console.log(peakIndexInMountainArray([0,1,0]));
 // console.log(peakIndexInMountainArray([0,2,1,0]));
+
+// var fib = function(N) {
+//     if (N<2) {
+//         return N;
+//     }
+//     let arr =[0,1];
+//     for (let i=2; i<N+1; i++) {
+//         arr[i] = (arr[i-1] + arr[i-2])
+//     }
+//     return arr[arr.length-1];
+// };
+// console.log(fib(4));
+
+// var fib = function(N) {
+//     if (N<2) {
+//         return N;
+//     }
+//     return (fib(N-1) + fib(N-2));
+// };
+// console.log(fib(4));
+
+// var sortArrayByParityII = function(A) {
+//     let odd = 1;
+//     let even = 0;
+//     const arr=[];
+//     for (let i=0; i<A.length; i++) {
+//         if (A[i] % 2 === 0) {
+//             arr[even] = A[i];
+//             even += 2;
+//         } else {
+//             arr[odd] = A[i];
+//             odd += 2;
+//         }
+//     }
+//     return arr;
+// };
+// console.log(sortArrayByParityII([4,2,5,7]));
+
+// var topKFrequent = function(nums, k) {
+//     const dict={};
+//     for (let i=0; i<nums.length; i++) {
+//         if (dict[nums[i]]) {
+//             dict[nums[i]]++;
+//         } else {
+//             dict[nums[i]] = 1;
+//         }
+//     }
+//     const dict2 = Object.keys(dict).sort(function(a,b){return dict[b]-dict[a]}).slice(0,k);
+//     const result=[];
+//     for (let i=0; i<dict2.length; i++) {
+//         result.push(parseInt(dict2[i]))
+//     }
+//     return result;
+// }
+// console.log(topKFrequent([5,5,4,1,1,1,2,2,3], 2));
