@@ -1407,3 +1407,37 @@
 //     return parseInt(result,2);
 // };
 // console.log(findComplement(5));
+
+// var canWinNim = function(n) {
+//     return n % 4 !== 0;
+// };
+// console.log(canWinNim(32));
+// console.log(canWinNim(33));
+
+// var findWords = function(words) {
+//     let row1 = ["q","w","e","r","t","y","u","i","o","p","Q","W","E","R","T","Y","U","I","O","P"];
+//     let row2 = ['a','s','d','f','g','h','j','k','l','A','S','D','F','G','H','J','K','L'];
+//     let row3 = ['z','x','c','v','b','n','m','Z','X','C','V','B','N','M'];
+//     let result = [];
+//     for (let i=0; i<words.length; i++) {
+//         let boolean = true
+//         let check =[]; 
+//         if (row1.includes(words[i][0])) {
+//             check = row1;
+//         } else if (row2.includes(words[i][0])) {
+//             check = row2;
+//         } else {
+//             check = row3;
+//         }
+//         for (let j=1; j<words[i].length; j++) {
+//             if (!check.includes(words[i][j])) {
+//                 boolean = false
+//             } 
+//         }
+//         if (boolean === true) {
+//             result.push(words[i]);
+//         }
+//     }
+//     return result;
+// };
+// console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]));
