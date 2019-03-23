@@ -1379,3 +1379,31 @@
 // console.log(reverseOnlyLetters("ab-cd"));
 // console.log(reverseOnlyLetters("a-bC-dEf-ghIj"));
 // console.log(reverseOnlyLetters("Test1ng-Leet=code-Q!"));
+
+// var findComplement = function(num) {
+//     let reverse = num.toString(2).split("")
+//     for (let i=0; i<reverse.length; i++) {
+//         if (reverse[i] == "1") {
+//             reverse[i] = "0";
+//         } else {
+//             reverse[i] = "1";
+//         }
+//     }
+//     let number = parseInt(reverse.join(""), 2)
+//     return number;
+// };
+// console.log(findComplement(5));
+
+var findComplement = function(num) {
+    let reverse = num.toString(2);
+    let result = "";
+    for (let i=0; i<reverse.length; i++) {
+        if (reverse[i] == "1") {
+            result += 0;
+        } else {
+            result += 1;
+        }
+    }
+    return parseInt(result,2);
+};
+console.log(findComplement(5));
