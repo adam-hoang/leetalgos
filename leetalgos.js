@@ -1394,16 +1394,16 @@
 // };
 // console.log(findComplement(5));
 
-var findComplement = function(num) {
-    let reverse = num.toString(2);
-    let result = "";
-    for (let i=0; i<reverse.length; i++) {
-        if (reverse[i] == "1") {
-            result += 0;
-        } else {
-            result += 1;
-        }
-    }
-    return parseInt(result,2);
-};
-console.log(findComplement(5));
+// var findComplement = function(num) {
+//     let reverse = num.toString(2);
+//     let result = "";
+//     for (let i=0; i<reverse.length; i++) {
+//         if (reverse[i] == "1") {
+//             result += 0;
+//         } else {
+//             result += 1;
+//         }
+//     }
+//     return parseInt(result,2);
+// };
+// console.log(findComplement(5));
