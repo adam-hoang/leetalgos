@@ -1355,3 +1355,27 @@
 //     return result;
 // }
 // console.log(topKFrequent([5,5,4,1,1,1,2,2,3], 2));
+
+// var reverseOnlyLetters = function(S) {
+//     let arr = S.split("");
+//     let i = 0;
+//     let j = arr.length-1;
+//     while (i < j) {
+//         if(/^[a-zA-Z]+$/.test(arr[i]) && /^[a-zA-Z]+$/.test(arr[j])) {
+//             let temp = arr[i];
+//             arr[i] = arr[j];
+//             arr[j] = temp;
+//             i++;
+//             j--;
+//         } else if (!/^[a-zA-Z]+$/.test(arr[i])) {
+//             i++;
+//         } else {
+//             j--
+//         }
+//     }
+//     let result = arr.join("");
+//     return result;
+// };
+// console.log(reverseOnlyLetters("ab-cd"));
+// console.log(reverseOnlyLetters("a-bC-dEf-ghIj"));
+// console.log(reverseOnlyLetters("Test1ng-Leet=code-Q!"));
