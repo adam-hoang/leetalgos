@@ -1638,3 +1638,96 @@
 // let A = "this apple is sweet";
 // let B = "this apple is sour";
 // console.log(uncommonFromSentences(A,B));
+
+// var arrayPairSum = function(nums) {
+//     let result = 0;
+//     nums = nums.sort(function (a,b) {return a-b});
+//     console.log(nums)
+//     for (let i=0; i<nums.length; i+=2) {
+//         result += nums[i]
+//     }
+//     return result;
+// };
+// console.log(arrayPairSum([1,4,3,2]));
+// console.log(arrayPairSum([6214, -2290, 2833, -7908]));
+
+// var sortColors = function(nums) {
+//     let red = 0;
+//     let white = 0;
+//     let blue = 0;
+//     for (let i=0; i<nums.length; i++) {
+//         if (nums[i] === 0) {
+//             red++;
+//         } else if (nums[i] === 1) {
+//             white++;
+//         } else {
+//             blue++;
+//         }
+//     }
+//     for (let i=0; i<red; i++) {
+//         nums[i] = 0;
+//     }
+//     for (let i=red; i<red+white; i++) {
+//         nums[i] = 1;
+//     }
+//     for (let i=red+white; i<red+white+blue; i++) {
+//         nums[i] = 2;
+//     }
+//     return nums;
+// };
+// console.log(sortColors([2,0,2,1,1,0]));
+
+// var sortColors = function(nums) {
+//     let red = 0;
+//     let white = 0;
+//     let blue = 0;
+//     for (let i=0; i<nums.length; i++) {
+//         if (nums[i] === 0) {
+//             red++;
+//         } else if (nums[i] === 1) {
+//             white++;
+//         } else {
+//             blue++;
+//         }
+//     }
+//     for (let i=0; i<nums.length; i++) {
+//         while (red > 0) {
+//             nums[i] = 0;
+//             red--;
+//             i++;
+//         }
+//         while (white > 0) {
+//             nums[i] = 1;
+//             white--;
+//             i++;
+//         }
+//         while (blue > 0) {
+//             nums[i] = 2;
+//             blue--;
+//             i++;
+//         }
+//     }
+//     return nums;
+// };
+// console.log(sortColors([2,0,2,1,1,0]));
+
+// var sortColors = function(nums) {
+//     let left = 0;
+//     let right = nums.length-1;
+//     for (let i=0; i<=right; i++) {
+//         if (nums[i] === 0) {
+//             let temp = nums[i];
+//             nums[i] = nums[left];
+//             nums[left] = temp;
+//             left++;
+//         } else if (nums[i] === 2) {
+//             let temp = nums[i];
+//             nums[i] = nums[right];
+//             nums[right] = temp;
+//             right--;
+//             i--;
+//         }
+//     }
+//     return nums;
+// };
+// console.log(sortColors([2,0,2,1,1,0]));
