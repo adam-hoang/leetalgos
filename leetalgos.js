@@ -1441,3 +1441,106 @@
 //     return result;
 // };
 // console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]));
+
+// var islandPerimeter = function(grid) {
+//     let perimeter = 0;
+//     for (let i=0; i<grid.length; i++) {
+//         for (let j=0; j<grid[i].length; j++) {
+//             if (grid[i][j] === 1) {
+//                 if (j-1<0 || grid[i][j-1] !== 1) {
+//                     perimeter++;
+//                 }
+//                 if (i-1<0 || grid[i-1][j] !== 1) {
+//                     perimeter++;
+//                 }
+//                 if (j+1>=grid[i].length || grid[i][j+1] !== 1) {
+//                     perimeter++;
+//                 }
+//                 if (i+1>=grid.length || grid[i+1][j] !== 1) {
+//                     perimeter++;
+//                 }
+//             }
+//         }
+//     }
+//     return perimeter;
+// };
+// console.log(islandPerimeter([
+//     [0,1,0,0],
+//     [1,1,1,0],
+//     [0,1,0,0],
+//     [1,1,0,0]
+// ]));
+
+// var isToeplitzMatrix = function(matrix) {
+//     for (let i=0; i<matrix.length; i++) {
+//         for (let j=0; j<matrix[0].length; j++) {
+//             if (i+1 < matrix.length && j+1 < matrix[0].length && matrix[i+1][j+1] !== matrix[i][j]) {
+//                 return false;
+//             }
+//         }
+//     }
+//     return true;
+// };
+// console.log(isToeplitzMatrix([
+//     [1,2,3,4],
+//     [5,1,2,3],
+//     [9,5,1,2]
+// ]))
+
+// var isToeplitzMatrix = function(matrix) {
+//     for (let i=0; i<matrix.length-1; i++) {
+//         for (let j=0; j<matrix[0].length-1; j++) {
+//             if (matrix[i+1][j+1] !== matrix[i][j]) {
+//                 return false;
+//             }
+//         }
+//     }
+//     return true;
+// };
+// console.log(isToeplitzMatrix([
+//     [1,2,3,4],
+//     [5,1,2,3],
+//     [9,5,1,2]
+// ]))
+
+// // reverse words in string 3
+// var reverseWords = function(s) {
+//     let res = ""
+//     let split = s.split(" ");
+//     for (let i=0; i<split.length; i++) {
+//         let clean = split[i].split("").reverse().join("");
+//         res += " " + clean;
+//     }
+//     return res.substring(1);
+// };
+// console.log(reverseWords("Let's take LeetCode contest"))
+
+// var numberOfLines = function(widths, S) {
+//     let count = 1;
+//     let length = 0;
+//     const alphabet = "abcdefghijklmnopqrstuvwxyz"
+//     for (let i=0; i<S.length; i++) {
+//         let letter = widths[alphabet.indexOf(S[i])];
+//         if (length + letter > 100) {
+//             count++;
+//             length = 0;
+//         }
+//         length += letter;
+//     }
+//     return [count, length];
+// };
+// console.log(numberOfLines([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], "abcdefghijklmnopqrstuvwxyz"));
+
+var reversePairs = function(nums) {
+    let count = 0;
+    for (let i=0; i<nums.length; i++) {
+        for (let j=0; j<nums.length; j++) {
+            if (i<j && nums[i] > 2*nums[j]) {
+                count++;
+            }
+        }
+    }
+    return count;
+};
+console.log(reversePairs([1,3,2,3,1]))
+console.log(reversePairs([2,4,3,5,1]))
