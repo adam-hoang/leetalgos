@@ -1531,16 +1531,110 @@
 // };
 // console.log(numberOfLines([10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10], "abcdefghijklmnopqrstuvwxyz"));
 
-var reversePairs = function(nums) {
-    let count = 0;
-    for (let i=0; i<nums.length; i++) {
-        for (let j=0; j<nums.length; j++) {
-            if (i<j && nums[i] > 2*nums[j]) {
-                count++;
-            }
-        }
-    }
-    return count;
-};
-console.log(reversePairs([1,3,2,3,1]))
-console.log(reversePairs([2,4,3,5,1]))
+// // times out
+// var reversePairs = function(nums) {
+//     let count = 0;
+//     for (let i=0; i<nums.length; i++) {
+//         for (let j=0; j<nums.length; j++) {
+//             if (i<j && nums[i] > 2*nums[j]) {
+//                 count++;
+//             }
+//         }
+//     }
+//     return count;
+// };
+// console.log(reversePairs([1,3,2,3,1]))
+// console.log(reversePairs([2,4,3,5,1]))
+
+// // not working
+// var reversePairs = function(nums) {
+//     function merge(nums, start, mid, end) {
+//         let n1 = (mid - start + 1);
+//         let n2 = (end - mid);
+//         let L = [];
+//         let R = [];
+//         for (let i=0; i<n1; i++) {
+//             L[i] = nums[start + i];
+//         }
+//         for (let j=0; j<n2; j++) {
+//             R[j] = nums[mid + 1 + j];
+//         }
+//         for (let i=0, j=0, k=start; k<=end; k++) {
+//             if (j>=n2 || (i<n1 && L[i] <= R[j])) {
+//                 nums[k] = L[i++];
+//             } else {
+//                 nums[k] = R[j++];
+//             }
+//         }
+//     }
+//     function mergeSort(nums, start, end) {
+//         if (start >= end) {
+//             return 0;
+//         }
+//         let mid = start + (end - start)/2;
+//         let count = mergeSort(nums, start, mid) + mergeSort(nums, mid+1, end);
+//         for (let i=start, j=mid+1; i<=mid; i++) {
+//             while (j<=end && nums[i]/2.0 > nums[j]) {
+//                 j++;
+//                 count += j-(mid+1);
+//             }
+//         }
+//         merge(nums, start, mid, end);        
+//         return count;
+//     }
+//     return mergeSort(nums, 0, nums.length-1);
+// };
+// console.log(reversePairs([1,3,2,3,1]));
+// console.log(reversePairs([2,4,3,5,1]))
+
+// var uncommonFromSentences = function(A, B) {
+//     let a = A.split(" ");
+//     let b = B.split(" ");
+//     let dict = {};
+//     let res =[];
+//     for (let i=0; i<a.length; i++) {
+//         if (dict[a[i]]) {
+//             dict[a[i]]++
+//         } else {
+//             dict[a[i]] = 1;
+//         }
+//     };
+//     for (let i=0; i<b.length; i++) {
+//         if (dict[b[i]]) {
+//             dict[b[i]]++
+//         } else {
+//             dict[b[i]] = 1;
+//         }
+//     };
+//     for (let key in dict) {
+//         if (dict[key] === 1) {
+//             res.push(key);
+//         }
+//     }
+//     return res;
+// };
+// let A = "this apple is sweet";
+// let B = "this apple is sour";
+// console.log(uncommonFromSentences(A,B));
+
+// var uncommonFromSentences = function(A, B) {
+//     let a = (A + ' ' + B).split(" ");
+//     let dict = {};
+//     let res =[];
+//     for (let i=0; i<a.length; i++) {
+//         if (dict[a[i]]) {
+//             dict[a[i]]++
+//         } else {
+//             dict[a[i]] = 1;
+//         }
+//     };
+//     for (let key in dict) {
+//         if (dict[key] === 1) {
+//             res.push(key);
+//         }
+//     }
+//     return res;
+// };
+// let A = "this apple is sweet";
+// let B = "this apple is sour";
+// console.log(uncommonFromSentences(A,B));
