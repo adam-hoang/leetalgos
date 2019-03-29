@@ -1784,3 +1784,33 @@
 // };
 // console.log(distributeCandies([1,1,2,2,3,3]));
 // console.log(distributeCandies([1,1,2,3]));
+
+// var isPalindrome = function(x) {
+//     if (x < 0) {
+//         return false;
+//     }
+//     x = x.toString()
+//     for (let i=0; i<x.length; i++) {
+//         if (x[i] !== x[x.length-i-1]) {
+//             return false;
+//         } 
+//     }
+//     return true;
+// };
+// console.log(isPalindrome(121));
+// console.log(isPalindrome(-121));
+
+// var isPalindrome = function (x) {
+//     if (x < 0) {
+//         return false;
+//     }
+//     let number = x;
+//     let result = 0;
+//     while (number) {
+//         result = result*10 + number % 10;
+//         number = Math.floor(number / 10);
+//     }
+//     return result == x;
+// };
+// console.log(isPalindrome(121));
+// console.log(isPalindrome(-121));
