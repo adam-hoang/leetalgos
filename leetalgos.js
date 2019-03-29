@@ -450,6 +450,7 @@
 // 	}
 // 	return major;
 // }
+// console.log(majorityElement([2, 2, 1, 1, 1, 2, 2]))
 
 // var getSum = function (a, b) {
 // 	while (b !== 0) {
@@ -1731,3 +1732,55 @@
 //     return nums;
 // };
 // console.log(sortColors([2,0,2,1,1,0]));
+
+// var calPoints = function(ops) {
+//     let count = 0;
+//     let arr = [];
+//     for (let i=0; i<ops.length; i++) {
+//         if (parseInt(ops[i])) {
+//             arr.push(parseInt(ops[i]));
+//         } else if (ops[i] === "C") {
+//             arr.pop();
+//         } else if (ops[i] === "D") {
+//             arr.push(arr[arr.length-1]*2);
+//         } else if (ops[i] === "+") {
+//             arr.push(arr[arr.length-2] + arr[arr.length-1])
+//         }
+//     }
+//     for (let i=0; i<arr.length; i++) {
+//         count += arr[i];
+//     }
+//     return count;
+// };
+// console.log(calPoints(["5","2","C","D","+"]));
+
+// var distributeCandies = function(candies) {
+//     let dict = {};
+//     let count = 0;
+//     let split = candies.length/2
+//     for (let i=0; i<candies.length; i++) {
+//         if (dict[candies[i]]) {
+//             dict[candies[i]]++;
+//         } else {
+//             dict[candies[i]] = 1;
+//         }
+//     }
+//     for (let keys in dict) {
+//         count++
+//     }
+//     if (count < split) {
+//         return count;
+//     } else {
+//         return split;
+//     }
+// };
+// console.log(distributeCandies([1,1,2,2,3,3]));
+// console.log(distributeCandies([1,1,2,3]));
+
+// var distributeCandies = function(candies) {
+//     let count = new Set(candies).size;
+//     let split = candies.length/2;
+//     return Math.min(split, count);
+// };
+// console.log(distributeCandies([1,1,2,2,3,3]));
+// console.log(distributeCandies([1,1,2,3]));
