@@ -1814,3 +1814,80 @@
 // };
 // console.log(isPalindrome(121));
 // console.log(isPalindrome(-121));
+
+// var longestCommonPrefix = function(strs) {
+//     if (strs.length === 0) {
+//         return "";
+//     }
+//     let prefix = strs[0];
+//     for (let i=1; i<strs.length; i++) {
+//         for (let j=0; j<prefix.length; j++) {
+//             if (strs[i][j] !== prefix[j]) {
+//                 prefix = strs[0].slice(0,j)
+//                 break;
+//             }
+//         }
+//     }
+//     return prefix;
+// };
+// console.log(longestCommonPrefix(["flower","flow","flight"]))
+// console.log(longestCommonPrefix([]))
+// console.log(longestCommonPrefix(["aa", "a"]))
+
+// var removeElement = function(nums, val) {
+//     let length = 0;
+//     for (let i=0; i<nums.length; i++) {
+//         if (nums[i] !== val) {
+//             nums.splice(i,1);
+//             length++;
+//         }
+//     }
+//     return length;
+// };
+
+// var searchInsert = function (nums, target) {
+//     let i = 0
+//     while (nums[i] < target) {
+//         i++;
+//     }
+//     return i;
+// };
+
+// var lengthOfLastWord = function(s) {
+//     s = s.split(" ");
+//     while (s[s.length-1] === "") {
+//         s.pop();
+//     }
+//     return s[s.length-1] ? s[s.length-1].length : 0;
+// };
+// console.log(lengthOfLastWord("Hello World"));
+// console.log(lengthOfLastWord(""));
+// console.log(lengthOfLastWord("a "));
+// console.log(lengthOfLastWord("b   a    "));
+
+// var lengthOfLastWord = function(s) {
+//     s = s.trim().split(" ");
+//     return s[s.length-1] ? s[s.length-1].length : 0;
+// };
+// console.log(lengthOfLastWord("Hello World"));
+// console.log(lengthOfLastWord(""));
+// console.log(lengthOfLastWord("a "));
+// console.log(lengthOfLastWord("b   a    "));
+
+// var merge = function(nums1, m, nums2, n) {
+//     for (let i=m+n-1; n>0; i--) {
+//         if (n<0 || nums1[m-1] > nums2[n-1]) {
+//             nums1[i] = nums1[m-1];
+//             m--;
+//         } else {
+//             nums1[i] = nums2[n-1];
+//             n--;
+//         }
+//     }
+//     return nums1;
+// };
+// let nums1 = [1,2,3,0,0,0]
+// let m = 3
+// let nums2 = [2,5,6]
+// let n = 3
+// console.log(merge(nums1, m, nums2, n));
