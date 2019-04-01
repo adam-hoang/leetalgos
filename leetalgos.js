@@ -1891,3 +1891,34 @@
 // let nums2 = [2,5,6]
 // let n = 3
 // console.log(merge(nums1, m, nums2, n));
+
+// var getRow = function(rowIndex) {
+//     let arr =[];
+//     for (let i=0; i<rowIndex+1; i++) {
+//         arr[i] = [];
+//         for (let j=0; j<=i; j++) {
+//             if (j === 0 || j === i) {
+//                 arr[i].push(1);
+//             } else {
+//                 arr[i].push(arr[i-1][j-1] + arr[i-1][j])
+//             }
+//         }
+//     }
+//     return arr[rowIndex];
+// };
+// console.log(getRow(3));
+
+// var twoSum = function(numbers, target) {
+//     let left = 0;
+//     let right = numbers.length-1;
+//     while (numbers[left] + numbers[right] !== target) {
+//         if (numbers[left] + numbers[right] < target) {
+//             left++;
+//         } else {
+//             right--;
+//         }
+//     }
+//     return [left+1, right+1];
+    
+// };
+// console.log(twoSum([2,7,11,15], 9));
