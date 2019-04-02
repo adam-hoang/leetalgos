@@ -1919,6 +1919,203 @@
 //         }
 //     }
 //     return [left+1, right+1];
-    
+
 // };
 // console.log(twoSum([2,7,11,15], 9));
+
+// var rob = function(nums) {
+//     let path1 = 0;
+//     let path2 = 0;
+//     for (let i=0; i<nums.length; i++) {
+//         if (i%2 === 0) {
+//             path1 = Math.max(path1+nums[i], path2);
+//         } else {
+//             path2 = Math.max(path1, path2+nums[i]);
+//         }
+//     }
+//     return Math.max(path1, path2);
+// };
+// console.log(rob([1,2,3,1]));
+// console.log(rob([2,7,9,3,1]));
+
+// var countPrimes = function(n) {
+//   let arr = [];
+//   let count = 0;
+//   for (let i=2; i<n; i++) {
+//       if (!arr[i]) {
+//           arr[i] = 1;
+//           count++;
+//       }
+//       let j=2;
+//       while (j*i < n) {
+//           arr[i*j] = 1;
+//           j++;
+//       }
+//   }
+//   return count;
+// };
+// console.log(countPrimes(10));
+
+// var isIsomorphic = function(s, t) {
+//     if (s === t) {
+//         return true;
+//     }
+//     const dict1 = {};
+//     const dict2 = {};
+//     for (let i=0; i<s.length; i++) {
+//         if (!dict1[s[i]]) {
+//             dict1[s[i]] = t[i];
+//         }
+//         if (!dict2[t[i]]) {
+//             dict2[t[i]] = s[i];
+//         }
+//         if (dict1[s[i]] !== t[i] || dict2[t[i]] !== s[i]) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(isIsomorphic("egg", "add"));
+// console.log(isIsomorphic("foo", "bar"));
+// console.log(isIsomorphic("paper", "title"));
+
+// var containsNearbyDuplicate = function(nums, k) {
+//     for (let i=0; i<nums.length; i++) {
+//         for (let j=0; j<nums.length; j++) {
+//             if (i !== j && nums[i] === nums[j]) {
+//                 if (Math.abs(i-j) <= k) {
+//                     return true;
+//                 }
+//             }
+//         }
+//     }
+//     return false;
+// };
+// console.log(containsNearbyDuplicate([1,2,3,1], 3));
+// console.log(containsNearbyDuplicate([1,0,1,1], 1));
+// console.log(containsNearbyDuplicate([1,2,3,1,2,3], 2));
+
+// var containsNearbyDuplicate = function(nums, k) {
+//     const dict = {};
+//     for (let i=0; i<nums.length; i++) {
+//         if (nums[i] in dict && i - dict[nums[i]] <= k) {
+//             return true;
+//         }
+//         dict[nums[i]] = i;
+//     }
+//     return false;
+// };
+// console.log(containsNearbyDuplicate([1,2,3,1], 3));
+// console.log(containsNearbyDuplicate([1,0,1,1], 1));
+// console.log(containsNearbyDuplicate([1,2,3,1,2,3], 2));
+
+// var isPowerOfTwo = function(n) {
+//     let total = 1;
+//     while (total < n) {
+//         total *= 2;
+//     }
+//     return total === n
+// };
+// console.log(isPowerOfTwo(1));
+// console.log(isPowerOfTwo(16));
+// console.log(isPowerOfTwo(218));
+
+// var isPowerOfTwo = function(n) {
+//     if (n < 1) {
+//         return false;
+//     }
+//     while (n > 1) {
+//         n /= 2;
+//     }
+//     if (n === 1) {
+//         return true;
+//     } 
+//     return false;
+// }
+
+// console.log(isPowerOfTwo(1));
+// console.log(isPowerOfTwo(16));
+// console.log(isPowerOfTwo(218));
+
+// var addDigits = function (num) {
+//     let str = num.toString();
+//     while (str.length > 1) {
+//         str = str.split("");
+//         let sum = 0;
+//         for (let i = 0; i < str.length; i++) {
+//             sum += parseInt(str[i]);
+//         }
+//         str = sum.toString();
+//     }
+//     return str;
+// };
+// console.log(addDigits(38));
+
+// var addDigits = function(num) {
+//     while(num >= 10) {
+//         let temp = num;
+//         num = 0;
+//         while(temp > 0) {
+//             num += temp % 10;
+//             temp = Math.floor(temp/10);
+//         }
+//     }
+//     return num;
+// };
+// console.log(addDigits(38));
+
+
+
+// function maxStreak(arr,m) {
+//     let max = 0;
+//     let count = 0;
+//     for (let i=0; i<arr.length; i++) {
+//         for (let j=0; j<m; j++) {
+//             if (arr[i][j] === "N") {
+//                 count = 0;
+//                 break;
+//             }
+//             if (j === m-1) {
+//                 count++;
+//             }
+//         }
+//         max = Math.max(count, max)
+//     }
+//     return max;
+// }
+// console.log(maxStreak(["YYY", "YYY", "YNN", "YYN", "YYN"], 3));
+// console.log(maxStreak(["YYY", "YYY", "YYY", "YYN", "YYY"], 3));
+// console.log(maxStreak(["YYN", "YYN", "YNY", "YYN", "YYN"], 3));
+
+// forgive me English
+// setp 1: length=k all possible Combination
+// setp 2: find length=k all possible Combination, sum = n
+
+
+var combinationSum3 = function(k, n) {
+	var solution = [];
+	var result = [];
+
+	var backTracking = function(m, n) {
+		if(m==k){
+			var sum = 0;
+			for(var i=0; i<solution.length; ++i){
+				sum += solution[i];
+			}
+			if(sum==n){
+				result.push(solution.slice(0));
+			}
+		}else{
+			for(var i=0; i<=4; ++i){
+				solution[m] = i;
+				arguments.callee(m+1, n);
+			}
+		}
+	}
+
+	backTracking(0, n);
+
+	return result;
+};
+console.log(combinationSum3(2,4));
+// console.log(combinationSum3(3,8));
