@@ -2063,3 +2063,35 @@
 //     return num;
 // };
 // console.log(addDigits(38));
+
+// var wordPattern = function(pattern, str) {
+//     str = str.split(" ");
+//     if (str.length !== pattern.length) {
+//         return false;
+//     }
+//     const dict = {};
+//     const dict2 = {};
+//     for (let i=0; i<pattern.length; i++) {
+//         if (!dict[pattern[i]]) {
+//             dict[pattern[i]] = str[i];
+//         } else {
+//             if (dict[pattern[i]] !== str[i]) {
+//                 return false;
+//             }
+//         }
+//     }
+//     for (let i=0; i<str.length; i++) {
+//         if (!dict2[str[i]]) {
+//             dict2[str[i]] = pattern[i];
+//         } else {
+//             if (dict2[str[i]] !== pattern[i]) {
+//                 return false;
+//             }
+//         }
+//     }
+//     return true;
+// };
+// console.log(wordPattern("abba", "dog cat cat dog"));
+// console.log(wordPattern("abba", "dog cat cat fish"));
+// console.log(wordPattern("aaaa", "dog cat cat dog"));
+// console.log(wordPattern("abba", "dog dog dog dog"));
