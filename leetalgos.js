@@ -2095,3 +2095,84 @@
 // console.log(wordPattern("abba", "dog cat cat fish"));
 // console.log(wordPattern("aaaa", "dog cat cat dog"));
 // console.log(wordPattern("abba", "dog dog dog dog"));
+
+// var isPowerOfFour = function(num) {
+//     if (num < 1) {
+//         return false;
+//     }
+//     while (num > 1) {
+//         num /= 4;
+//     }
+//     if (num === 1) {
+//         return true;
+//     } 
+//     return false;
+// };
+// console.log(isPowerOfFour(16));
+// console.log(isPowerOfFour(5));
+
+// var isPowerOfFour = function(num) {
+//     if (num < 1) {
+//         return false;
+//     }
+//     if (num === 1) {
+//         return true;
+//     } 
+//     return isPowerOfFour(num/4);
+// };
+// console.log(isPowerOfFour(16));
+// console.log(isPowerOfFour(5));
+
+// var reverseVowels = function (s) {
+//     let left = 0;
+//     let right = s.length - 1;
+//     let vowels = "aeiouAEIOU";
+//     s = s.split("");
+//     while (left < right) {
+//         if (vowels.includes(s[left]) && vowels.includes(s[right])) {
+//             let temp = s[left];
+//             s[left] = s[right];
+//             s[right] = temp;
+//             left++;
+//             right--;
+//         }
+//         if (!vowels.includes(s[left])) {
+//             left++;
+//         }
+//         if (!vowels.includes(s[right])) {
+//             right--;
+//         }
+//     }
+//     return s.join("");
+// };
+// console.log(reverseVowels("hello"));
+// console.log(reverseVowels("leetcode"));
+
+// var intersection = function(nums1, nums2) {
+//     let set1 = new Set(nums1);
+//     let set2 = new Set(nums2);
+//     const res =[];
+//     for (let keys of set1) {
+//         if (set2.has(keys)) {
+//             res.push(keys);
+//         }
+//     }
+//     return res;
+// };
+// console.log(intersection([1,2,2,1], [2,2]));
+// console.log(intersection([4,9,5], [9,4,9,8,4]));
+
+// var isPerfectSquare = function(num) {
+//     let i=0;
+//     while (i*i < num) {
+//         i++;
+//     }
+//     if (i*i === num) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// };
+// console.log(isPerfectSquare(16));
+// console.log(isPerfectSquare(14));
+
