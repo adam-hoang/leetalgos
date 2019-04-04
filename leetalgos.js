@@ -2176,3 +2176,150 @@
 // console.log(isPerfectSquare(16));
 // console.log(isPerfectSquare(14));
 
+// var canConstruct = function(ransomNote, magazine) {
+//     const dict = [];
+//     const dict2 = [];
+//     for (let i=0; i<ransomNote.length; i++) {
+//         if (!dict[ransomNote[i]]) {
+//             dict[ransomNote[i]] = 1;
+//         } else {
+//             dict[ransomNote[i]]++;
+//         }
+//     }
+//     for (let i=0; i<magazine.length; i++) {
+//         if (!dict2[magazine[i]]) {
+//             dict2[magazine[i]] = 1;
+//         } else {
+//             dict2[magazine[i]]++;
+//         }
+//     }
+//     for (let key in dict) {
+//         if (!(key in dict2)) {
+//             return false;
+//         }
+//         if (dict[key] > dict2[key]) {
+//             return false
+//         }
+//     }
+//     return true;
+// };
+// console.log(canConstruct("a", "b"));
+// console.log(canConstruct("aa", "ab"));
+// console.log(canConstruct("aa", "aab"));
+
+// var canConstruct = function (ransomNote, magazine) {
+//     const dict2 = [];
+
+//     for (let i = 0; i < magazine.length; i++) {
+//         if (!dict2[magazine[i]]) {
+//             dict2[magazine[i]] = 1;
+//         } else {
+//             dict2[magazine[i]]++;
+//         }
+//     }
+//     for (let i = 0; i < ransomNote.length; i++) {
+//         if (dict2[ransomNote[i]] > 0) {
+//             dict2[ransomNote[i]]--;
+//         } else {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(canConstruct("a", "b"));
+// console.log(canConstruct("aa", "ab"));
+// console.log(canConstruct("aa", "aab"));
+
+// var findTheDifference = function(s, t) {
+//     const dict = [];
+//     for (let i=0; i<s.length; i++) {
+//         if (!dict[s[i]]) {
+//             dict[s[i]] = 1;
+//         } else {
+//             dict[s[i]]++;
+//         }
+//     }
+//     for (let i=0; i<t.length; i++) {
+//         if (dict[t[i]] > 0) {
+//             dict[t[i]]--;
+//         } else {
+//             return t[i];
+//         }
+//     }
+// };
+// console.log(findTheDifference("abcd", "abcde"));
+
+// var findTheDifference = function(s, t) {
+//     let total1 = 0;
+//     let total2 = 0;
+//     for (let i=0; i<s.length; i++) {
+//         total1 += s.charCodeAt(i);
+//     }
+//     for (let i=0; i<t.length; i++) {
+//         total2 += t.charCodeAt(i);
+//     }
+//     return String.fromCharCode(total2-total1);
+// };
+// console.log(findTheDifference("abcd", "abcde"));
+
+// var longestPalindrome = function(s) {
+//     const dict = [];
+//     let count = 0;
+//     for (let i=0; i<s.length; i++) {
+//         if (!dict[s[i]]) {
+//             dict[s[i]] = 1;
+//         } else {
+//             dict[s[i]]++;
+//         }
+//     }
+//     for (let key in dict) {
+//         if (dict[key] / 2 >= 1) {
+//             count += (2*Math.floor(dict[key]/2));
+//         } 
+//     }
+//     if (s.length > count) {
+//         count++;
+//     }
+//     return count;
+// };
+// console.log(longestPalindrome("abccccdd"));
+// console.log(longestPalindrome("bananas"));
+
+// var longestPalindrome = function(s) {
+//     const dict = [];
+//     let count = 0;
+//     for (let i=0; i<s.length; i++) {
+//         if (dict[s[i]] === 1) {
+//             dict[s[i]] = 0;
+//             count += 2;
+//         } else {
+//             dict[s[i]] = 1;
+//         }
+//     }
+//     if (s.length > count) {
+//         count++;
+//     }
+//     return count;
+// };
+// console.log(longestPalindrome("abccccdd"));
+// console.log(longestPalindrome("bananas"));
+
+// var thirdMax = function(nums) {
+//     nums = nums.sort();
+//     if (nums.length < 3) {
+//         return nums[nums.length-1]
+//     }
+// };
+// console.log(thirdMax([3,2]));
+// // console.log(thirdMax([3,2,1]));
+
+var thirdMax = function(nums) {
+    nums = nums.sort();
+    if (nums.length < 3) {
+        return Math.max(...nums)
+    }
+    return nums[nums.length-3];
+};
+console.log(thirdMax([3,2,1]));
+console.log(thirdMax([1,2]));
+console.log(thirdMax([2,2,3,1]));
