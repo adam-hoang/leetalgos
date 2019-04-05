@@ -1117,26 +1117,24 @@
 // };
 // console.log(productExceptSelf([1, 2, 3, 4]))
 
-// // NEED TO WORK ON THIS
-// var longestCommonPrefix = function (strs) {
-// 	const dict = {};
-// 	let prefix = "";
-// 	for (let i = 0; i < strs.length; i++) {
-// 		for (let j = 0; j < strs[i].length; j++) {
-// 			if (dict[strs[i][j]]) {
-// 				dict[strs[i][j]]++;
-// 			} else {
-// 				dict[strs[i][j]] = 1;
-// 			}
-// 		}
-// 		if (dict[strs[i][j]] !== strs.length) {
-// 			return prefix;
-// 		} else {
-// 			string += dict[strs[i][j]];
-// 		}
-// 	}
+// var longestCommonPrefix = function(strs) {
+//     if (strs.length === 0) {
+//         return "";
+//     }
+//     let prefix = strs[0];
+//     for (let i=1; i<strs.length; i++) {
+//         for (let j=0; j<prefix.length; j++) {
+//             if (strs[i][j] !== prefix[j]) {
+//                 prefix = strs[0].slice(0,j)
+//                 break;
+//             }
+//         }
+//     }
+//     return prefix;
 // };
-// console.log(longestCommonPrefix(["flower", "flow", "flight"]));
+// console.log(longestCommonPrefix(["flower","flow","flight"]))
+// console.log(longestCommonPrefix([]))
+// console.log(longestCommonPrefix(["aa", "a"]))
 
 // // Brute force
 // var strStr = function (haystack, needle) {
@@ -1815,25 +1813,6 @@
 // console.log(isPalindrome(121));
 // console.log(isPalindrome(-121));
 
-// var longestCommonPrefix = function(strs) {
-//     if (strs.length === 0) {
-//         return "";
-//     }
-//     let prefix = strs[0];
-//     for (let i=1; i<strs.length; i++) {
-//         for (let j=0; j<prefix.length; j++) {
-//             if (strs[i][j] !== prefix[j]) {
-//                 prefix = strs[0].slice(0,j)
-//                 break;
-//             }
-//         }
-//     }
-//     return prefix;
-// };
-// console.log(longestCommonPrefix(["flower","flow","flight"]))
-// console.log(longestCommonPrefix([]))
-// console.log(longestCommonPrefix(["aa", "a"]))
-
 // var removeElement = function(nums, val) {
 //     let length = 0;
 //     for (let i=0; i<nums.length; i++) {
@@ -2311,15 +2290,113 @@
 //     }
 // };
 // console.log(thirdMax([3,2]));
-// // console.log(thirdMax([3,2,1]));
+// console.log(thirdMax([3,2,1]));
 
-var thirdMax = function(nums) {
-    nums = nums.sort();
-    if (nums.length < 3) {
-        return Math.max(...nums)
-    }
-    return nums[nums.length-3];
-};
-console.log(thirdMax([3,2,1]));
-console.log(thirdMax([1,2]));
-console.log(thirdMax([2,2,3,1]));
+// var thirdMax = function(nums) {
+//     nums = nums.sort((a,b)=>{return a-b;});
+//     let newSet = new Set(nums);
+//     nums = Array.from(newSet);
+//     if (nums.length < 3) {
+//         return Math.max(...nums)
+//     }
+//     return nums[nums.length-3];
+// };
+// console.log(thirdMax([3,2,1]));
+// console.log(thirdMax([1,2]));
+// console.log(thirdMax([2,2,3,1]));
+// console.log(thirdMax([3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6]));
+
+// var thirdMax = function(nums) {
+//     let max = -Infinity;
+//     let second = -Infinity;
+//     let third = -Infinity;
+//     for (let i=0; i<nums.length; i++) {
+//         if (nums[i] > max) {
+//             third = second;
+//             second = max;
+//             max = nums[i];
+//         } else if (nums[i] > second && nums[i] !== max) {
+//             third = second;
+//             second = nums[i];
+//         } else if (nums[i] > third && nums[i] !== second && nums[i] !== max) {
+//             third = nums[i]
+//         }
+//     }
+//     return third === -Infinity ? max : third;
+// };
+// console.log(thirdMax([3,2,1]));
+// console.log(thirdMax([1,2]));
+// console.log(thirdMax([2,2,3,1]));
+// console.log(thirdMax([3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6]));
+
+// // TIMES OUT ON ONE CASE
+// var findAnagrams = function(s, p) {
+//     p = p.split("").sort().join("");
+//     let res =[];
+
+//     for (let i=0; i<s.length-p.length+1; i++) {
+//         let sub = s.substring(i, i+p.length).split("").sort().join("");
+//         for (let j=0; j<p.length; j++) {
+//             if (sub[j] !== p[j]) {
+//                 break;
+//             }
+//             if (j === p.length-1) {
+//                 res.push(i);
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(findAnagrams("cbaebabacd", "abc"))
+
+// var findAnagrams = function (s, p) {
+//     const map = new Array(26);
+//     map.fill(0);
+//     for (let i = 0; i < p.length; i++) {
+//         map[p[i].charCodeAt() - 97]++;
+//     }
+//     let j = 0;
+//     let res = [];
+//     for (let i = 0; i < s.length; i++) {
+//         let subChar = s[i].charCodeAt() - 97;
+//         map[subChar]--;
+
+//         while (map[subChar] < 0) {
+//             let addChar = s[j].charCodeAt() - 97;
+//             j++
+//             map[addChar]++;
+//         }
+//         if (i - j + 1 === p.length) {
+//             res.push(j)
+//         }
+//     }
+//     return res;
+// };
+// console.log(findAnagrams("cbaebabacd", "abc"))
+
+// var arrangeCoins = function (n) {
+//     let count = 0;
+//     let i = 1;
+//     while (1) {
+//         if (n - i >= 0) {
+//             count++;
+//             n -= i;
+//             i++;
+//         }
+//         else return count;
+//     }
+// };
+// console.log(arrangeCoins(5));
+// console.log(arrangeCoins(8));
+
+// var arrangeCoins = function (n) {
+//     let staircase = 0;
+//     while (n >= staircase + 1) {
+//         n -= staircase + 1;
+//         staircase++;
+//     }
+//     return staircase;
+// };
+// console.log(arrangeCoins(5));
+// console.log(arrangeCoins(8));
+
