@@ -2400,3 +2400,31 @@
 // console.log(arrangeCoins(5));
 // console.log(arrangeCoins(8));
 
+// var findContentChildren = function(g, s) {
+//     g.sort(function(a, b) { return a - b});
+//     s.sort(function (a, b) { return a - b });
+//     let count = 0;
+//     for (let i=0, j=0; i<g.length, j<s.length; i++, j++) {
+//         if (g[i] <= s[j]) {
+//             count++;
+//         } else {
+//             i--;
+//         }
+//     }
+//     return count;
+// };
+// console.log(findContentChildren([1,2,3], [1,1]));
+
+// var findContentChildren = function(g, s) {
+//     g.sort(function(a, b) { return a - b});
+//     s.sort(function (a, b) { return a - b });
+//     let i = 0;
+//     for (let j=0;j<s.length; j++) {
+//         if (g[i] <= s[j]) {
+//             i++;
+//         }
+//     }
+//     return i;
+// };
+// console.log(findContentChildren([1,2,3], [1,1]));
+
