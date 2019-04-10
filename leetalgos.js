@@ -2428,3 +2428,160 @@
 // };
 // console.log(findContentChildren([1,2,3], [1,1]));
 
+// var countSegments = function(s) {
+//     s = s.trim().split(" ");
+//     let count=0;
+//     for (let i=0; i<s.length; i++) {
+//         if (s[i] != "") {
+//             count++;
+//         }
+//     }
+//     return count;
+// };
+// console.log(countSegments("Hello, my name is John"));
+// console.log(countSegments(""));
+// console.log(countSegments("                "));
+// console.log(countSegments("Of all the gin joints in all the towns in all the world,   "));
+// console.log(countSegments(", , , ,        a, eaefa"));
+
+// var licenseKeyFormatting = function(S, K) {
+//     S = S.toUpperCase().split("-").join("");
+//     let newStr = "";
+//     let count = 0;
+//     for (let i=S.length-1; i>=0; i--) {
+//         if (count === K) {
+//             newStr = "-" + newStr;
+//             count = 0;
+//         }
+//         newStr = S[i] + newStr;
+//         count++;
+//     }
+//     return newStr;
+// };
+// console.log(licenseKeyFormatting("5F3Z-2e-9-w", 4));
+// console.log(licenseKeyFormatting("2-5g-3-J", 2));
+
+// var findMaxConsecutiveOnes = function(nums) {
+//     let count = 0;
+//     let max = 0;
+//     for (let i=0, length=nums.length; i<length; i++) {
+//         if (nums[i] === 1) {
+//             count++;
+//         } else {
+//             if (count > max) {
+//                 max = count;
+//             }
+//             count = 0;
+//         }
+//     }
+//     if (count > max) {
+//         max = count;
+//     }
+//     return max;
+// };
+// console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
+
+// var findMaxConsecutiveOnes = function(nums) {
+//     let count = 0;
+//     let max = 0;
+//     for (let i=0, length=nums.length; i<length; i++) {
+//         if (nums[i] === 1) {
+//             count++;
+//             if (count > max) {
+//                 max = count;
+//             }
+//         } else {
+
+//             count = 0;
+//         }
+//     }
+//     return max;
+// };
+// console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
+
+// var findMaxConsecutiveOnes = function(nums) {
+//     let count = 0;
+//     let max = 0;
+//     for (let i=0, length=nums.length; i<length; i++) {
+//         if (nums[i] === 1) {
+//             count++;
+//             max = Math.max(max, count)
+//         } else {
+//             count = 0;
+//         }
+//     }
+//     return max;
+// };
+// console.log(findMaxConsecutiveOnes([1,1,0,1,1,1]))
+
+// var constructRectangle = function(area) {
+//     for (let i=Math.floor(Math.sqrt(area)); i>0; i--) {
+//         if (area % i === 0) {
+//             return [area/i, i]
+//         }
+//     }
+// };
+// console.log(constructRectangle(4))
+
+// var nextGreaterElement = function(nums1, nums2) {
+//     let arr = [];
+//     for (let i=0, len1=nums1.length; i<len1; i++) {
+//         let j = nums2.indexOf(nums1[i])
+//         while (nums2[j] <= nums1[i]) {
+//             j++;
+//         }
+//         arr.push(nums2[j] ? nums2[j]: -1);
+//     }
+//     return arr;
+// };
+// console.log(nextGreaterElement([4,1,2], [1,3,4,2]))
+// console.log(nextGreaterElement([2,4], [1,2,3,4]))
+
+// var nextGreaterElement = function(nums1, nums2) {
+//     let arr = [];
+//     for (let i=0, len1=nums1.length; i<len1; i++) {
+//         let j = nums2.indexOf(nums1[i])
+//         let found = false;
+//         while (j < nums2.length) {
+//             if (nums2[j] > nums1[i]) {
+//                 arr.push(nums2[j]);
+//                 found = true
+//                 break;
+//             }
+//             j++;
+//         }
+//         if (found === false) {
+//             arr.push(-1);
+//         }
+//     }
+//     return arr;
+// };
+// console.log(nextGreaterElement([4,1,2], [1,3,4,2]))
+// console.log(nextGreaterElement([2,4], [1,2,3,4]))
+
+// var convertToBase7 = function(num) {
+//     return num.toString(7);
+// };
+// console.log(convertToBase7(100))
+// console.log(convertToBase7(-7))
+
+// var projectionArea = function (grid) {
+//     let count = 0;
+//     for (let i = 0, len1 = grid.length; i < len1; i++) {
+//         let col = 0;
+//         let row = 0;
+//         for (let j = 0; j < len1; j++) {
+//             if (grid[i][j] > 0) {
+//                 count++;
+//             }
+//             if (grid[i][j] > row) {
+//                 row = grid[i][j];
+//             }
+//             if (grid[j][i] > col) {
+//                 col = grid[j][i]
+//             }
+//         }
+//         count += row + col;
+//     }
+//     return count;
+// };
