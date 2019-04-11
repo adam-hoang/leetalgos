@@ -2585,3 +2585,54 @@
 //     }
 //     return count;
 // };
+
+// var findRelativeRanks = function(nums) {
+//     let arr = nums.slice();
+//     arr.sort((a,b) => b-a);
+//     let map = {};
+//     for (let i=0, len=arr.length; i<len; i++) {
+//         if (i === 0) {
+//             map[arr[i]] = "Gold Medal"
+//         } else if (i === 1) {
+//             map[arr[i]] = "Silver Medal"
+//         } else if (i === 2) {
+//             map[arr[i]] = "Bronze Medal"
+//         } else {
+//             map[arr[i]] = (i+1).toString();
+//         }
+//     }
+//     return nums.map(el => {
+//         return map[el];
+//     });
+// };
+// console.log(findRelativeRanks([1,2,3,4,5]));
+// console.log(findRelativeRanks([10,3,8,4,9]));
+
+// var checkPerfectNumber = function(num) {
+//     if (num === 0) {
+//         return false;
+//     }
+//     let count = 0;
+//     for (let i=1; i<num; i++) {
+//         if (num % i === 0) {
+//             count += i;
+//         }
+//     }
+//     return count === num;
+// };
+// console.log(checkPerfectNumber(28));
+
+// var checkPerfectNumber = function(num) {
+//     if (num < 2) {
+//         return false;
+//     }
+//     let count = 1;
+//     for (let i=2, half=Math.ceil(Math.sqrt(num)); i<half; i++) {
+//         if (num % i === 0) {
+//             count += i + num/i;
+//         }
+//     }
+//     return count === num;
+// };
+// console.log(checkPerfectNumber(28));
+
