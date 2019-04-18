@@ -2636,23 +2636,58 @@
 // };
 // console.log(checkPerfectNumber(28));
 
-var compress = function(chars) {
-    chars.push("end");
-    let count = 1;
-    for(let i = 0; i< chars.indexOf("end"); i++){    
-        if(chars[i] === chars[i+1]){
-            count++;
-            continue;
-        }
-        chars.push(chars[i]);
-        if(count!==1){
-            chars.push(...(count.toString().split("")));
-        }
-        count = 1;
-    }
-   chars.splice(0,chars.indexOf("end")+1);
-   console.log(chars)
-};
-compress(["a","a","b","b","c","c","c"]);
-compress(["a","b","b","b","b","b","b","b","b","b","b","b","b"]);
+// var compress = function(chars) {
+//     chars.push("end");
+//     let count = 1;
+//     for(let i = 0; i< chars.indexOf("end"); i++){    
+//         if(chars[i] === chars[i+1]){
+//             count++;
+//             continue;
+//         }
+//         chars.push(chars[i]);
+//         if(count!==1){
+//             chars.push(...(count.toString().split("")));
+//         }
+//         count = 1;
+//     }
+//    chars.splice(0,chars.indexOf("end")+1);
+//    console.log(chars)
+// };
+// compress(["a","a","b","b","c","c","c"]);
+// compress(["a","b","b","b","b","b","b","b","b","b","b","b","b"]);
 
+// var findMaxConsecutiveOnes = function (arr) {
+//     var start = 0
+//     var curr = 0
+//     var flag = false
+//     var temp = 0
+//     var max = 0
+//     while (start < arr.length - max) {
+//         if (curr >= arr.length) {
+//             max = Math.max(max, temp)
+//             start++
+//             curr = start + 1
+//             flag = false
+//             temp = 0
+//         } else {
+//             if (arr[curr] == 0) {
+//                 if (flag == true) {
+//                     max = Math.max(max, temp)
+//                     start++
+//                     curr = start + 1
+//                     flag = false
+//                     temp = 0
+//                 } else {
+//                     temp++
+//                     curr++
+//                     flag = true
+//                 }
+//             } else {
+//                 temp++
+//                 curr++
+//             }
+//         }
+//     }
+//     return Math.max(max, temp)
+// };
+// console.log(findMaxConsecutiveOnes([1,0,1,1,0]));
