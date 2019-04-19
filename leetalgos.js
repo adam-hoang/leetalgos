@@ -2691,3 +2691,61 @@
 //     return Math.max(max, temp)
 // };
 // console.log(findMaxConsecutiveOnes([1,0,1,1,0]));
+
+// var orangesRotting = function (grid) {
+//     if (grid.length === 0) {
+//         return 0;
+//     }
+//     let queue = [];
+//     let count = 0;
+//     let minute = -1;
+//     for (let i = 0; i < grid.length; i++) {
+//         for (let j = 0; j < grid[0].length; j++) {
+//             if (grid[i][j] === 2) {
+//                 queue.push([i, j]);
+//             }
+//             if (grid[i][j] === 1) {
+//                 count++;
+//             }
+//         }
+//     }
+//     if (count === 0) {
+//         return 0;
+//     }
+//     while (queue.length > 0) {
+//         let len = queue.length;
+//         for (let k = 0; k < len; k++) {
+//             let cur = queue.shift();
+//             let i = cur[0]
+//             let j = cur[1];
+//             if (i - 1 >= 0 && grid[i - 1][j] === 1) {
+//                 grid[i - 1][j] = 2;
+//                 count--;
+//                 queue.push([i - 1, j]);
+//             }
+//             if (i + 1 < grid.length && grid[i + 1][j] === 1) {
+//                 grid[i + 1][j] = 2;
+//                 count--;
+//                 queue.push([i + 1, j]);
+//             }
+//             if (j + 1 < grid[0].length && grid[i][j + 1] === 1) {
+//                 grid[i][j + 1] = 2;
+//                 count--;
+//                 queue.push([i, j + 1]);
+//             }
+//             if (j - 1 >= 0 && grid[i][j - 1] === 1) {
+//                 grid[i][j - 1] = 2;
+//                 count--;
+//                 queue.push([i, j - 1]);
+//             }
+//         }
+//         minute++;
+//     }
+//     if (count > 0) {
+//         return -1;
+//     }
+//     return minute;
+// };
+// console.log(orangesRotting([[2,1,1],[1,1,0],[0,1,1]]));
+// console.log(orangesRotting([[2,1,1],[0,1,1],[1,0,1]]));
+// console.log(orangesRotting([[0,2]]));
