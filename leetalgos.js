@@ -1229,6 +1229,83 @@
 // }
 // console.log(threeSum([-1, 0, 1, 2, -1, -4]));
 
+// function threeSum(arr) {
+//     let results = [];
+//     if (arr.length<3) {
+//         return results;
+//     }
+//     arr.sort(function (a, b) {
+//         return a-b;
+//     });
+//     for (let i=0; i<arr.length-2; i++) {
+//         if (arr[i] > 0) {
+//             return results;
+//         }
+//         if (i>0 && arr[i] === arr[i-1]) {
+//             continue;
+//         }
+//         for (let left=i+1, right=arr.length-1; left<right;) {
+//             if (arr[i] + arr[left] + arr[right] === 0) {
+//                 results.push([arr[i], arr[left], arr[right]]);
+//                 left++;
+//                 right--;
+//                 while (left<right && arr[left] === arr[left-1]) {
+//                     left++;
+//                 }
+//                 while (left<right && arr[right] === arr[right+1]) {
+//                     right--;
+//                 }
+//             } else if (arr[i] + arr[left] + arr[right] > 0) {
+//                 right--;
+//             } else {
+//                 left++;
+//             }
+//           }
+//     }
+//     return results;
+// }
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+
+// function threeSum(arr) {
+//     let results = [];
+//     if (arr.length < 3) {
+//         return results;
+//     }
+//     arr.sort(function (a, b) {
+//         return a - b;
+//     });
+//     for (let i = 0; i < arr.length - 2; i++) {
+//         if (arr[i] > 0) {
+//             return results;
+//         }
+//         if (i > 0 && arr[i] === arr[i - 1]) {
+//             continue;
+//         }
+//         let left = i + 1;
+//         let right = arr.length - 1;
+//         while (left < right) {
+//             if (arr[i] + arr[left] + arr[right] === 0) {
+//                 results.push([arr[i], arr[left], arr[right]]);
+//                 left++;
+//                 right--;
+//                 while (left < right && arr[left] === arr[left - 1]) {
+//                     left++;
+//                 }
+//                 while (left < right && arr[right] === arr[right + 1]) {
+//                     right--;
+//                 }
+//             } else if (arr[i] + arr[left] + arr[right] > 0) {
+//                 right--;
+//             } else {
+//                 left++;
+//             }
+//         }
+//     }
+//     return results;
+// }
+// console.log(threeSum([-1, 0, 1, 2, -1, -4]));
+
+
 // var flipAndInvertImage = function(A) {
 //     for (let i=0; i<A.length; i++) {
 //         A[i].reverse();
@@ -2749,3 +2826,174 @@
 // console.log(orangesRotting([[2,1,1],[1,1,0],[0,1,1]]));
 // console.log(orangesRotting([[2,1,1],[0,1,1],[1,0,1]]));
 // console.log(orangesRotting([[0,2]]));
+
+// var numIslands = function (grid) {
+//     function dfs(grid, i, j) {
+//         if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] === 0) {
+//             return 0;
+//         }
+//         grid[i][j] = 0;
+//         dfs(grid, i + 1, j);
+//         dfs(grid, i - 1, j);
+//         dfs(grid, i, j + 1);
+//         dfs(grid, i, j - 1);
+//         return 1;
+//     }
+//     let count = 0;
+//     let length = grid.length;
+//     let length2 = grid[0].length;
+
+//     for (let i = 0; i < length; i++) {
+//         for (let j = 0; j < length2; j++) {
+//             if (grid[i][j] === 1) {
+//                 dfs(grid, i, j);
+//                 count++;
+//             }
+//         }
+//     }
+//     return count;
+// };
+// let grid = [
+//     [1,1,1,1,0],
+//     [1,1,0,1,0],
+//     [1,1,0,0,0],
+//     [0,0,0,0,0]
+// ];
+// let grid2 = [
+//     [1,1,0,0,0],
+//     [1,1,0,0,0],
+//     [0,0,1,0,0],
+//     [0,0,0,1,1]
+// ];
+// console.log(numIslands(grid));
+// console.log(numIslands(grid2));
+
+// var repeatedSubstringPattern = function(s) {
+//     const str = s + s;
+//     return str.slice(1, str.length - 1).includes(s);
+// };
+// console.log(repeatedSubstringPattern("abab"));
+// console.log(repeatedSubstringPattern("aba"));
+// console.log(repeatedSubstringPattern("abcabcabcabc"));
+
+// var repeatedSubstringPattern = function(s) {
+//     const str = s + s;
+//     return str.substring(1, str.length - 1).includes(s);
+// };
+// console.log(repeatedSubstringPattern("abab"));
+// console.log(repeatedSubstringPattern("aba"));
+// console.log(repeatedSubstringPattern("abcabcabcabc"));
+
+// var detectCapitalUse = function(word) {
+//     if (word === word.toUpperCase()) {
+//         return true;
+//     } else if (word === word.toLowerCase()) {
+//         return true;
+//     } else if (word === word[0].toUpperCase() + word.substring(1).toLowerCase()) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// };
+// console.log(detectCapitalUse("USA"));
+// console.log(detectCapitalUse("FLaG"));
+// console.log(detectCapitalUse("leetcode"));
+// console.log(detectCapitalUse("Google"));
+
+// var findLUSlength = function (a, b) {
+//     if (a === b) {
+//         return -1;
+//     }
+//     return Math.max(a.length, b.length)
+// };
+// console.log(findLUSlength("aba", "cdc"));
+
+// var reverseStr = function (s, k) {
+//     let res = "";
+//     for (let i = 0, length = s.length; i < length; i += 2 * k)
+//         res += s.substring(i, i + k).split("").reverse().join("") + s.substring(i + k, i + k + k);
+//     return res;
+// };
+// console.log(reverseStr("abcdefg", 2));
+
+// var checkRecord = function(s) {
+//     let absent = 0;
+//     let late = 0;
+//     for (let i=0, length=s.length; i<length; i++) {
+//         if (s[i] === "A") {
+//             if (absent === 1) {
+//                 return false;
+//             }
+//             absent++;
+//             late = 0;
+//         } else if (s[i] === "L") {
+//             if (late === 2) {
+//                 return false;
+//             }
+//             late++;
+//         } else {
+//             late = 0;
+//         }
+//     }
+//     return true;
+// };
+// console.log(checkRecord("PPALLP"));
+// console.log(checkRecord("PPALLL"));
+
+// var matrixReshape = function (nums, r, c) {
+//     if (r * c !== nums.length * nums[0].length) {
+//         return nums;
+//     }
+//     let arr = [];
+//     for (let i = 0; i < nums.length; i++) {
+//         for (let j = 0; j < nums[0].length; j++) {
+//             arr.push(nums[i][j]);
+//         }
+//     }
+//     let newArr = [];
+//     for (var i = 0; i < r; i++) {
+//         newArr[i] = [];
+//         for (var j = 0; j < c; j++) {
+//             newArr[i][j] = 0;
+//         }
+//     }
+//     for (let i = 0; i < r; i++) {
+//         for (let j = 0; j < c; j++) {
+//             newArr[i][j] = arr[j + i * c]
+//         }
+//     }
+//     return newArr;
+// };
+// let nums = [
+//     [1, 2],
+//     [3, 4]
+// ]
+// console.log(matrixReshape(nums, 1, 4));
+
+var matrixReshape = function (nums, r, c) {
+    let rows = nums.length;
+    let columns = nums[0].length
+    if (rows * columns !== r * c) {
+        return nums;
+    }
+    const result = [];
+    let arr = [];
+    let count = 0;
+    for (let i = 0; i < rows; i++) {
+        for (let j = 0; j < columns; j++) {
+            arr.push(nums[i][j]);
+            count++;
+            if (count === c) {
+                result.push(arr);
+                arr = [];
+                count = 0;
+            }
+        }
+    }
+    return result;
+};
+let nums = [
+    [1, 2],
+    [3, 4]
+]
+console.log(matrixReshape(nums, 1, 4));
