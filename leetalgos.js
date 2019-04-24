@@ -218,15 +218,34 @@
 
 // var moveZeroes = function (nums) {
 // 	let start = 0;
-// 	for (let i = 0; i < nums.length; i++) {
-// 		if (nums[i] !== 0) {
-// 			nums[start] = nums[i];
+//  let length = nums.length;
+// 	for (let i = 0; i < length; i++) {
+// 		let num = nums[i];
+// 		if (num !== 0) {
+// 			nums[start] = num;
 // 			start++;
 // 		}
 // 	}
 // 	while (start < nums.length) {
 // 		nums[start] = 0;
 // 		start++;
+// 	}
+// 	return nums;
+// };
+// console.log(moveZeroes([0, 1, 0, 3, 12]));
+
+// var moveZeroes = function (nums) {
+// 	let start = 0;
+//  let length = nums.length;
+// 	for (let i = 0; i < length; i++) {
+// 		let num = nums[i];
+// 		if (num !== 0) {
+// 			nums[start] = num;
+// 			start++;
+// 		}
+// 	}
+// 	for (let j = start; j < nums.length; j++) {
+// 		nums[j] = 0;
 // 	}
 // 	return nums;
 // };
@@ -241,23 +260,6 @@
 // 			counter++
 // 			i--;
 // 		}
-// 	}
-// 	return nums;
-// };
-// console.log(moveZeroes([0, 1, 0, 3, 12]));
-
-// var moveZeroes = function (nums) {
-// 	let start = 0;
-// 	for (let i = 0; i < nums.length; i++) {
-// 		let num = nums[i];
-
-// 		if (num !== 0) {
-// 			nums[start] = num;
-// 			start++;
-// 		}
-// 	}
-// 	for (let j = start; j < nums.length; j++) {
-// 		nums[j] = 0;
 // 	}
 // 	return nums;
 // };
@@ -3085,28 +3087,29 @@
 // console.log(findRestaurant(list1, list2));
 // console.log(findRestaurant(list3, list4));
 
-var findRestaurant = function(list1, list2) {
-    const dict = {};
-    for(let i=0, length=list1.length; i<length; i++){
-        dict[list1[i]] = i;
-    }
-    let res = [];
-    let min = Infinity;
-    for(let i=0, length2=list2.length; i<length2; i++){
-        if (dict[list2[i]] !== null) {
-            let sum = i + dict[list2[i]];
-            if (sum < min) {
-                min = sum;
-                res = [list2[i]];
-            }else if (sum === min)
-                res.push(list2[i]);
-        }
-    }
-    return res;
-};
-let list1 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
-let list2 = ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"];
-let list3 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
-let list4 = ["KFC", "Shogun", "Burger King"];
-console.log(findRestaurant(list1, list2));
-console.log(findRestaurant(list3, list4));
+// var findRestaurant = function (list1, list2) {
+//     const dict = {};
+//     for (let i = 0, length = list1.length; i < length; i++) {
+//         dict[list1[i]] = i;
+//     }
+//     let res = [];
+//     let min = Infinity;
+//     for (let i = 0, length2 = list2.length; i < length2; i++) {
+//         if (dict[list2[i]] !== null) {
+//             let sum = i + dict[list2[i]];
+//             if (sum < min) {
+//                 min = sum;
+//                 res = [list2[i]];
+//             } else if (sum === min)
+//                 res.push(list2[i]);
+//         }
+//     }
+//     return res;
+// };
+// let list1 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
+// let list2 = ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"];
+// let list3 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
+// let list4 = ["KFC", "Shogun", "Burger King"];
+// console.log(findRestaurant(list1, list2));
+// console.log(findRestaurant(list3, list4));
+
