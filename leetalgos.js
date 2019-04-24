@@ -2970,30 +2970,143 @@
 // ]
 // console.log(matrixReshape(nums, 1, 4));
 
-var matrixReshape = function (nums, r, c) {
-    let rows = nums.length;
-    let columns = nums[0].length
-    if (rows * columns !== r * c) {
-        return nums;
+// var matrixReshape = function (nums, r, c) {
+//     let rows = nums.length;
+//     let columns = nums[0].length
+//     if (rows * columns !== r * c) {
+//         return nums;
+//     }
+//     const result = [];
+//     let arr = [];
+//     let count = 0;
+//     for (let i = 0; i < rows; i++) {
+//         for (let j = 0; j < columns; j++) {
+//             arr.push(nums[i][j]);
+//             count++;
+//             if (count === c) {
+//                 result.push(arr);
+//                 arr = [];
+//                 count = 0;
+//             }
+//         }
+//     }
+//     return result;
+// };
+// let nums = [
+//     [1, 2],
+//     [3, 4]
+// ]
+// console.log(matrixReshape(nums, 1, 4));
+
+// var findUnsortedSubarray = function(nums) {
+//     let sorted = nums.slice().sort((a,b) => a-b);
+//     let left = 0;
+//     let right = nums.length-1;
+//     let i = 0
+//     let j = nums.length-1;
+//     while (nums[i] === sorted[i] && i !== j) {
+//         i++;
+//     }
+//     if (i === j) {
+//         return 0;
+//     }
+//     left = i;
+//     while (nums[j] === sorted[j] ) {
+//         j--;
+//     }
+//     right = j;
+//     return nums.slice(left,right+1).length
+// };
+// console.log(findUnsortedSubarray([2, 6, 4, 8, 10, 9, 15]));
+// console.log(findUnsortedSubarray([1, 2, 3, 4]));
+
+// var findLHS = function(nums) {
+//     let dict = {};
+//     let max = 0;
+//     for (let i=0; i<nums.length; i++) {
+//         if (dict[nums[i]]) {
+//             dict[nums[i]]++;
+//         } else {
+//             dict[nums[i]] = 1;
+//         }
+//         if (dict[nums[i]] + dict[nums[i]+1] > max) {
+//             max = dict[nums[i]] + dict[nums[i]+1]
+//         }
+//         if (dict[nums[i]] + dict[nums[i]-1] > max) {
+//             max = dict[nums[i]] + dict[nums[i]-1]
+//         }
+//     }
+//     return max;
+// };
+// console.log(findLHS([1,3,2,2,5,2,3,7]));
+
+// var findRestaurant = function(list1, list2) {
+//     let dict = {};
+//     let length1 = list1.length;
+//     let length2 = list2.length;
+//     let maxLength = Math.max(length1,length2);
+//     for (let i=0; i<maxLength;i++){
+//         if(i < length1){
+//             if (dict[list1[i]]) {
+//                 dict[list1[i]][0]++;
+//                 dict[list1[i]][1]+=i;
+//             } else {
+//                 dict[list1[i]] = [1,i];
+//             }
+//         }
+//         if(i < length2){
+//             if (dict[list2[i]]) {
+//                 dict[list2[i]][0]++;
+//                 dict[list2[i]][1]+=i;
+//             } else {
+//                 dict[list2[i]] = [1,i];
+//             }
+//         }
+//     }
+//     let res = [];
+//     let min = Infinity;
+//     for (let key in dict) {
+//         if (dict[key][0] === 2) {
+//             if (dict[key][1] < min) {
+//                 min = dict[key][1];
+//                 res = [];
+//                 res.push(key);
+//             } else if (dict[key][1] === min) {
+//                 res.push(key);
+//             }
+//         }
+//     }
+//     return res;
+// };
+// let list1 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
+// let list2 = ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"];
+// let list3 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
+// let list4 = ["KFC", "Shogun", "Burger King"];
+// console.log(findRestaurant(list1, list2));
+// console.log(findRestaurant(list3, list4));
+
+var findRestaurant = function(list1, list2) {
+    const dict = {};
+    for(let i=0, length=list1.length; i<length; i++){
+        dict[list1[i]] = i;
     }
-    const result = [];
-    let arr = [];
-    let count = 0;
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < columns; j++) {
-            arr.push(nums[i][j]);
-            count++;
-            if (count === c) {
-                result.push(arr);
-                arr = [];
-                count = 0;
-            }
+    let res = [];
+    let min = Infinity;
+    for(let i=0, length2=list2.length; i<length2; i++){
+        if (dict[list2[i]] !== null) {
+            let sum = i + dict[list2[i]];
+            if (sum < min) {
+                min = sum;
+                res = [list2[i]];
+            }else if (sum === min)
+                res.push(list2[i]);
         }
     }
-    return result;
+    return res;
 };
-let nums = [
-    [1, 2],
-    [3, 4]
-]
-console.log(matrixReshape(nums, 1, 4));
+let list1 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
+let list2 = ["Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"];
+let list3 = ["Shogun", "Tapioca Express", "Burger King", "KFC"];
+let list4 = ["KFC", "Shogun", "Burger King"];
+console.log(findRestaurant(list1, list2));
+console.log(findRestaurant(list3, list4));
