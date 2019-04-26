@@ -3113,3 +3113,156 @@
 // console.log(findRestaurant(list1, list2));
 // console.log(findRestaurant(list3, list4));
 
+// var canPlaceFlowers = function(flowerbed, n) {
+// 	let count = 0;
+//     for (let i=0, length=flowerbed.length; i<length; i++) {
+// 		if (flowerbed[i-1] !== 1 && flowerbed[i] === 0 && flowerbed[i+1] !== 1) {
+// 			count++;
+// 			i++;
+// 		}
+// 	}
+// 	if (count >= n) {
+// 		return true;
+// 	} else {
+// 		return false;
+// 	}
+// };
+// console.log(canPlaceFlowers([1,0,0,0,1], 1));
+// console.log(canPlaceFlowers([1,0,0,0,1], 2));
+// console.log(canPlaceFlowers([1,0,0,0,0,1], 2));
+// console.log(canPlaceFlowers([0,0,1,0,1], 1));
+
+// var maximumProduct = function(nums) {
+//     if (nums.length === 3) {
+// 		return nums[0]*nums[1]*nums[2];
+// 	}
+// 	nums.sort((a,b) => a-b);
+// 	let max = Math.max( (nums[0]*nums[1]*nums[nums.length-1]), (nums[nums.length-1]*nums[nums.length-2]*nums[nums.length-3]))
+// 	return max;
+// };
+// console.log(maximumProduct([1,2,3]));
+// console.log(maximumProduct([1,2,3,4]));
+// console.log(maximumProduct([-1,-2,1,2,3]));
+
+// var maximumProduct = function (nums) {
+// 	let max1 = -Infinity;
+// 	let max2 = -Infinity;
+// 	let max3 = -Infinity;
+// 	let min1 = Infinity;
+// 	let min2 = Infinity;
+// 	for (let i=0, length=nums.length; i<length; i++) {
+// 		let num = nums[i];
+// 		if (num >= max1) {
+// 			max3 = max2;
+// 			max2 = max1;
+// 			max1 = num;
+// 		} else if (num >= max2) {
+// 			max3 = max2;
+// 			max2 = num;
+// 		} else if (num >= max3) {
+// 			max3 = num;
+// 		}
+// 		if (num <= min1) {
+// 			min2 = min1;
+// 			min1 = num;
+// 		} else if (num <= min2) {
+// 			min2 = num;
+// 		}
+// 	};
+// 	const prod1 = max1 * max2 * max3;
+// 	const prod2 = max1 * min1 * min2;
+// 	return Math.max(prod1, prod2);
+// }
+// console.log(maximumProduct([1,2,3]));
+// console.log(maximumProduct([1,2,3,4]));
+// console.log(maximumProduct([-1,-2,1,2,3]));
+
+// var judgeSquareSum = function(c) {
+// 	let a = 0;
+// 	let b = Math.floor(Math.sqrt(c));
+// 	while (a<=b) {
+// 		if (a*a + b*b > c) {
+// 			b--
+// 		} else if (a*a + b*b < c) {
+// 			a++
+// 		} else {
+// 			return true;
+// 		}
+// 	}
+// 	return false;
+// };
+// console.log(judgeSquareSum(5));
+// console.log(judgeSquareSum(3));
+// console.log(judgeSquareSum(4));
+
+// var judgeSquareSum = function(c) {
+//     for(let a=0, b=Math.floor(Math.sqrt(c)); a<=b; a++){
+//         if(Number.isInteger(Math.sqrt(c - a*a)))
+// 			return true
+// 		}
+//     return false;
+// };
+// console.log(judgeSquareSum(5));
+// console.log(judgeSquareSum(3));
+// console.log(judgeSquareSum(4));
+
+// var findLengthOfLCIS = function(nums) {
+// 	let length = nums.length;
+// 	if (nums.length === 0) {
+// 		return 0;
+// 	}
+// 	let max = 1;
+// 	let count = 1;
+// 	for (let i=1; i<length; i++) {
+// 		if (nums[i] > nums[i-1]) {
+// 			count++;
+// 		} else {
+// 			count = 1;
+// 		}
+// 		max = Math.max(count, max)
+// 	}
+// 	return max;
+// };
+// console.log(findLengthOfLCIS([1,3,5,4,7]))
+
+// var validPalindrome = function(s) {
+// 	let length = s.length-1;
+// 	let range = s.length/2;
+// 	let count = 0;
+//     for (let i=0; i<range; i++) {
+// 		if (s[i] !== s[length-i]) {
+// 			if (count === 1) {
+// 				return false;
+// 			}
+// 			count++;
+// 		}
+// 	}
+// 	return true;
+// };
+// console.log(validPalindrome("aba"));
+// console.log(validPalindrome("abca"));
+// console.log(validPalindrome("abcdasdasa"));
+// console.log(validPalindrome("abc"));
+
+var validPalindrome = function (s) {
+	let res = checkString(s,false);
+	function checkString(s, deleted) {
+		let length = s.length - 1;
+		let range = s.length / 2;
+		for (let i = 0; i < range; i++) {
+			if (s[i] !== s[length - i]) {
+				if (deleted === true) {
+					return false;
+				}
+				return checkString(s.substring(i, length - i), true) || checkString(s.substring(i + 1, length - i + 1), true)
+			}
+		}
+		return true;
+	}
+	return res;
+};
+console.log(validPalindrome("aba"));
+console.log(validPalindrome("abca"));
+console.log(validPalindrome("abcdasdasa"));
+console.log(validPalindrome("abc"));
+
