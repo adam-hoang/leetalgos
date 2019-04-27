@@ -3244,25 +3244,71 @@
 // console.log(validPalindrome("abcdasdasa"));
 // console.log(validPalindrome("abc"));
 
-var validPalindrome = function (s) {
-	let res = checkString(s,false);
-	function checkString(s, deleted) {
-		let length = s.length - 1;
-		let range = s.length / 2;
-		for (let i = 0; i < range; i++) {
-			if (s[i] !== s[length - i]) {
-				if (deleted === true) {
-					return false;
-				}
-				return checkString(s.substring(i, length - i), true) || checkString(s.substring(i + 1, length - i + 1), true)
-			}
+// var validPalindrome = function (s) {
+// 	let res = checkString(s,false);
+// 	function checkString(s, deleted) {
+// 		let length = s.length - 1;
+// 		let range = s.length / 2;
+// 		for (let i = 0; i < range; i++) {
+// 			if (s[i] !== s[length - i]) {
+// 				if (deleted === true) {
+// 					return false;
+// 				}
+// 				return checkString(s.substring(i, length - i), true) || checkString(s.substring(i + 1, length - i + 1), true)
+// 			}
+// 		}
+// 		return true;
+// 	}
+// 	return res;
+// };
+// console.log(validPalindrome("aba"));
+// console.log(validPalindrome("abca"));
+// console.log(validPalindrome("abcdasdasa"));
+// console.log(validPalindrome("abc"));
+
+// var countBinarySubstrings = function(s) {
+// 	let res = 0;
+// 	let left = 0;
+// 	let counter = 1;
+// 	for (let i=1, length=s.length; i<length; i++) {
+// 		if (s[i] === s[i-1]) {
+// 			counter++;
+// 		} else {
+// 			left = counter;
+// 			counter = 1;
+// 		}
+// 		if (left >= counter) {
+// 			res++;
+// 		}
+// 	}
+// 	return res;
+// };
+// console.log(countBinarySubstrings("00110011"));
+
+var findShortestSubArray = function(nums) {
+	const dict = {};
+	const fidx = {};
+	const lidx = {};
+	let max = 0;
+	for (let i=0, length=nums.length; i<length; i++) {
+		let num=nums[i]
+		if (dict[num]) {
+			dict[num]++;
+		} else {
+			dict[num] = 1;
 		}
-		return true;
+		max = Math.max(max, dict[num]);
+		if (fidx[num] === undefined ) {
+			fidx[num] = i;
+		}
+		lidx[num] = i;
+	}
+	let res = nums.length;
+	for (let key in dict) {
+		if (dict[key] === max) {
+			res = Math.min(res, lidx[key] - fidx[key] + 1)
+		}
 	}
 	return res;
 };
-console.log(validPalindrome("aba"));
-console.log(validPalindrome("abca"));
-console.log(validPalindrome("abcdasdasa"));
-console.log(validPalindrome("abc"));
-
+console.log(findShortestSubArray([1, 2, 2, 3, 1]));
