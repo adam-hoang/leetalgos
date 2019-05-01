@@ -3285,30 +3285,68 @@
 // };
 // console.log(countBinarySubstrings("00110011"));
 
-var findShortestSubArray = function(nums) {
-	const dict = {};
-	const fidx = {};
-	const lidx = {};
-	let max = 0;
-	for (let i=0, length=nums.length; i<length; i++) {
-		let num=nums[i]
-		if (dict[num]) {
-			dict[num]++;
-		} else {
-			dict[num] = 1;
-		}
-		max = Math.max(max, dict[num]);
-		if (fidx[num] === undefined ) {
-			fidx[num] = i;
-		}
-		lidx[num] = i;
-	}
-	let res = nums.length;
-	for (let key in dict) {
-		if (dict[key] === max) {
-			res = Math.min(res, lidx[key] - fidx[key] + 1)
-		}
-	}
-	return res;
-};
-console.log(findShortestSubArray([1, 2, 2, 3, 1]));
+// var findShortestSubArray = function(nums) {
+// 	const dict = {};
+// 	const fidx = {};
+// 	const lidx = {};
+// 	let max = 0;
+// 	for (let i=0, length=nums.length; i<length; i++) {
+// 		let num=nums[i]
+// 		if (dict[num]) {
+// 			dict[num]++;
+// 		} else {
+// 			dict[num] = 1;
+// 		}
+// 		max = Math.max(max, dict[num]);
+// 		if (fidx[num] === undefined ) {
+// 			fidx[num] = i;
+// 		}
+// 		lidx[num] = i;
+// 	}
+// 	let res = nums.length;
+// 	for (let key in dict) {
+// 		if (dict[key] === max) {
+// 			res = Math.min(res, lidx[key] - fidx[key] + 1)
+// 		}
+// 	}
+// 	return res;
+// };
+// console.log(findShortestSubArray([1, 2, 2, 3, 1]));
+
+// var search = function(nums, target) {
+// 	let left = 0;
+// 	let right = nums.length-1;
+// 	while (left <= right) {
+// 		let half = Math.floor((left+right)/2);
+// 		if (nums[half] === target) {
+// 			return half;
+// 		} else if (nums[half] < target) {
+// 			left = half + 1;
+// 		} else {
+// 			right = half - 1;
+// 		}
+// 	}
+// 	return -1;
+// };
+// console.log(search([-1,0,3,5,9,12], 9));
+// console.log(search([-1,0,3,5,9,12], 2));
+
+// var pivotIndex = function (nums) {
+// 	let total = 0;
+// 	let length = nums.length;
+// 	for (let i=0; i<length; i++) {
+// 		total += nums[i];
+// 	}
+// 	let left = 0;
+// 	for (let i=0; i<length; i++) {
+// 		let num = nums[i];
+// 		if (left === total - left - num) {
+// 			return i;
+// 		}
+// 		left += num;
+// 	}
+// 	return -1;
+// };
+// console.log(pivotIndex([1, 7, 3, 6, 5, 6]));
+// console.log(pivotIndex([1, 2, 3]));
+
