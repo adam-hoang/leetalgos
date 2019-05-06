@@ -3369,11 +3369,12 @@
 // };
 // console.log(selfDividingNumbers(1, 22));
 
+// basic calculator 1
 // var calculate = function (s) {
 //     let res = 0;
 //     let sign = 1;
 //     const stack = [];
-//     const opStack = [];
+//     const signStack = [];
 
 //     for (let i=0, length=s.length; i<length; i++) {
 //         const char = s[i];
@@ -3385,20 +3386,20 @@
 //             sign = -1;
 //         } else if (char >= "0" && char <= "9") {
 //             let num = char;
-//             while (i+1<length && s[i + 1] >= "0" && s[i + 1] <= "9") {
-//                 num += s[i + 1];
+//             while (i+1 < length && s[i+1] >= "0" && s[i+1] <= "9") {
+//                 num += s[i+1];
 //                 i++;
 //             }
 //             res += sign * parseInt(num);
 //         } else if (char === "(") {
 //             stack.push(res);
 //             res = 0;
-//             opStack.push(sign);
+//             signStack.push(sign);
 //             sign = 1;
 //         } else if (char === ")") {
-//             res = opStack.pop() * res + stack.pop();
+//             res = signStack.pop() * res + stack.pop();
 //             sign = 1;
-//         }
+// 		}
 //     }
 //     return res;
 // };
@@ -3407,4 +3408,127 @@
 // console.log(calculate(" 8 - (2+3+1) + 2 "));
 // console.log(calculate("(1+(4+5+2)-3)+(6+8)"));
 
+// var floodFill = function (image, sr, sc, newColor) {
+// 	let oldColor = image[sr][sc];
+// 	checkAdjacents(image, sr, sc, newColor, oldColor);
+// 	function checkAdjacents(image, i, j, newColor, oldColor) {
+// 		if (i<0 || j<0 || i>=image.length || j>=image[i].length || image[i][j] !== oldColor || image[i][j] === newColor) {
+// 			return image;
+// 		}
+// 		image[i][j] = newColor;
+// 		checkAdjacents(image, i, j-1, newColor, oldColor);
+// 		checkAdjacents(image, i, j+1, newColor, oldColor);
+// 		checkAdjacents(image, i+1, j, newColor, oldColor);
+// 		checkAdjacents(image, i-1, j, newColor, oldColor);
+// 		return image;
+// 	}
 
+// 	return image;
+// };
+// console.log(floodFill(
+// 	[[1,1,1],[1,1,0],[1,0,1]],
+// 	1,
+// 	1,
+// 	2
+// ));
+
+// var nextGreatestLetter = function (letters, target) {
+// 	let left = 0;
+// 	let right = letters.length - 1;
+// 	while (left <= right) {
+// 		let mid = Math.floor((right - left) / 2) + left;
+// 		if (target < letters[mid]) {
+// 			right = mid-1;
+// 		} else {
+// 			left = mid+1;
+// 		}
+// 	}
+// 	return letters[left%letters.length];
+// };
+// console.log(nextGreatestLetter(["c", "f", "j"], "a"))
+// console.log(nextGreatestLetter(["c", "f", "j"], "c"))
+// console.log(nextGreatestLetter(["c", "f", "j"], "d"))
+// console.log(nextGreatestLetter(["c", "f", "j"], "g"))
+// console.log(nextGreatestLetter(["c", "f", "j"], "j"))
+// console.log(nextGreatestLetter(["c", "f", "j"], "k"))
+
+// var minCostClimbingStairs = function(cost) {
+// 	let length = cost.length;
+//     for (let i=2; i<length; i++) {
+//         cost[i] += Math.min(cost[i-1], cost[i-2]);
+//     }
+//     return Math.min(cost[length-1], cost[length-2]);
+// };
+// console.log(minCostClimbingStairs([10, 15, 20]))
+
+// var dominantIndex = function(nums) {
+// 	let max = -Infinity;
+// 	let second = -Infinity;
+// 	let idx = -1;
+// 	for (let i=0, length=nums.length; i<length; i++) {
+// 		let num = nums[i];
+// 		if (num > max) {
+// 			second = max;
+// 			max = num;
+// 			idx = i;
+// 		} else if (num > second) {
+// 			second = num;
+// 		}
+// 	}
+// 	if (max >= 2*second) {
+// 		return idx;
+// 	}
+// 	return -1;
+// };
+// console.log(dominantIndex([3, 6, 1, 0]))
+// console.log(dominantIndex([1, 2, 3, 4]))
+
+var shortestCompletingWord = function(licensePlate, words) {
+	licensePlate = licensePlate.toLowerCase();
+	// let letters = licensePlate.replace(/[^A-Za-z]/g, "");
+	let letters = licensePlate.replace(/[^a-z]/g, ""); 
+	const dict = {};
+	let min = 16;
+	let result = "";
+	for (let i=0, length=letters.length; i<length; i++) {
+		let cLetter = letters[i];
+		if (dict[cLetter]) {
+			dict[cLetter]++;
+		} else {
+			dict[cLetter] = 1;
+		}
+	}
+	for (let i=0, wLength=words.length; i<wLength; i++) {
+		const dict2 = {};
+		let broke = false;
+		let currentWordLength = words[i].length;
+		if (currentWordLength < min) {
+			for (let j=0; j<currentWordLength; j++) {
+				let cLetter2 = words[i][j];
+				if (dict[cLetter2]) {
+					if (dict2[cLetter2]) {
+						dict2[cLetter2]++;
+					} else {
+						dict2[cLetter2] = 1;
+					}
+				}
+			}
+			for (let key in dict) {
+				if (dict2[key] === undefined || dict[key] > dict2[key]) {
+					broke = true;
+					break;
+				}
+			}
+			if (broke === true) {
+				continue;
+			} else {
+				result = words[i];
+				min = currentWordLength;
+			}
+		}
+	}
+	return result;
+};
+// console.log(shortestCompletingWord("1s3 PSt", ["step", "steps", "stripe", "stepple"]))
+// console.log(shortestCompletingWord("1s3 456", ["looks", "pest", "stew", "show"]))
+console.log(shortestCompletingWord("Ah71752", ["suggest", "letter", "of", "husband", "easy", "education", "drug", "prevent", "writer", "old"]))
