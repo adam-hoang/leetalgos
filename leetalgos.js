@@ -3483,52 +3483,324 @@
 // console.log(dominantIndex([3, 6, 1, 0]))
 // console.log(dominantIndex([1, 2, 3, 4]))
 
-var shortestCompletingWord = function(licensePlate, words) {
-	licensePlate = licensePlate.toLowerCase();
-	// let letters = licensePlate.replace(/[^A-Za-z]/g, "");
-	let letters = licensePlate.replace(/[^a-z]/g, ""); 
-	const dict = {};
-	let min = 16;
-	let result = "";
-	for (let i=0, length=letters.length; i<length; i++) {
-		let cLetter = letters[i];
-		if (dict[cLetter]) {
-			dict[cLetter]++;
-		} else {
-			dict[cLetter] = 1;
-		}
-	}
-	for (let i=0, wLength=words.length; i<wLength; i++) {
-		const dict2 = {};
-		let broke = false;
-		let currentWordLength = words[i].length;
-		if (currentWordLength < min) {
-			for (let j=0; j<currentWordLength; j++) {
-				let cLetter2 = words[i][j];
-				if (dict[cLetter2]) {
-					if (dict2[cLetter2]) {
-						dict2[cLetter2]++;
-					} else {
-						dict2[cLetter2] = 1;
-					}
-				}
-			}
-			for (let key in dict) {
-				if (dict2[key] === undefined || dict[key] > dict2[key]) {
-					broke = true;
-					break;
-				}
-			}
-			if (broke === true) {
-				continue;
-			} else {
-				result = words[i];
-				min = currentWordLength;
-			}
-		}
-	}
-	return result;
-};
+// var shortestCompletingWord = function(licensePlate, words) {
+// 	licensePlate = licensePlate.toLowerCase();
+// 	let letters = licensePlate.replace(/[^a-z]/g, ""); 
+// 	const dict = {};
+// 	let min = 16;
+// 	let result = "";
+// 	for (let i=0, length=letters.length; i<length; i++) {
+// 		let cLetter = letters[i];
+// 		if (dict[cLetter]) {
+// 			dict[cLetter]++;
+// 		} else {
+// 			dict[cLetter] = 1;
+// 		}
+// 	}
+// 	for (let i=0, wLength=words.length; i<wLength; i++) {
+// 		const dict2 = {};
+// 		let broke = false;
+// 		let currentWordLength = words[i].length;
+// 		if (currentWordLength < min) {
+// 			for (let j=0; j<currentWordLength; j++) {
+// 				let cLetter2 = words[i][j];
+// 				if (dict[cLetter2]) {
+// 					if (dict2[cLetter2]) {
+// 						dict2[cLetter2]++;
+// 					} else {
+// 						dict2[cLetter2] = 1;
+// 					}
+// 				}
+// 			}
+// 			for (let key in dict) {
+// 				if (dict2[key] === undefined || dict[key] > dict2[key]) {
+// 					broke = true;
+// 					break;
+// 				}
+// 			}
+// 			if (broke === true) {
+// 				continue;
+// 			} else {
+// 				result = words[i];
+// 				min = currentWordLength;
+// 			}
+// 		}
+// 	}
+// 	return result;
+// };
 // console.log(shortestCompletingWord("1s3 PSt", ["step", "steps", "stripe", "stepple"]))
 // console.log(shortestCompletingWord("1s3 456", ["looks", "pest", "stew", "show"]))
-console.log(shortestCompletingWord("Ah71752", ["suggest", "letter", "of", "husband", "easy", "education", "drug", "prevent", "writer", "old"]))
+// console.log(shortestCompletingWord("Ah71752", ["suggest", "letter", "of", "husband", "easy", "education", "drug", "prevent", "writer", "old"]))
+
+// var rotatedDigits = function(N) {
+// 	let count = 0;
+//     for (let i=1; i<=N; i++) {
+// 		let num = i.toString().split("")
+// 		for (let j=0, length=num.length; j<length; j++) {
+// 			if (num[j] === "3" || num[j] === "4" || num[j] === "7") {
+// 				num = undefined;
+// 				break;
+// 			} else if (num[j] === "2") {
+// 				num[j] = "5";
+// 			} else if (num[j] === "5") {
+// 				num[j] = "2";
+// 			} else if (num[j] === "6") {
+// 				num[j] = "9";
+// 			} else if (num[j] === "9") {
+// 				num[j] = "5";
+// 			} else if (num[j] === "6") {
+// 				num[j] = "5";
+// 			}
+// 		}
+// 		if (num && i !== parseInt(num.join(""))) {
+// 			count++;
+// 		}
+// 	}
+// 	return count;
+// };
+// console.log(rotatedDigits(10));
+// console.log(rotatedDigits(857));
+
+// var rotatedDigits = function(N) {
+// 	let count = 0;
+//     for (let i=1; i<=N; i++) {
+// 		const dict = {};
+// 		let num = i.toString()
+// 		for (let j=0, length=num.length; j<length; j++) {
+// 			if (dict[num[j]]) {
+// 				dict[num[j]]++
+// 			} else {
+// 				dict[num[j]] = 1;
+// 			}
+// 		}
+// 		if (dict[3] || dict[4] || dict[7]) {
+// 			continue;
+// 		} else if (dict[2] || dict[5] || dict[6] || dict[9]) {
+// 			count++;
+// 		}
+// 	}
+// 	return count;
+// };
+// console.log(rotatedDigits(10));
+// console.log(rotatedDigits(857));
+
+// var rotatedDigits = function (N) {
+// 	let count = 0;
+// 	for (let i=1; i<=N; i++) {
+// 		let num = i.toString();
+// 		if (!/[347]/.test(num) && /[2569]/.test(num)) {
+// 			count++;
+// 		}
+// 	}
+// 	return count;
+// };
+// console.log(rotatedDigits(10));
+// console.log(rotatedDigits(857));
+
+// var rotateString = function(A, B) {
+// 	if (A.length !== B.length || !(A+A).includes(B)) {
+// 		return false;
+// 	}
+// 	return true;
+// };
+// console.log(rotateString('abcde', 'cdeab'))
+// console.log(rotateString('abcde', 'abced'))
+
+// var subdomainVisits = function (cpdomains) {
+// 	let dict = {};
+// 	let res = [];
+// 	for (let websites of cpdomains) {
+// 		let split = websites.split(" ");
+// 		let visits = parseInt(split[0]);
+// 		let domains = split[1].split(".");
+// 		let key = domains.pop();
+// 		if (dict[key]) {
+// 			dict[key] += visits;
+// 		} else {
+// 			dict[key] = visits
+// 		}
+// 		while (domains.length > 0) {
+// 			key = domains.pop() + "." + key;
+// 			if (dict[key]) {
+// 				dict[key] += visits;
+// 			} else {
+// 				dict[key] = visits
+// 			}
+// 		}
+// 	}
+// 	for (let i in dict) {
+// 		res.push(dict[i] + " " + i)
+// 	}
+// 	return res;
+// };
+// console.log(subdomainVisits(["9001 discuss.leetcode.com"]));
+// console.log(subdomainVisits(["900 google.mail.com", "50 yahoo.com", "1 intel.mail.com", "5 wiki.org"]));
+
+// var mostCommonWord = function(paragraph, banned) {
+// 	let edited = paragraph.toLowerCase().replace(/,/g, " ").replace(/[^a-z ]/g, "").split(" ");
+// 	let dict = {}
+//     for (let i=0; i<edited.length; i++) {
+// 		if (dict[edited[i]]) {
+// 			dict[edited[i]]++
+// 		} else {
+// 			dict[edited[i]] = 1
+// 		}
+// 	}
+// 	for (let key in dict) {
+// 		if (banned.includes(key) || key.length < 1) {
+// 			dict[key] = undefined;
+// 		}
+// 	}
+// 	let max = 0;
+// 	for (let key in dict) {
+// 		if (dict[key] > max) {
+// 			max = dict[key];
+// 			res = key
+// 		}
+// 	}
+// 	return res
+// };
+// console.log(mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]));
+// console.log(mostCommonWord("a, a, a, a, b,b,b,c, c", ["a"]));
+
+// var mostCommonWord = function(paragraph, banned) {
+// 	let edited = paragraph.toLowerCase().replace(/[\W_]+/g," ").split(" ");
+// 	let dict = {}
+//     for (let i=0; i<edited.length; i++) {
+// 		if (dict[edited[i]]) {
+// 			dict[edited[i]]++
+// 		} else {
+// 			dict[edited[i]] = 1
+// 		}
+// 	}
+// 	for (let key in dict) {
+// 		if (banned.includes(key)) {
+// 			dict[key] = undefined;
+// 		}
+// 	}
+// 	let max = 0;
+// 	for (let key in dict) {
+// 		if (dict[key] > max) {
+// 			max = dict[key];
+// 			res = key
+// 		}
+// 	}
+// 	return res
+// };
+// console.log(mostCommonWord("Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]));
+// console.log(mostCommonWord("a, a, a, a, b,b,b,c, c", ["a"]));
+
+// var shortestToChar = function (S, C) {
+// 	const res = [];
+// 	const arr = []
+// 	let length = S.length;
+// 	for (let i=0; i<length; i++) {
+// 		if (S[i] === C) {
+// 			arr.push(i)
+// 		}
+// 	}
+// 	for (let i=0; i<length; i++) {
+// 		let min = length;
+// 		for (let j=0, aLength=arr.length; j<aLength; j++) {
+// 			min = Math.min(Math.abs(i - arr[j]), min);
+// 		}
+// 		res.push(min);
+// 	}
+// 	return res;
+// };
+// console.log(shortestToChar("loveleetcode", 'e'))
+
+// var toGoatLatin = function (S) {
+// 	let split = S.split(" ");
+// 	let res = "";
+// 	for (let i = 0, length = split.length; i < length; i++) {
+// 		let char = split[i][0];
+// 		let end = "";
+// 		let j = 0;
+// 		while (j < i + 1) {
+// 			end += "a";
+// 			j++;
+// 		}
+// 		if (
+// 			char === "a" ||
+// 			char === "e" ||
+// 			char === "i" ||
+// 			char === "o" ||
+// 			char === "u" ||
+// 			char === "A" ||
+// 			char === "E" ||
+// 			char === "I" ||
+// 			char === "O" ||
+// 			char === "U"
+// 		) {
+// 			res += split[i] + "ma" + end + " ";
+// 		} else {
+// 			res += split[i].substring(1) + char + "ma" + end + " ";
+// 		}
+// 	}
+// 	return res.trim();
+// };
+// console.log(toGoatLatin("I speak Goat Latin"));
+// console.log(toGoatLatin("The quick brown fox jumped over the lazy dog"));
+
+// var toGoatLatin = function (S) {
+// 	let split = S.split(" ");
+// 	for (let i = 0, length = split.length; i < length; i++) {
+// 		let word = split[i];
+// 		let char = split[i][0];
+// 		let end = "a".repeat(i + 1)
+// 		if (word.match(/^[aeiouAEIOU]/g)) {
+// 			split[i] = word + "ma" + end;
+// 		} else {
+// 			split[i] = word.substring(1) + char + "ma" + end;
+// 		}
+// 	}
+// 	return split.join(" ");
+// };
+// console.log(toGoatLatin("I speak Goat Latin"));
+// console.log(toGoatLatin("The quick brown fox jumped over the lazy dog"));
+
+// var largeGroupPositions = function(S) {
+// 	const res = [];
+// 	let count = 1;
+// 	for (let i=1, length=S.length; i<=length; i++) {
+// 		if (S[i] === S[i-1]) {
+// 			count++;
+// 		} else {
+// 			if (count > 2) {
+// 				res.push([i-count ,i-1])
+// 			}
+// 			count = 1;
+// 		}
+// 	}
+// 	return res;
+// };
+// console.log(largeGroupPositions("abbxxxxzzy"));
+// console.log(largeGroupPositions("abc"));
+// console.log(largeGroupPositions("abcdddeeeeaabbbcd"));
+// console.log(largeGroupPositions("aaa"));
+
+// var isRectangleOverlap = function(rec1, rec2) {
+// 	let oneleft = rec1[0];
+// 	let oneright = rec1[2];
+// 	let onebottom = rec1[1];
+// 	let onetop = rec1[3];
+// 	let secondleft = rec2[0];
+// 	let secondright = rec2[2];
+// 	let secondbottom = rec2[1];
+// 	let secondtop = rec2[3];
+
+//     if (oneright > secondleft && secondright > oneleft) {
+// 		if (onetop > secondbottom && secondtop > onebottom) {
+// 			return true;
+// 		} else {
+// 			return false;
+// 		}
+// 	} else {
+// 		return false;
+// 	}
+// };
+// console.log(isRectangleOverlap([0,0,2,2], [1,1,3,3]));
+// console.log(isRectangleOverlap([0,0,1,1], [1,0,2,1]));
+// console.log(isRectangleOverlap([7,8,13,15], [10,8,12,20]));
+// console.log(isRectangleOverlap([2,17,6,20], [3,8,6,20]));
