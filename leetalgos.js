@@ -3804,3 +3804,77 @@
 // console.log(isRectangleOverlap([0,0,1,1], [1,0,2,1]));
 // console.log(isRectangleOverlap([7,8,13,15], [10,8,12,20]));
 // console.log(isRectangleOverlap([2,17,6,20], [3,8,6,20]));
+
+// // using strings
+// var backspaceCompare = function(S, T) {
+//     let newS = "";
+//     let newT = "";
+//     for (let i=0, length=S.length; i<length; i++) {
+//         if (S[i] === "#") {
+//             newS = newS.slice(0,-1)
+//         } else {
+//             newS += S[i];
+//         }
+//     }
+//     for (let i=0, length=T.length; i<length; i++) {
+//         if (T[i] === "#") {
+//             newT = newT.slice(0,-1)
+//         } else {
+//             newT += T[i];
+//         }
+//     }
+//     return newS === newT;
+// };
+// console.log(backspaceCompare("ab#c", "ad#c"));
+// console.log(backspaceCompare("ab##", "c#d#"));
+// console.log(backspaceCompare("a##c", "#a#c"));
+// console.log(backspaceCompare("a#c", "b"));
+
+// // using strings and helper
+// var backspaceCompare = function(S, T) {
+//     function newString(str) {
+//         let newStr = "";
+//         for (let i=0, length=str.length; i<length; i++) {
+//             if (str[i] === "#") {
+//                 newStr = newStr.slice(0,-1)
+//             } else {
+//                 newStr += str[i];
+//             }
+//         }
+//         return newStr;
+//     }
+//     return newString(S) === newString(T);
+// };
+// console.log(backspaceCompare("ab#c", "ad#c"));
+// console.log(backspaceCompare("ab##", "c#d#"));
+// console.log(backspaceCompare("a##c", "#a#c"));
+// console.log(backspaceCompare("a#c", "b"));
+
+// // using arrays
+// var backspaceCompare = function(S, T) {
+//     let newS = [];
+//     let newT = [];
+//     for (let i=0, length=S.length; i<length; i++) {
+//         if (S[i] !== "#") {
+//             newS.push(S[i])
+//         } else {
+//             newS.pop();
+//         }
+//     }
+//     for (let i=0, length=T.length; i<length; i++) {
+//         if (T[i] !== "#") {
+//             newT.push(T[i])
+//         } else {
+//             newT.pop()
+//         }
+//     }
+//     newS = newS.join("");
+//     newT = newT.join("");
+//     return newS === newT;
+// };
+// console.log(backspaceCompare("ab#c", "ad#c"));
+// console.log(backspaceCompare("ab##", "c#d#"));
+// console.log(backspaceCompare("a##c", "#a#c"));
+// console.log(backspaceCompare("a#c", "b"));
+
+
