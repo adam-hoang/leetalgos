@@ -3877,4 +3877,290 @@
 // console.log(backspaceCompare("a##c", "#a#c"));
 // console.log(backspaceCompare("a#c", "b"));
 
+// var maxDistToClosest = function(seats) {
+//     let max = 0;
+//     let length = seats.length;
+//     for (let left=0, right=0; left<length; left=right) {
+//         for (left=right; left<length && seats[left] === 1; left++) {
+
+//         }
+//         for (right=left; right<length && seats[right] === 0; right++) {
+
+//         }
+//         if (left === 0 || right === length) {
+//             max = Math.max(max, (right - left));
+//         } else {
+//             max = Math.max(max, Math.floor((right-left+1)/2));
+//         }
+//     }
+//     return max;
+// };
+// console.log(maxDistToClosest([1,0,0,0,1,0,1]))
+// console.log(maxDistToClosest([1,0,0,0]))
+
+// var maxDistToClosest = function(seats) {
+//     let max = 0;
+//     let length = seats.length;
+//     for (let left=0, right=0; left<length; left=right) {
+//         while (left<length && seats[left] === 1) {
+//             left++
+//         }
+//         right = left;
+//         while (right<length && seats[right] === 0) {
+//             right++
+//         }
+//         if (left === 0 || right === length) {
+//             max = Math.max(max, (right - left));
+//         } else {
+//             max = Math.max(max, Math.floor((right-left+1)/2));
+//         }
+//     }
+//     return max;
+// };
+// console.log(maxDistToClosest([1,0,0,0,1,0,1]))
+// console.log(maxDistToClosest([1,0,0,0]))
+
+// var buddyStrings = function(A, B) {
+//     let length = A.length;
+//     let swap = [];
+//     if (length !== B.length) {
+//         return false;
+//     }
+//     let removeDup = new Set(A);
+//     if (A === B) {
+//         if (removeDup.size === length) {
+//             return false;
+//         }
+//         return true;
+//     }
+//     for (let i=0; i<length; i++) {
+//         if (A[i] !== B[i]) {
+//             swap.push(i);
+//         }
+//     }
+//     if (swap.length !== 2) {
+//         return false;
+//     }
+//     let check = A.split("");
+//     let temp = check[swap[0]];
+//     check[swap[0]] = check[swap[1]];
+//     check[swap[1]] = temp;
+//     A = check.join("");
+//     return A === B;
+// };
+// console.log(buddyStrings("ab", "ba"));
+// console.log(buddyStrings("ab", "ab"));
+// console.log(buddyStrings("aa", "aa"));
+// console.log(buddyStrings("aaaaaaabc", "aaaaaaacb"));
+// console.log(buddyStrings("", "aa"));
+// console.log(buddyStrings("abcaa", "abcbb"));
+
+// var buddyStrings = function(A, B) {
+//     let length = A.length;
+//     let swap = [];
+//     if (length !== B.length) {
+//         return false;
+//     }
+//     let removeDup = new Set(A);
+//     if (A === B) {
+//         if (removeDup.size === length) {
+//             return false;
+//         }
+//         return true;
+//     }
+//     for (let i=0; i<length; i++) {
+//         if (A[i] !== B[i]) {
+//             swap.push(i);
+//         }
+//     }
+//     if (swap.length !== 2) {
+//         return false;
+//     }
+
+//     return A[swap[0]] === B[swap[1]] && A[swap[1]] === B[swap[0]];
+// };
+// console.log(buddyStrings("ab", "ba"));
+// console.log(buddyStrings("ab", "ab"));
+// console.log(buddyStrings("aa", "aa"));
+// console.log(buddyStrings("aaaaaaabc", "aaaaaaacb"));
+// console.log(buddyStrings("", "aa"));
+// console.log(buddyStrings("abcaa", "abcbb"));
+
+// var lemonadeChange = function(bills) {
+//     let fives = 0;
+//     let tens = 0;
+//     for (let i=0, length=bills.length; i<length; i++) {
+//         if (bills[i] === 5) {
+//             fives++;
+//         } else if (bills[i] === 10 && fives > 0) {
+//             tens++;
+//             fives--;
+//         } else if (bills[i] === 20) {
+//             if (tens > 0 && fives > 0) {
+//                 tens--;
+//                 fives--;
+//             } else if (fives>2) {
+//                 fives -= 3;
+//             } else {
+//                 return false;
+//             }
+//         } else {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(lemonadeChange([5,5,5,10,20]));
+// console.log(lemonadeChange([5,5,10]));
+// console.log(lemonadeChange([10,10]));
+// console.log(lemonadeChange([5,5,10,10,20]));
+
+// var transpose = function(A) {
+//     const res = [];
+//     let cLength = A[0].length;
+//     let rLength = A.length;
+//     for (let col=0; col<cLength; col++) {
+//         const temp = [];
+//         for (let row=0; row<rLength; row++) {
+//             temp.push(A[row][col])
+//         }
+//         res.push(temp)
+//     }
+//     return res;
+// };
+// console.log(transpose( [[1,2,3],[4,5,6],[7,8,9]] ));
+// console.log(transpose( [[1,2,3],[4,5,6]] ));
+
+// // takes too much time but saves in memory
+// var fairCandySwap = function(A, B) {
+//     let sumA = A.reduce((a, b) => a + b, 0);
+//     let sumB = B.reduce((a, b) => a + b, 0);
+//     let target = (sumA+sumB)/2;
+//     for (let i=0, length=A.length; i<length; i++) {
+//         let check = target - (sumA - A[i]); 
+//         if (B.includes(check)) {
+//             return [A[i], check];
+//         }
+//     }
+// };
+// console.log(fairCandySwap([1,1], [2,2]));
+// console.log(fairCandySwap([1,2], [2,3]));
+// console.log(fairCandySwap([2], [1,3]));
+// console.log(fairCandySwap([1,2,5], [2,4]));
+
+// // set is much faster to check but more memory
+// var fairCandySwap = function(A, B) {
+//     let sumA = A.reduce((a, b) => a + b, 0);
+//     let sumB = B.reduce((a, b) => a + b, 0);
+//     let target = (sumA+sumB)/2;
+//     const setB = new Set(B);
+//     for (let i=0, length=A.length; i<length; i++) {
+//         let check = target - (sumA - A[i]); 
+//         if (setB.has(check)) {
+//             return [A[i], check];
+//         }
+//     }
+// };
+// console.log(fairCandySwap([1,1], [2,2]));
+// console.log(fairCandySwap([1,2], [2,3]));
+// console.log(fairCandySwap([2], [1,3]));
+// console.log(fairCandySwap([1,2,5], [2,4]));
+
+// var isMonotonic = function(A) {
+//     let inc = false;
+//     let dec = false;
+//     for (let i=1, length=A.length; i<length; i++) {
+//         let num = A[i];
+//         let prev = A[i-1];
+//         if (num < prev) {
+//             if (inc === true) {
+//                 return false;
+//             }
+//             dec = true;
+//         } else if (num > prev) {
+//             if (dec === true) {
+//                 return false;
+//             }
+//             inc = true;
+//         }
+//     }
+//     return true;
+// };
+// console.log(isMonotonic([1,2,2,3]));
+// console.log(isMonotonic([6,5,4,4]));
+// console.log(isMonotonic([1,3,2]));
+// console.log(isMonotonic([1,2,4,5]));
+// console.log(isMonotonic([1,1,1]));
+
+// var isMonotonic = function(A) {
+//     let inc = false;
+//     let dec = false;
+//     for (let i=0, length=A.length; i<length-1; i++) {
+//         let num = A[i];
+//         let next = A[i+1];
+//         if (num < next) {
+//             if (dec === true) {
+//                 return false;
+//             }
+//             inc = true;
+//         } else if (num > next) {
+//             if (inc === true) {
+//                 return false;
+//             }
+//             dec = true;
+//         }
+//     }
+//     return true;
+// };
+// console.log(isMonotonic([1,2,2,3]));
+// console.log(isMonotonic([6,5,4,4]));
+// console.log(isMonotonic([1,3,2]));
+// console.log(isMonotonic([1,2,4,5]));
+// console.log(isMonotonic([1,1,1]));
+
+// var smallestRangeI = function(A, K) {
+//     let max = -Infinity;
+//     let min = Infinity;
+//     for (let i=0; i<A.length; i++) {
+//         if (A[i] > max) {
+//             max = A[i];
+//         }
+//         if (A[i] < min) {
+//             min = A[i];
+//         }
+//     }
+//     max = max - K;
+//     min = min + K;
+//     let res = max - min
+//     if (res < 0) {
+//         return 0;
+//     }
+//     return res;
+// };
+// console.log(smallestRangeI([1], 0));
+// console.log(smallestRangeI([0,10], 2));
+// console.log(smallestRangeI([1,3,6], 3));
+
+// var smallestRangeI = function(A, K) {
+//     let max = A[0];
+//     let min = A[0];
+//     for (let i=1, length=A.length; i<length; i++) {
+//         let num = A[i];
+//         if (num > max) {
+//             max = num;
+//         } else if (num < min) {
+//             min = num;
+//         }
+//     }
+//     max = max - K;
+//     min = min + K;
+//     let res = max - min
+//     if (res < 0) {
+//         return 0;
+//     }
+//     return res;
+// };
+// console.log(smallestRangeI([1], 0));
+// console.log(smallestRangeI([0,10], 2));
+// console.log(smallestRangeI([1,3,6], 3));
 
