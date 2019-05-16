@@ -4164,3 +4164,295 @@
 // console.log(smallestRangeI([0,10], 2));
 // console.log(smallestRangeI([1,3,6], 3));
 
+// // NEED TO SOLVE STILL
+// var hasGroupsSizeX = function(deck) {
+//     const dict = {};
+//     for (let i=0, length=deck.length; i<length; i++) {
+//         let num = deck[i];
+//         if (dict[num]) {
+//             dict[num]++;
+//         } else {
+//             dict[num] = 1;
+//         }
+//     }
+//     let min = Infinity;
+//     console.log(dict)
+//     for (let key in dict) {
+//         let current = dict[key]
+//         if (current < 2) {
+//             return false;
+//         }
+//         if (current < min) {
+//             min = current;
+//         }
+//     }
+//     for (let key in dict) {
+//         let current = dict[key]
+//         if (current % min !== 0) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(hasGroupsSizeX([1,2,3,4,4,3,2,1]));
+// console.log(hasGroupsSizeX([1,1,1,2,2,2,3,3]));
+// console.log(hasGroupsSizeX([1]));
+// console.log(hasGroupsSizeX([1,1]));
+// console.log(hasGroupsSizeX([1,1,2,2,2,2]));
+// console.log(hasGroupsSizeX([1,1,1,1,2,2,2,2,2,2]));
+
+// var isLongPressedName = function(name, typed) {
+//     for (let i=0, j=0; i<name.length; i++) {
+//         let nCount = 1;
+//         let tCount = 0;
+//         let current = name[i];
+//         while (name[i] === name[i+1]) {
+//             i++;
+//             nCount++;
+//         }
+//         if (current !== typed[j]) {
+//             return false;
+//         } else {
+//             while (typed[j] === name[i]) {
+//                 j++;
+//                 tCount++;
+//             }
+//         }
+//         if (nCount > tCount) {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(isLongPressedName("alex", "aaleex"));
+// console.log(isLongPressedName("saeed", "ssaaedd"));
+// console.log(isLongPressedName("leelee", "lleeelee"));
+// console.log(isLongPressedName("laiden", "laiden"));
+
+// var validMountainArray = function (A) {
+//     let asc = false;
+//     let i = 1;
+//     let length = A.length;
+//     while (A[i] > A[i - 1]) {
+//         asc = true;
+//         i++;
+//     }
+//     if (i === length) {
+//         return false;
+//     }
+//     i--;
+//     while (i < length) {
+//         if (A[i] <= A[i + 1]) {
+//             return false;
+//         } else {
+//             desc = true;
+//         }
+//         i++;
+//     }
+//     return asc === true;
+// };
+// console.log(validMountainArray([2, 1]));
+// console.log(validMountainArray([3, 5, 5]));
+// console.log(validMountainArray([0, 3, 2, 1]));
+// console.log(validMountainArray([0,1,2,3,4,5,6,7,8,9]));
+
+// var validMountainArray = function(A) {
+//     let length = A.length;
+//     if (length < 3) {
+//         return false;
+//     }
+//     let asc = false;
+//     let desc = false;
+//     for (let i=0; i<length-1; i++) {
+//         let curr = A[i];
+//         let next = A[i+1];
+//         if (curr < next) {
+//             if (desc) {
+//                 return false;
+//             } else {
+//                 asc = true;
+//             }
+//         } else if (curr > next) {
+//             desc = true;
+//         } else {
+//             return false;
+//         }
+//     }
+//     return desc && asc; 
+// };
+// console.log(validMountainArray([2, 1]));
+// console.log(validMountainArray([3, 5, 5]));
+// console.log(validMountainArray([0, 3, 2, 1]));
+// console.log(validMountainArray([0,1,2,3,4,5,6,7,8,9]));
+
+// // NEED TO FIX THIS
+// var largestTimeFromDigits = function (A) {
+//     let res = "";
+//     A.sort((a, b) => a - b);
+//     let test = A.filter((x) => x < 3)
+//     if (test.length === 0) {
+//         return "1"
+//     }
+//     let del = test[test.length - 1];
+//     let idx = A.indexOf(del)
+//     A.splice(idx, 1);
+//     res += test[test.length - 1];
+
+//     if (res[0] === "2") {
+//         let test2 = A.filter((x) => x < 4)
+//         if (test2.length === 0) {
+//             return "2"
+//         }
+//         let del2 = test2[test2.length - 1];
+//         let idx2 = A.indexOf(del2)
+//         A.splice(idx2, 1);
+//         res += test2[test2.length - 1];
+//     } else {
+//         res += A[A.length - 1];
+//         A.pop();
+//     }
+//     res += ":";
+//     console.log(res)
+//     let test3 = A.filter((x) => x < 6)
+//     if (test3.length === 0) {
+//         return "3"
+//     }
+//     let del3 = test3[test3.length - 1];
+//     let idx3 = A.indexOf(del3)
+//     A.splice(idx3, 1);
+//     res += test3[test3.length - 1];
+//     res += A[0];
+//     return res;
+// };
+// console.log(largestTimeFromDigits([4, 2, 3, 1]));
+// console.log(largestTimeFromDigits([6, 8, 3, 1]));
+// console.log(largestTimeFromDigits([5,5,5,5]));
+// console.log(largestTimeFromDigits([0,0,0,0]));
+// console.log(largestTimeFromDigits([0,4,0,0]));
+// console.log(largestTimeFromDigits([2,0,6,6]));
+
+// var isAlienSorted = function (words, order) {
+//     for (let i=0, length=words.length-1; i<length; i++) {
+//         let longer = Math.max(words[i].length, words[i + 1].length);
+//         for (let j=0; j<longer; j++) {
+//             let cur = order.indexOf(words[i][j]);
+//             let next = order.indexOf(words[i+1][j]);
+//             if (cur > next) {
+//                 return false;
+//             } else if (cur < next) {
+//                 break;
+//             }
+//         }
+//     }
+//     return true;
+// };
+// console.log(isAlienSorted(["hello","leetcode"], "hlabcdefgijkmnopqrstuvwxyz"));
+// console.log(isAlienSorted(["word","world","row"], "worldabcefghijkmnpqstuvxyz"));
+// console.log(isAlienSorted(["apple","app"], "abcdefghijklmnopqrstuvwxyz"));
+// console.log(isAlienSorted(["hello","hello", "leetcode"], "hlabcdefgijkmnopqrstuvwxyz"));
+
+// var isAlienSorted = function (words, order) {
+//     for (let i=0, length=words.length-1; i<length; i++) {
+//         let longer = Math.max(words[i].length, words[i + 1].length);
+//         for (let j=0; j<longer; j++) {
+//             let cur = order.indexOf(words[i][j]);
+//             let next = order.indexOf(words[i+1][j]);
+//             if (cur > next) {
+//                 return false;
+//             } else if (cur < next) {
+//                 break;
+//             }
+//         }
+//     }
+//     return true;
+// };
+// console.log(isAlienSorted(["hello","leetcode"], "hlabcdefgijkmnopqrstuvwxyz"));
+// console.log(isAlienSorted(["word","world","row"], "worldabcefghijkmnpqstuvxyz"));
+// console.log(isAlienSorted(["apple","app"], "abcdefghijklmnopqrstuvwxyz"));
+// console.log(isAlienSorted(["hello","hello", "leetcode"], "hlabcdefgijkmnopqrstuvwxyz"));
+
+// var largestPerimeter = function (A) {
+//     A.sort( (a,b) => a-b );
+//     for (let i=A.length-1; i>1; i--) {
+//         let first = A[i];
+//         let sum = A[i-1] + A[i-2];
+//         if (first < sum) {
+//             return first + sum;
+//         }
+//     }
+//     return 0;
+// };
+// console.log(largestPerimeter([2,1,2]));
+// console.log(largestPerimeter([1,2,1]));
+// console.log(largestPerimeter([3,2,3,4]));
+// console.log(largestPerimeter([3,6,2,3]));
+
+// var sumEvenAfterQueries = function(A, queries) {
+//     const res = [];
+//     for (let i=0, length=queries.length; i<length; i++) {
+//         A[queries[i][1]] += queries[i][0];
+//         let sum = 0;
+//         for (let j=0, aLength=A.length; j<aLength; j++) {
+//             if (A[j] % 2 === 0) {
+//                 sum += A[j];
+//             }
+//         }
+//         res.push(sum)
+//     }
+//     return res;
+// };
+// console.log(sumEvenAfterQueries([1,2,3,4], [[1,0],[-3,1],[-4,0],[2,3]]));
+
+// var sumEvenAfterQueries = function (A, queries) {
+//     const res = [];
+//     let sum = 0;
+//     for (let i=0, length=A.length; i<length; i++) {
+//         if (A[i] % 2 === 0) {
+//             sum += A[i];
+//         }
+//     }
+//     for (let i=0, length=queries.length; i<length; i++) {
+//         const idx = queries[i][1];
+//         const num = queries[i][0];
+//         if (A[idx] % 2 === 0) {
+//             sum -= A[idx];
+//         }
+//         A[idx] += num;
+//         if (A[idx] % 2 === 0) {
+//             sum += A[idx];
+//         }
+//         res.push(sum);
+//     }
+//     return res;
+// };
+// console.log(sumEvenAfterQueries([1,2,3,4], [[1,0],[-3,1],[-4,0],[2,3]]));
+
+// // 541 reverse string 2
+// var reverseStr = function(s, k) {
+//     let res = "";
+//     for (let i=0, length=s.length; i<length; i+=(2*k)) {
+//         let temp = s.substr(i,k);
+//         let flipped = temp.split("").reverse().join("");
+//         res += flipped;
+//         res += s.substr(i+k,k);
+//     }
+//     return res;
+// };
+// console.log(reverseStr("abcdefg", 2));
+
+// var addToArrayForm = function(A, K) {
+//     let converted = parseInt(A.join("")) + K;
+//     return converted.toString().split("");
+// };
+
+// var addToArrayForm = function(A, K) {
+//     let converted = BigInt(A.join("")) + BigInt(K);
+//     return converted.toString().split("");
+// };
+// console.log(addToArrayForm([1,2,0,0], 34));
+// console.log(addToArrayForm([2,7,4], 181));
+// console.log(addToArrayForm([2,1,5], 806));
+// console.log(addToArrayForm([9,9,9,9,9,9,9,9,9,9], 1));
+// console.log(addToArrayForm([1,2,6,3,0,7,1,7,1,9,7,5,6,6,4,4,0,0,6,3], 516));
+
+
