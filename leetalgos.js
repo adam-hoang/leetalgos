@@ -4455,4 +4455,17 @@
 // console.log(addToArrayForm([9,9,9,9,9,9,9,9,9,9], 1));
 // console.log(addToArrayForm([1,2,6,3,0,7,1,7,1,9,7,5,6,6,4,4,0,0,6,3], 516));
 
+// var topKFrequent = function(words, k) {
+//     const dict = {};
+//     for (let el in words) {
+//         if (dict[words[el]]) {
+//             dict[words[el]]++;
+//         } else {
+//             dict[words[el]] = 1;
+//         }
+//     }
+//     return Object.keys(dict).sort((a, b) => dict[b] - dict[a] || a.localeCompare(b)).slice(0, k);
+// };
+// console.log(topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2));
+// console.log(topKFrequent(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4));
 
