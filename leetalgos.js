@@ -4469,3 +4469,77 @@
 // console.log(topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2));
 // console.log(topKFrequent(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4));
 
+// // 1005. Maximize Sum Of Array After K Negations
+// var largestSumAfterKNegations = function(A, K) {
+//     let sum = 0;
+//     for (let i=0; i<A.length; i++) {
+//         sum += A[i];
+//     }
+//     A.sort(function (a, b) { return a - b });
+//     for (let i=0; i<K; i++) {
+//         let min = A[0];
+//         sum -= 2*min;
+//         A[0] *= -1;
+//         A.sort(function (a, b) { return a - b });
+//     }
+//     return sum;
+// };
+// console.log(largestSumAfterKNegations([4,2,3], 1));
+// console.log(largestSumAfterKNegations([3,-1,0,2], 3));
+// console.log(largestSumAfterKNegations([2,-3,-1,5,-4], 2));
+
+// var largestSumAfterKNegations = function (A, K) {
+//     let sum = 0;
+//     A.sort((a, b) => a - b);
+//     let min = Infinity;
+//     for (let i=0, length=A.length; i<length; i++) {
+//         let num = A[i];
+//         if (num < 0 && K > 0) {
+//             sum -= num;
+//             K--;
+//             if (min > -num) {
+//                 min = -num;
+//             }
+//         } else {
+//             sum += num;
+//             if (min > num) {
+//                 min = num;
+//             }
+//         }
+//     }
+//     if (K % 2 === 1) {
+//         sum -= 2*min;
+//     }
+//     return sum;
+// };
+// console.log(largestSumAfterKNegations([4, 2, 3], 1));
+// console.log(largestSumAfterKNegations([3, -1, 0, 2], 3));
+// console.log(largestSumAfterKNegations([2, -3, -1, 5, -4], 2));
+
+var canThreePartsEqualSum = function (A) {
+    let sum = 0;
+    for (let el of A) {
+        sum += el;
+    }
+    if (sum % 3 !== 0) {
+        return false;
+    }
+    let third = sum/3;
+    let temp = 0;
+    let count = 0;
+    for (let el of A) {
+        temp += el;
+        if (temp === third) {
+            count++;
+            temp = 0;
+        }
+        if (count > 3) {
+            return false;
+        }
+    }
+    return count === 3;
+};
+console.log(canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1]));
+console.log(canThreePartsEqualSum([0,2,1,-6,6,7,9,-1,2,0,1]));
+console.log(canThreePartsEqualSum([3,3,6,5,-2,2,5,1,-9,4]));
+
