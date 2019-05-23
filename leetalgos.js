@@ -2831,15 +2831,18 @@
 
 // var numIslands = function (grid) {
 //     function dfs(grid, i, j) {
-//         if (i < 0 || i >= grid.length || j < 0 || j >= grid[i].length || grid[i][j] === 0) {
+//         if (i < 0 || i >= length || j < 0 || j >= length2 || grid[i][j] === "0") {
 //             return 0;
 //         }
-//         grid[i][j] = 0;
+//         grid[i][j] = "0";
 //         dfs(grid, i + 1, j);
 //         dfs(grid, i - 1, j);
 //         dfs(grid, i, j + 1);
 //         dfs(grid, i, j - 1);
 //         return 1;
+//     }
+//     if (grid.length === 0) {
+//         return 0;
 //     }
 //     let count = 0;
 //     let length = grid.length;
@@ -2847,7 +2850,7 @@
 
 //     for (let i = 0; i < length; i++) {
 //         for (let j = 0; j < length2; j++) {
-//             if (grid[i][j] === 1) {
+//             if (grid[i][j] === "1") {
 //                 dfs(grid, i, j);
 //                 count++;
 //             }
@@ -2856,19 +2859,22 @@
 //     return count;
 // };
 // let grid = [
-//     [1,1,1,1,0],
-//     [1,1,0,1,0],
-//     [1,1,0,0,0],
-//     [0,0,0,0,0]
+//     ["1","1","1","1","0"],
+//     ["1","1","0","1","0"],
+//     ["1","1","0","0","0"],
+//     ["0","0","0","0","0"]
 // ];
 // let grid2 = [
-//     [1,1,0,0,0],
-//     [1,1,0,0,0],
-//     [0,0,1,0,0],
-//     [0,0,0,1,1]
+//     ["1","1","0","0","0"],
+//     ["1","1","0","0","0"],
+//     ["0","0","1","0","0"],
+//     ["0","0","0","1","1"]
 // ];
+// let grid3 = [];
 // console.log(numIslands(grid));
 // console.log(numIslands(grid2));
+// console.log(numIslands(grid3));
+
 
 // var repeatedSubstringPattern = function(s) {
 //     const str = s + s;
@@ -4516,30 +4522,56 @@
 // console.log(largestSumAfterKNegations([3, -1, 0, 2], 3));
 // console.log(largestSumAfterKNegations([2, -3, -1, 5, -4], 2));
 
-var canThreePartsEqualSum = function (A) {
-    let sum = 0;
-    for (let el of A) {
-        sum += el;
-    }
-    if (sum % 3 !== 0) {
-        return false;
-    }
-    let third = sum/3;
-    let temp = 0;
-    let count = 0;
-    for (let el of A) {
-        temp += el;
-        if (temp === third) {
-            count++;
-            temp = 0;
-        }
-        if (count > 3) {
-            return false;
-        }
-    }
-    return count === 3;
-};
-console.log(canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1]));
-console.log(canThreePartsEqualSum([0,2,1,-6,6,7,9,-1,2,0,1]));
-console.log(canThreePartsEqualSum([3,3,6,5,-2,2,5,1,-9,4]));
+// var canThreePartsEqualSum = function (A) {
+//     let sum = 0;
+//     for (let el of A) {
+//         sum += el;
+//     }
+//     if (sum % 3 !== 0) {
+//         return false;
+//     }
+//     let third = sum/3;
+//     let temp = 0;
+//     let count = 0;
+//     for (let el of A) {
+//         temp += el;
+//         if (temp === third) {
+//             count++;
+//             temp = 0;
+//         }
+//         if (count > 3) {
+//             return false;
+//         }
+//     }
+//     return count === 3;
+// };
+// console.log(canThreePartsEqualSum([0,2,1,-6,6,-7,9,1,2,0,1]));
+// console.log(canThreePartsEqualSum([0,2,1,-6,6,7,9,-1,2,0,1]));
+// console.log(canThreePartsEqualSum([3,3,6,5,-2,2,5,1,-9,4]));
+
+// // 3. Longest Substring Without Repeating Characters
+// // NEED TO FINISH
+// var lengthOfLongestSubstring = function(s) {
+//     let max = 0;
+//     let count = 0;
+//     let dict = {};
+//     for (let i=0; i<s.length; i++) {
+//         if (!dict[s[i]]) {
+//             dict[s[i]] = 1;
+//             count++;
+//             max = Math.max(max, count);
+//         } else {
+//             count = 1;
+//             dict = {};
+//             dict[s[i]] = 1;
+//         }
+//         console.log(dict)
+//     }
+//     return max;
+// };
+// // console.log(lengthOfLongestSubstring("abcabcbb"));
+// // console.log(lengthOfLongestSubstring("bbbbb"));
+// // console.log(lengthOfLongestSubstring("pwwkew"));
+// // console.log(lengthOfLongestSubstring("aab"));
+// // console.log(lengthOfLongestSubstring("dvdf"));
 
