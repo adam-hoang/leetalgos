@@ -1399,6 +1399,8 @@
 // };
 // console.log(fib(4));
 
+// // 922. Sort Array By Parity II
+// NEW ARRAY
 // var sortArrayByParityII = function(A) {
 //     let odd = 1;
 //     let even = 0;
@@ -1415,6 +1417,24 @@
 //     return arr;
 // };
 // console.log(sortArrayByParityII([4,2,5,7]));
+
+// IN PLACE
+// var sortArrayByParityII = function (A) {
+//     let j = 1;
+//     let temp = 0;
+//     for (let i=0, len=A.length ; i<len ; i+=2) {
+//         if (A[i] % 2 === 1) {
+//             while (A[j] % 2 === 1) {
+//                 j += 2;
+//             }
+//             temp = A[i];
+//             A[i] = A[j];
+//             A[j] = temp;
+//         }
+//     }
+//     return A;
+// };
+// console.log(sortArrayByParityII([4, 2, 5, 7]));
 
 // var topKFrequent = function(nums, k) {
 //     const dict={};
@@ -4621,4 +4641,36 @@
 // console.log(minDeletionSize(["cba","daf","ghi"]));
 // console.log(minDeletionSize(["a", "b"]));
 // console.log(minDeletionSize(["zyx","wvu","tsr"]));
+
+// // 1078. Occurrences After Bigram
+// var findOcurrences = function(text, first, second) {
+//     let res = [];
+//     text = text.split(" ");
+//     for (let i=0, len=text.length-2; i<len; i++) {
+//         if (text[i] === first && text[i+1] === second) {
+//             res.push(text[i+2])
+//         }
+//     }
+//     return res;
+// };
+// console.log(findOcurrences("alice is a good girl she is a good student", "a", "good"));
+// console.log(findOcurrences("we will we will rock you", "we", "will"))
+
+// 589. N-ary Tree Preorder Traversal
+var preorder = function(root) {
+    const res = [];
+    traversal(root);
+    return res;
+    
+    function traversal (node) {
+        if (node == null) {
+        return res;
+        }
+        res.push(node.val);
+        for (let i=0; i<node.children.length; i++) {
+            traversal(node.children[i])
+        }
+        return res;
+    }
+};
 
