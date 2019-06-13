@@ -4575,3 +4575,50 @@
 // // console.log(lengthOfLongestSubstring("aab"));
 // // console.log(lengthOfLongestSubstring("dvdf"));
 
+// // 1051. Height Checker
+// // SLOW BECAUSE OF SLICE
+// var heightChecker = function(heights) {
+//     const sorted = heights.slice().sort((a,b) => {return a-b});
+//     let count = 0;
+//     for (let i=0, len=heights.length; i<len; i++) {
+//         if (heights[i] !== sorted[i]) {
+//             count++;
+//         }
+//     }
+//     return count;
+// };
+// console.log(heightChecker([1,1,4,2,1,3]));
+
+// // SPREAD OPERATOR
+// var heightChecker = function(heights) {
+//     const sorted = [...heights].sort((a,b) => {return a-b});
+//     let count = 0;
+//     for (let i=0, len=heights.length; i<len; i++) {
+//         if (heights[i] !== sorted[i]) {
+//             count++;
+//         }
+//     }
+//     return count;
+// };
+// console.log(heightChecker([1,1,4,2,1,3]));
+
+// // 944. Delete Columns to Make Sorted
+// var minDeletionSize = function(A) {
+//     let count = 0;
+//     for (let i=0, len=A[0].length; i<len; i++) {
+//         let decrease = false;
+//         for (let j=0, col=A.length-1; j<col; j++) {
+//             if (A[j][i] > A[j+1][i]) {
+//                 decrease = true;
+//             }
+//         }
+//         if (decrease) {
+//             count++
+//         }
+//     }
+//     return count;
+// };
+// console.log(minDeletionSize(["cba","daf","ghi"]));
+// console.log(minDeletionSize(["a", "b"]));
+// console.log(minDeletionSize(["zyx","wvu","tsr"]));
+
