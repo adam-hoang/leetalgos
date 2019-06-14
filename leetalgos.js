@@ -4656,21 +4656,39 @@
 // console.log(findOcurrences("alice is a good girl she is a good student", "a", "good"));
 // console.log(findOcurrences("we will we will rock you", "we", "will"))
 
-// 589. N-ary Tree Preorder Traversal
-var preorder = function(root) {
-    const res = [];
-    traversal(root);
-    return res;
+// // 589. N-ary Tree Preorder Traversal
+// var preorder = function(root) {
+//     const res = [];
+//     traversal(root);
+//     return res;
     
-    function traversal (node) {
-        if (node == null) {
-        return res;
-        }
-        res.push(node.val);
-        for (let i=0; i<node.children.length; i++) {
-            traversal(node.children[i])
-        }
-        return res;
-    }
-};
+//     function traversal (node) {
+//         if (node == null) {
+//         return res;
+//         }
+//         res.push(node.val);
+//         for (let i=0; i<node.children.length; i++) {
+//             traversal(node.children[i])
+//         }
+//         return res;
+//     }
+// };
+
+// // 590. N-ary Tree Postorder Traversal
+// var postorder = function(root) {
+//     const res = [];
+//     traversal(root);
+//     return res;
+    
+//     function traversal (node) {
+//         if (node == null) {
+//         return res;
+//         }
+//         for (let i=0; i<node.children.length; i++) {
+//             traversal(node.children[i]);
+//         }
+//         res.push(node.val);
+//         return res;
+//     }
+// };
 
