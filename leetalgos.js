@@ -15,15 +15,12 @@
 // var twoSum = function (nums, target) {
 // 	const dict = {};
 // 	for (let i = 0; i < nums.length; i++) {
-// 		const another = target - nums[i];
-
-// 		if (another in dict) {
-// 			return [dict[another], i];
+// 		let matching = target - nums[i];
+// 		if (matching in dict) {
+// 			return [dict[matching], i];
 // 		}
-
 // 		dict[nums[i]] = i;
 // 	}
-// 	return null;
 // };
 // nums = [2, 7, 11, 15];
 // target = 9;
@@ -2849,6 +2846,7 @@
 // console.log(orangesRotting([[2,1,1],[0,1,1],[1,0,1]]));
 // console.log(orangesRotting([[0,2]]));
 
+// 200. Number of Islands
 // var numIslands = function (grid) {
 //     function dfs(grid, i, j) {
 //         if (i < 0 || i >= length || j < 0 || j >= length2 || grid[i][j] === "0") {
@@ -4661,7 +4659,7 @@
 //     const res = [];
 //     traversal(root);
 //     return res;
-    
+
 //     function traversal (node) {
 //         if (node == null) {
 //         return res;
@@ -4679,7 +4677,7 @@
 //     const res = [];
 //     traversal(root);
 //     return res;
-    
+
 //     function traversal (node) {
 //         if (node == null) {
 //         return res;
@@ -4692,3 +4690,451 @@
 //     }
 // };
 
+// // 1108. Defanging an IP Address
+// var defangIPaddr = function(address) {
+//     return address.split(".").join("[.]")
+// };
+// console.log(defangIPaddr("1.1.1.1"));
+
+// // REGEX
+// var defangIPaddr = function(address) {
+//     return address.replace(/\./g, "[.]");
+// };
+// console.log(defangIPaddr("1.1.1.1"));
+
+// // 1021. Remove Outermost Parentheses
+// var removeOuterParentheses = function(S) {
+//     let res = "";
+//     let count = 0;
+//     for (let i=0, length=S.length; i<length; i++) {
+//         let char = S[i];
+//         if (char === "(") {
+//             if (count > 0) {
+//                 res += char;
+//             }
+//             count++;
+//         } else if (char === ")") {
+//             if (count > 1) {
+//                 res += char;
+//             }
+//             count--;
+//         }
+//     }
+//     return res;
+// };
+// console.log(removeOuterParentheses("(()())(())"));
+// console.log(removeOuterParentheses("(()())(())(()(()))"));
+// console.log(removeOuterParentheses("()()"));
+
+// // 461. Hamming Distance
+// var hammingDistance = function(x, y) {
+//     let count = 0;
+//     let xor = x ^ y;
+//     xor = xor.toString(2);
+//     for (let i=0; i<xor.length; i++) {
+//         if (xor[i] === "1") {
+//             count++;
+//         }
+//     }
+//     return count;
+// };
+// console.log(hammingDistance(1,4));
+
+// // 999. Available Captures for Rook
+// var numRookCaptures = function (board) {
+//     for (let i = 0; i < board.length; i++) {
+//         for (let j = 0; j < board[0].length; j++) {
+//             if (board[i][j] === "R") {
+//                 var rook = [i, j];
+//                 break;
+//             }
+//         }
+//     }
+//     let count = 0;
+
+//     // check up
+//     let x = rook[0];
+//     let y = rook[1];
+//     while (x > 0) {
+//         if (board[x - 1][y] === "p") {
+//             count++;
+//             break;
+//         } else if (board[x - 1][y] === "B") {
+//             break;
+//         } else {
+//             x--;
+//         }
+//     }
+
+//     // check down
+//     x = rook[0];
+//     y = rook[1];
+//     while (x < board.length-1) {
+//         if (board[x + 1][y] === "p") {
+//             count++;
+//             break;
+//         } else if (board[x + 1][y] === "B") {
+//             break;
+//         } else {
+//             x++;
+//         }
+//     }
+
+//     // check left
+//     x = rook[0];
+//     y = rook[1];
+//     while (y > 0) {
+//         if (board[x][y - 1] === "p") {
+//             count++;
+//             break;
+//         } else if (board[x][y - 1] === "B") {
+//             break;
+//         } else {
+//             y--;
+//         }
+//     }
+
+//     // check right
+//     x = rook[0];
+//     y = rook[1];
+//     while (y < board[0].length-1) {
+//         if (board[x][y + 1] === "p") {
+//             count++;
+//             break;
+//         } else if (board[x][y + 1] === "B") {
+//             break;
+//         } else {
+//             y++;
+//         }
+//     }
+
+//     return count;
+// };
+// let map = [
+//     [".", ".", ".", ".", ".", ".", ".", "."],
+//     [".", ".", ".", "p", ".", ".", ".", "."],
+//     [".", ".", ".", "R", ".", ".", ".", "p"],
+//     [".", ".", ".", ".", ".", ".", ".", "."],
+//     [".", ".", ".", ".", ".", ".", ".", "."],
+//     [".", ".", ".", "p", ".", ".", ".", "."],
+//     [".", ".", ".", ".", ".", ".", ".", "."],
+//     [".", ".", ".", ".", ".", ".", ".", "."]
+// ];
+// // console.log(numRookCaptures(map));
+
+// let map2 = [
+//     [".",".",".",".",".",".",".","."],
+//     [".","p","p","p","p","p",".","."],
+//     [".","p","p","B","p","p",".","."],
+//     [".","p","B","R","B","p",".","."],
+//     [".","p","p","B","p","p",".","."],
+//     [".","p","p","p","p","p",".","."],
+//     [".",".",".",".",".",".",".","."],
+//     [".",".",".",".",".",".",".","."]
+// ];
+// // console.log(numRookCaptures(map2));
+
+// let map3 = [
+//     [".",".",".",".",".",".",".","."],
+//     [".",".",".","p",".",".",".","."],
+//     [".",".",".","p",".",".",".","."],
+//     ["p","p",".","R",".","p","B","."],
+//     [".",".",".",".",".",".",".","."],
+//     [".",".",".","B",".",".",".","."],
+//     [".",".",".","p",".",".",".","."],
+//     [".",".",".",".",".",".",".","."]
+// ]
+// console.log(numRookCaptures(map3));
+
+// // 559. Maximum Depth of N-ary Tree
+// var maxDepth = function (root) {
+//     if (!root) {
+//         return 0;
+//     }
+//     let max = 0;
+//     let temp = 0;
+//     for (let child of root.children) {
+//         temp = maxDepth(child);
+//         if (temp > max) {
+//             max = temp;
+//         }
+//     }
+//     return max + 1;
+// };
+
+// // 1002. Find Common Characters
+// var commonChars = function(A) {
+//     let res = A[0].split("");
+//     for (let i=1, length=A.length; i<length; i++) {
+//         var temp = A[i].split("");
+//         res = res.filter(char => {
+//             let idx = temp.indexOf(char);
+//             if (idx > -1) {
+//                 temp[idx] = false;
+//                 return true;
+//             }
+//             return false;
+//         })
+//     }
+//     return res;
+// };
+// console.log(commonChars(["bella","label","roller"]));
+
+// // 671. Second Minimum Node In a Binary Tree
+// var findSecondMinimumValue = function (root) {
+//     let set = new Set();
+//     helper(root);
+//     function helper(node) {
+//         if (node) {
+//             if (!set[node.val]) {
+//                 set.add(node.val);
+//             }
+//             helper(node.left);
+//             helper(node.right);
+//         }
+//     }
+//     let min = Infinity;
+//     let second = Infinity;
+//     for (let num of set.values()) {
+//         if (num < min) {
+//             second = min;
+//             min = num;
+//         } else if (num < second) {
+//             second = num;
+//         }
+//     }
+//     if (second === Infinity) {
+//         return -1;
+//     }
+//     return second;
+// };
+
+// // 1022. Sum of Root To Leaf Binary Numbers
+// var sumRootToLeaf = function (root) {
+//     var sum = 0;
+//     var string = "";
+//     helper(root, string);
+//     function helper(node, string) {
+//         if (!node) {
+//             return;
+//         }
+//         string += node.val;
+//         helper(node.left, string);
+//         helper(node.right, string);
+//         if (!node.left && !node.right) {
+//             sum += parseInt(string, 2);
+//         }
+//     }
+//     return sum;
+// };
+
+// // 598. Range Addition II
+// var maxCount = function (m, n, ops) {
+//     let length = ops.length;
+//     if (length == 0) {
+//         return m * n;
+//     }
+//     let left = m
+//     let right = n
+//     for (let i = 0; i < length; i++) {
+//         if (ops[i][0] < left) {
+//             left = ops[i][0]
+//         }
+//         if (ops[i][1] < right) {
+//             right = ops[i][1]
+//         }
+//     }
+//     return left * right;
+// };
+// console.log(maxCount(3, 3, [[2,2],[3,3]]))
+
+// // 1047. Remove All Adjacent Duplicates In String
+// var removeDuplicates = function(S) {
+//     S = S.split("");
+//     for(let i=0; i<S.length; i++) {
+//         if (S[i] === S[i+1]) {
+//             S.splice(i,2)
+//             i -= 2;
+//             if (i < 0) {
+//                 i =-1
+//             }
+//         }
+//     }
+//     return S.join("");
+// };
+// console.log(removeDuplicates("abbaca"));
+
+// // 872. Leaf-Similar Trees
+// var leafSimilar = function (root1, root2) {
+//     let arr1 = [];
+//     let arr2 = [];
+//     helper(root1, arr1);
+//     helper(root2, arr2);
+
+//     function helper(node, arr) {
+//         if (!node.left && !node.right) {
+//             arr.push(node.val);
+//             return;
+//         }
+//         if (node.left) {
+//             helper(node.left, arr)
+//         }
+//         if (node.right) {
+//             helper(node.right, arr)
+//         }
+//     }
+//     return arr1.join("") === arr2.join("");
+// };
+
+// // 1103. Distribute Candies to People
+// var distributeCandies = function(candies, num_people) {
+//     const res = new Array(num_people).fill(0);
+//     var i=0;
+//     var candycount = 1;
+//     while (candies >= candycount) {
+//         res[i] += candycount;
+//         candies -= candycount;
+//         candycount++;
+//         i++;
+//         if (i === num_people) {
+//             i=0;
+//         }
+//     }
+//     res[i] += candies;
+//     return res;
+// };
+// console.log(distributeCandies(7, 4));
+// console.log(distributeCandies(10, 3));
+
+// // 108. Convert Sorted Array to Binary Search Tree
+// // USING SLICE METHOD
+// var sortedArrayToBST = function (nums) {
+//     if (!nums.length) {
+//         return null;
+//     }
+//     let mid = Math.floor(nums.length / 2);
+//     let root = new TreeNode(nums[mid]);
+//     root.left = sortedArrayToBST(nums.slice(0, mid));
+//     root.right = sortedArrayToBST(nums.slice(mid + 1));
+//     return root;
+// };
+
+// // USING HELPER FUNCTION AND RANGES
+// var sortedArrayToBST = function (nums) {
+//     if (!nums.length) {
+//         return null;
+//     }
+//     return helper(0, nums.length)
+
+//     function helper(start, end) {
+//         if (start >= end) {
+//             return null;
+//         }
+//         let mid = start + Math.floor((end - start) / 2);
+//         let root = new TreeNode(nums[mid]);
+//         root.left = helper(start, mid);
+//         root.right = helper(mid + 1, end);
+//         return root;
+//     }
+// };
+
+// // 130. Surrounded Regions
+// var solve = function (board) {
+//     function dfs(board, i, j) {
+//         if (i < 0 || i >= board.length || j < 0 || j >= board[0].length || board[i][j] !== "O") {
+//             return 0;
+//         }
+//         board[i][j] = "V";
+//         dfs(board, i + 1, j);
+//         dfs(board, i - 1, j);
+//         dfs(board, i, j + 1);
+//         dfs(board, i, j - 1);
+//         return 1;
+//     }
+//     if (board.length === 0) {
+//         return;
+//     }
+//     let length = board.length;
+//     let length2 = board[0].length;
+
+//     for (let i = 0; i < length; i++) {
+//         for (let j = 0; j < length2; j++) {
+//             if (i === 0 || i === length - 1 || j === 0 || j === length2 - 1) {
+//                 dfs(board, i, j);
+//             }
+//         }
+//     }
+//     for (let i = 0; i < length; i++) {
+//         for (let j = 0; j < length2; j++) {
+//             if (board[i][j] === "O") {
+//                 board[i][j] = "X"
+//             } else if (board[i][j] === "V") {
+//                 board[i][j] = "O"
+//             }
+//         }
+//     }
+//     return board;
+// };
+// let board = [
+//     ["X", "X", "X", "X"],
+//     ["X", "O", "O", "X"],
+//     ["X", "X", "O", "X"],
+//     ["X", "O", "X", "X"]
+// ];
+// console.log(solve(board));
+
+// // 250. Count Univalue Subtrees
+// var countUnivalSubtrees = function (root) {
+//     var count = 0;
+//     helper(root);
+//     return count;
+
+//     function helper(node) {
+//         if (!node) return false;
+
+//         let leftUnivalue;
+//         let rightUnvalue;
+
+//         if (node.left) {
+//             leftUnivalue = helper(node.left);
+//         }
+//         if (node.right) {
+//             rightUnivalue = helper(node.right);
+//         }
+
+//         if (node.left && (node.val !== node.left.val || !leftUnivalue)) {
+//             return false;
+//         }
+//         if (node.right && (node.val !== node.right.val || !rightUnivalue)) {
+//             return false;
+//         }
+//         count++;
+//         return true;
+//     }
+// };
+
+// // 937. Reorder Log Files
+// var reorderLogFiles = function (logs) {
+//     let temp = [];
+//     let res = [];
+//     for (let i = 0; i < logs.length; i++) {
+//         logs[i] = logs[i].split(" ");
+//         if (Number.isInteger(parseInt(logs[i][1])) === true) {
+//             temp.push(logs[i].join(" "));
+//         } else {
+//             logs[i].push(logs[i].shift())
+//             res.push(logs[i].join(" "));
+//         }
+//     }
+//     res.sort();
+//     for (let i=0; i<res.length; i++) {
+//         res[i] = res[i].split(" ")
+//         res[i].unshift(res[i].pop())
+//         res[i] = res[i].join(" ")
+//     }
+//     for (let i=0; i<temp.length; i++) {
+//         res.push(temp[i]);
+//     }
+//     return res;
+// };
+// console.log(reorderLogFiles(["a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo"]))

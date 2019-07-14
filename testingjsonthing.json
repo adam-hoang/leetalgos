@@ -1,0 +1,93 @@
+{
+    "resource": "/name",
+    "path": "/name",
+    "httpMethod": "GET",
+    "headers": {
+        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3",
+        "accept-encoding": "gzip, deflate, br",
+        "accept-language": "en-US,en;q=0.9",
+        "cache-control": "max-age=0",
+        "Host": "a5fivjoqcf.execute-api.us-west-1.amazonaws.com",
+        "referer": "https://us-west-1.console.aws.amazon.com/apigateway/home?region=us-west-1",
+        "upgrade-insecure-requests": "1",
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
+        "X-Amzn-Trace-Id": "Root=1-5d254b71-dc3e358204fd4e0e5601703e",
+        "X-Forwarded-For": "12.207.19.98",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https"
+    },
+    "multiValueHeaders": {
+        "accept": [
+            "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3"
+        ],
+        "accept-encoding": [
+            "gzip, deflate, br"
+        ],
+        "accept-language": [
+            "en-US,en;q=0.9"
+        ],
+        "cache-control": [
+            "max-age=0"
+        ],
+        "Host": [
+            "a5fivjoqcf.execute-api.us-west-1.amazonaws.com"
+        ],
+        "referer": [
+            "https://us-west-1.console.aws.amazon.com/apigateway/home?region=us-west-1"
+        ],
+        "upgrade-insecure-requests": [
+            "1"
+        ],
+        "User-Agent": [
+            "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36"
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-5d254b71-dc3e358204fd4e0e5601703e"
+        ],
+        "X-Forwarded-For": [
+            "12.207.19.98"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ]
+    },
+    "queryStringParameters": null,
+    "multiValueQueryStringParameters": null,
+    "pathParameters": null,
+    "stageVariables": null,
+    "requestContext": {
+        "resourceId": "fc6shg",
+        "resourcePath": "/name",
+        "httpMethod": "GET",
+        "extendedRequestId": "cli5sHmqyK4FeYg=",
+        "requestTime": "10/Jul/2019:02:20:33 +0000",
+        "path": "/csv/name",
+        "accountId": "486033265969",
+        "protocol": "HTTP/1.1",
+        "stage": "csv",
+        "domainPrefix": "a5fivjoqcf",
+        "requestTimeEpoch": 1562725233240,
+        "requestId": "4b97ce32-a2b9-11e9-81b9-8f9be7d135cd",
+        "identity": {
+            "cognitoIdentityPoolId": null,
+            "accountId": null,
+            "cognitoIdentityId": null,
+            "caller": null,
+            "sourceIp": "12.207.19.98",
+            "principalOrgId": null,
+            "accessKey": null,
+            "cognitoAuthenticationType": null,
+            "cognitoAuthenticationProvider": null,
+            "userArn": null,
+            "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36",
+            "user": null
+        },
+        "domainName": "a5fivjoqcf.execute-api.us-west-1.amazonaws.com",
+        "apiId": "a5fivjoqcf"
+    },
+    "body": null,
+    "isBase64Encoded": false
+}
