@@ -5139,3 +5139,300 @@
 // };
 // console.log(reorderLogFiles(["a1 9 2 3 1", "g1 act car", "zo4 4 7", "ab1 off key dog", "a8 act zoo"]))
 
+// // 498. Diagonal Traverse
+// var findDiagonalOrder = function (matrix) {
+//     if (matrix.length === 0) {
+//         return res;
+//     }
+//     const res = [];
+//     let width = matrix[0].length;
+//     let height = matrix.length
+//     let end = width * height;
+//     let up = true;
+//     let i = 0;
+//     let j = 0;
+
+//     while (res.length < end) {
+//         res.push(matrix[i][j])
+//         if (up === true) {
+//             if (j + 1 === width) {
+//                 i++;
+//                 up = false;
+//             } else if (i - 1 < 0) {
+//                 j++;
+//                 up = false;
+//             } else {
+//                 i--;
+//                 j++;
+//             }
+//         } else {
+//             if (i + 1 === height) {
+//                 j++;
+//                 up = true;
+//             } else if (j - 1 < 0) {
+//                 i++;
+//                 up = true;
+//             } else {
+//                 j--;
+//                 i++;
+//             }
+//         }
+//     }
+//     return res;
+// }
+// let matrix =
+//     [
+//         [1, 2, 3],
+//         [4, 5, 6],
+//         [7, 8, 9]
+//     ]
+// console.log(findDiagonalOrder(matrix));
+
+// // 102. Binary Tree Level Order Traversal
+// // RECURSION
+// var levelOrder = function (root) {
+//     const res = [];
+//     helper(root, 0);
+//     return res;
+
+//     function helper(node, level) {
+//         if (!node) {
+//             return;
+//         }
+//         if (res.length < level + 1) {
+//             res.push([])
+//         }
+//         // // cound be written this way
+//         // if(!res[level]){
+//         //     res[level] = []
+//         // }
+
+//         helper(node.left, level + 1)
+//         helper(node.right, level + 1)
+//         res[level].push(node.val)
+//     }
+// };
+
+// // // STACKS
+// var levelOrder = function(root) {
+// const res = [];
+// let stack = [];
+// if (root) {
+//     stack.push(root)
+// }
+
+// while (stack.length > 0) {
+//     let level = [];
+//     let length = stack.length
+//     for (let i=0; i<length; i++) {
+//         let node = stack.shift();
+//         level.push(node.val)
+//         if (node.left) {
+//             stack.push(node.left);
+//         }
+//         if (node.right) {
+//             stack.push(node.right);
+//         }
+//     }
+//     res.push(level);
+// }
+
+// return res;
+// };
+
+// // 341. Flatten Nested List Iterator
+// var NestedIterator = function(nestedList) {
+//     this.queue = helper(nestedList);
+
+//     function helper(nested, res = []) {
+//         if (!nested.length) return res;
+//         while (nested.length) {
+//             let el = nested.shift();
+//             if (el.isInteger()) {
+//                 res.push(el.getInteger())
+//             } else {
+//                 helper(el.getList(), res)
+//             }
+//         }
+//         return res;
+//     }
+// };
+// NestedIterator.prototype.hasNext = function() {
+//     return this.queue.length;
+// };
+
+// NestedIterator.prototype.next = function() {
+//     return this.queue.shift();
+// };
+
+// // USING SPREAD OPERATOR
+// var NestedIterator = function(nestedList) {
+//     this.queue = nestedList;
+// };
+
+// NestedIterator.prototype.hasNext = function() {
+//     while (this.queue.length) {
+//         if (this.queue[0].isInteger()) {
+//             return true;
+//         } else {
+//             let el = this.queue[0].getList();
+//             this.queue.shift();
+//             this.queue.unshift(...el)
+//         }
+//     }
+// };
+
+// NestedIterator.prototype.next = function() {
+//     return this.queue.shift().getInteger();
+// };
+
+// // 515. Find Largest Value in Each Tree Row
+// var largestValues = function(root) {
+//     const res = [];
+//     helper(root, 0);
+//     const max = [];
+//     for (let i=0; i<res.length; i++) {
+//         max.push(Math.max(...res[i]));
+//     }
+//     return max;
+//     function helper(node, level) {
+//         if (!node) {
+//             return;
+//         }
+//         if(!res[level]){
+//             res[level] = []
+//         }
+//         helper(node.left, level + 1)
+//         helper(node.right, level + 1)
+//         res[level].push(node.val)
+//     }
+// };
+
+// Stacks
+// var largestValues = function (root) {
+//     const res = [];
+//     let stack = [];
+//     if (root) {
+//         stack.push(root)
+//     }
+//     while (stack.length > 0) {
+//         let level = [];
+//         let length = stack.length
+//         for (let i=0; i<length; i++) {
+//             let node = stack.shift();
+//             level.push(node.val)
+//             if (node.left) {
+//                 stack.push(node.left);
+//             }
+//             if (node.right) {
+//                 stack.push(node.right);
+//             }
+//         }
+//         res.push(Math.max(...level));
+//     }
+//     return res;
+// };
+
+// // 38. Count and Say
+// var countAndSay = function(n) {
+//     let dict = {
+//         '1':'1',
+//         '2':'11',
+//         '3':'21',
+//         '4':'1211',
+//         '5':'111221'
+//     }
+//     if(n > 5){
+//         for(let i = 6; i <= n; i++){
+//             let temp = ''
+//             let counter = 1;
+//             for(let j = 0; j < dict[i-1].length; j++){
+//                 if(dict[i-1][j] == dict[i-1][j+1]){
+//                     counter++
+//                 } else {
+//                     temp += counter + dict[i-1][j]
+//                     counter = 1
+//                 }
+//             }
+//             dict[i] = temp
+//         }
+//     }
+//     return dict[n]
+// };
+// console.log(countAndSay(6));
+
+// // 155. Min Stack
+// var MinStack = function() {
+//     this.stack = []
+//     this.history = []
+//     this.min = Infinity;
+// };
+
+// MinStack.prototype.push = function(x) {
+//     if(x <= this.min){
+//         this.min = x
+//     }
+//     this.stack.push(x)
+//     this.history.push(this.min)
+// };
+
+// MinStack.prototype.pop = function() {
+//     this.stack.pop()
+//     this.history.pop()
+//     if(this.history.length == 0){
+//         this.min = Infinity;
+//     } else {
+//         this.min = this.history[this.history.length - 1]
+//     }
+// };
+
+// MinStack.prototype.top = function() {
+//     return this.stack[this.stack.length -1]
+// };
+
+// MinStack.prototype.getMin = function() {
+//     return this.min;
+// };
+
+// // 94. Binary Tree Inorder Traversal
+// RECURSIVE WITH HELPER FUNCTION
+// var inorderTraversal = function(root) {
+//     if (!root) return [];
+//     let res = [];
+//     helper(root)
+//     return res;
+
+//     function helper(node) {
+//         if (node.left) helper(node.left);
+//         res.push(node.val);
+//         if (node.right) helper(node.right);
+//     }
+// };
+
+// // RECURSIVE ONE FUNCTION
+// var inorderTraversal = function(root, res=[]) {
+//     if (root) {
+//         if (root.left) inorderTraversal(root.left, res);
+//         res.push(root.val);
+//         if (root.right) inorderTraversal(root.right, res);
+//     }
+//     return res;
+// };
+
+// // ITERATIVE
+// var inorderTraversal = function (root) {
+//     const stack = [];
+//     const res = [];
+//     while (root || stack.length) {
+//         if (root) {
+//             stack.push(root);
+//             root = root.left;
+//         } else {
+//             root = stack.pop();
+//             res.push(root.val);
+//             root = root.right;
+//         }
+//     }
+//     return res;
+// };
+
