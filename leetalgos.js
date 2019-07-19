@@ -166,6 +166,8 @@
 // };
 // console.log(reverseString(["h", "e", "l", "l", "o"]));
 
+// // 136. Single Number
+// // USING DICT
 // var singleNumber = function (nums) {
 // 	var dict = {}
 // 	for (var i = 0; i < nums.length; i++) {
@@ -185,6 +187,7 @@
 // console.log(singleNumber([2, 2, 1]))
 // console.log(singleNumber([4, 1, 2, 1, 2]))
 
+// // USING SORT
 // var singleNumber = function (nums) {
 // 	nums.sort();
 // 	for (var i = 0; i < nums.length; i += 2) {
@@ -192,6 +195,17 @@
 // 			return nums[i];
 // 		}
 // 	}
+// };
+// console.log(singleNumber([2, 2, 1]))
+// console.log(singleNumber([4, 1, 2, 1, 2]))
+
+// USING XOR
+// var singleNumber = function(nums) {
+//     let num = nums[0];
+//     for (let i = 1, length=nums.length; i<length; i++) {
+//         num ^= nums[i];
+//     }
+//     return num;
 // };
 // console.log(singleNumber([2, 2, 1]))
 // console.log(singleNumber([4, 1, 2, 1, 2]))
@@ -5436,3 +5450,74 @@
 //     return res;
 // };
 
+// // 2. Add Two Numbers
+// var addTwoNumbers = function (l1, l2) {
+//     let num1 = "";
+//     let num2 = "";
+//     while (l1) {
+//         num1 = l1.val + num1
+//         l1 = l1.next
+//     }
+//     while (l2) {
+//         num2 = l2.val + num2
+//         l2 = l2.next
+//     }
+//     let sum = BigInt(num1) + BigInt(num2);
+//     sum = sum.toString();
+//     let counter = (sum.length - 1)
+//     var res = new ListNode(parseInt(sum[counter]))
+//     let node = res;
+//     while (counter > 0) {
+//         node.next = new ListNode(parseInt(sum[counter - 1]))
+//         node = node.next
+//         counter--;
+//     }
+//     return res;
+// };
+
+// // 67. Add Binary
+// var addBinary = function(a, b) {
+//     let i = a.length-1;
+//     let j = b.length-1;
+//     let carry = 0;
+//     let res = "";
+//     while (i > -1 || j > -1) {
+//         let aChar = a[i] || 0;
+//         let bChar = b[j] || 0;
+//         let sum = parseInt(aChar) + parseInt(bChar) + carry;
+//         let newDigit = sum % 2;
+//         carry = Math.floor(sum/2);
+//         res = newDigit + res;
+//         i--;
+//         j--;
+//     }
+//     if (carry) res = carry + res;
+//     return res
+// };
+// console.log(addBinary("11","1"))
+// console.log(addBinary("1010","1011"))
+
+// 328. Odd Even Linked List
+var oddEvenList = function (head) {
+    if (!head) return head;
+    let lastNode = head;
+    while (lastNode.next) {
+        lastNode = lastNode.next;
+    }
+    let node = head;
+    let end = lastNode;
+    while (node !== end && node.next !== end) {
+        lastNode.next = node.next;
+        node.next = node.next.next;
+        lastNode = lastNode.next;
+        lastNode.next = null;
+        node = node.next
+    }
+    if (node.next === end) {
+        lastNode.next = node.next
+        node.next = node.next.next;
+        lastNode = lastNode.next;
+        lastNode.next = null;
+    }
+    return head;
+};
