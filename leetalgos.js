@@ -1099,7 +1099,8 @@
 // 	for (let i = 0; i < nums.length; i++) {
 // 		arr[i] = prod;
 // 		prod *= nums[i];
-// 	}
+//     }
+//     console.log(arr)
 // 	prod = 1;
 // 	for (let j = nums.length - 1; j >= 0; j--) {
 // 		arr[j] *= prod;
@@ -5497,27 +5498,77 @@
 // console.log(addBinary("11","1"))
 // console.log(addBinary("1010","1011"))
 
-// 328. Odd Even Linked List
-var oddEvenList = function (head) {
-    if (!head) return head;
-    let lastNode = head;
-    while (lastNode.next) {
-        lastNode = lastNode.next;
-    }
-    let node = head;
-    let end = lastNode;
-    while (node !== end && node.next !== end) {
-        lastNode.next = node.next;
-        node.next = node.next.next;
-        lastNode = lastNode.next;
-        lastNode.next = null;
-        node = node.next
-    }
-    if (node.next === end) {
-        lastNode.next = node.next
-        node.next = node.next.next;
-        lastNode = lastNode.next;
-        lastNode.next = null;
-    }
-    return head;
-};
+// // 328. Odd Even Linked List
+// var oddEvenList = function (head) {
+//     if (!head) return head;
+//     let lastNode = head;
+//     while (lastNode.next) {
+//         lastNode = lastNode.next;
+//     }
+//     let node = head;
+//     let end = lastNode;
+//     while (node !== end && node.next !== end) {
+//         lastNode.next = node.next;
+//         node.next = node.next.next;
+//         lastNode = lastNode.next;
+//         lastNode.next = null;
+//         node = node.next
+//     }
+//     if (node.next === end) {
+//         lastNode.next = node.next
+//         node.next = node.next.next;
+//         lastNode = lastNode.next;
+//         lastNode.next = null;
+//     }
+//     return head;
+// };
+
+// // SPLIT LIST
+// var oddEvenList = function (head) {
+//     if (!head) return head;
+//     var odd = head;
+//     var even = head.next;
+//     while (odd.next && odd.next.next) {
+//         var tmp = odd.next;
+//         odd.next = odd.next.next;
+//         odd = odd.next;
+//         tmp.next = odd.next;
+//     }
+//     odd.next = even;
+//     return head;
+// };
+
+// // UGLY NUMBER AMAZING NUMBER
+// function amazing(num) {
+
+//     let i = 2;
+//     let count = 0;
+//     while (count<num) {
+//         if (isUgly(i)) {
+//             count++
+//         }
+//         i++;
+//     }
+//     return i-1;
+
+//     function isUgly(num) {
+//         if (num === 0) {
+//             return false;
+//         }
+//         if (num === 1) {
+//             return true;
+//         }
+//         if (num % 2 === 0) {
+//             return isUgly(num / 2);
+//         }
+//         if (num % 3 === 0) {
+//             return isUgly(num / 3);
+//         }
+//         if (num % 7 === 0) {
+//             return isUgly(num / 7);
+//         }
+//         return false;
+//     };
+// }
+// console.log(amazing(10))
+
