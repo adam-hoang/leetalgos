@@ -1100,7 +1100,6 @@
 // 		arr[i] = prod;
 // 		prod *= nums[i];
 //     }
-//     console.log(arr)
 // 	prod = 1;
 // 	for (let j = nums.length - 1; j >= 0; j--) {
 // 		arr[j] *= prod;
@@ -2440,6 +2439,7 @@
 // console.log(thirdMax([2,2,3,1]));
 // console.log(thirdMax([3,2,3,1,2,4,5,5,6,7,7,8,2,3,1,1,1,10,11,5,6,2,4,7,8,5,6]));
 
+// // 438. Find All Anagrams in a String
 // // TIMES OUT ON ONE CASE
 // var findAnagrams = function(s, p) {
 //     p = p.split("").sort().join("");
@@ -2466,16 +2466,21 @@
 //     for (let i = 0; i < p.length; i++) {
 //         map[p[i].charCodeAt() - 97]++;
 //     }
+//     console.log(map)
 //     let j = 0;
 //     let res = [];
 //     for (let i = 0; i < s.length; i++) {
 //         let subChar = s[i].charCodeAt() - 97;
+
 //         map[subChar]--;
+//         console.log(map)
 
 //         while (map[subChar] < 0) {
 //             let addChar = s[j].charCodeAt() - 97;
+//             // console.log("addchar " +addChar, subChar)
 //             j++
 //             map[addChar]++;
+//             console.log("in while loop " +map)
 //         }
 //         if (i - j + 1 === p.length) {
 //             res.push(j)
@@ -4203,7 +4208,7 @@
 // console.log(smallestRangeI([0,10], 2));
 // console.log(smallestRangeI([1,3,6], 3));
 
-// // NEED TO SOLVE STILL
+// // 914. X of a Kind in a Deck of Cards
 // var hasGroupsSizeX = function(deck) {
 //     const dict = {};
 //     for (let i=0, length=deck.length; i<length; i++) {
@@ -4214,24 +4219,15 @@
 //             dict[num] = 1;
 //         }
 //     }
-//     let min = Infinity;
-//     console.log(dict)
+//     let res = 0;
 //     for (let key in dict) {
-//         let current = dict[key]
-//         if (current < 2) {
-//             return false;
-//         }
-//         if (current < min) {
-//             min = current;
-//         }
+//         res = gcd(res, dict[key])
 //     }
-//     for (let key in dict) {
-//         let current = dict[key]
-//         if (current % min !== 0) {
-//             return false;
-//         }
+//     return res > 1;
+
+//     function gcd (a, b) {
+//         return b > 0 ? gcd(b, a % b) : a;
 //     }
-//     return true;
 // };
 // console.log(hasGroupsSizeX([1,2,3,4,4,3,2,1]));
 // console.log(hasGroupsSizeX([1,1,1,2,2,2,3,3]));
@@ -4324,23 +4320,27 @@
 // console.log(validMountainArray([0, 3, 2, 1]));
 // console.log(validMountainArray([0,1,2,3,4,5,6,7,8,9]));
 
-// // NEED TO FIX THIS
+// // 949. Largest Time for Given Digits
+// NEED TO FIX THIS
 // var largestTimeFromDigits = function (A) {
 //     let res = "";
 //     A.sort((a, b) => a - b);
-//     let test = A.filter((x) => x < 3)
+//     let test = A.filter((x) => x < 3);
 //     if (test.length === 0) {
-//         return "1"
+//         return ""
 //     }
+//     let overSix = A.filter((x) => x < 6);
+//     if (overSix.length < 3 && test.includes(2)) test.pop();
 //     let del = test[test.length - 1];
 //     let idx = A.indexOf(del)
 //     A.splice(idx, 1);
 //     res += test[test.length - 1];
+//     console.log(res)
 
 //     if (res[0] === "2") {
 //         let test2 = A.filter((x) => x < 4)
 //         if (test2.length === 0) {
-//             return "2"
+//             return ""
 //         }
 //         let del2 = test2[test2.length - 1];
 //         let idx2 = A.indexOf(del2)
@@ -4350,11 +4350,11 @@
 //         res += A[A.length - 1];
 //         A.pop();
 //     }
-//     res += ":";
 //     console.log(res)
+//     res += ":";
 //     let test3 = A.filter((x) => x < 6)
 //     if (test3.length === 0) {
-//         return "3"
+//         return ""
 //     }
 //     let del3 = test3[test3.length - 1];
 //     let idx3 = A.indexOf(del3)
@@ -4583,30 +4583,73 @@
 // console.log(canThreePartsEqualSum([3,3,6,5,-2,2,5,1,-9,4]));
 
 // // 3. Longest Substring Without Repeating Characters
-// // NEED TO FINISH
+// USING DICT
 // var lengthOfLongestSubstring = function(s) {
 //     let max = 0;
-//     let count = 0;
+//     let start = 0;
 //     let dict = {};
 //     for (let i=0; i<s.length; i++) {
-//         if (!dict[s[i]]) {
-//             dict[s[i]] = 1;
-//             count++;
-//             max = Math.max(max, count);
-//         } else {
-//             count = 1;
-//             dict = {};
-//             dict[s[i]] = 1;
-//         }
-//         console.log(dict)
+//         if (dict[s[i]] >= start) start = dict[s[i]]+1;
+//         dict[s[i]] = i;
+//         if(i - start + 1 > max) max = i - start + 1;
+
 //     }
 //     return max;
 // };
-// // console.log(lengthOfLongestSubstring("abcabcbb"));
-// // console.log(lengthOfLongestSubstring("bbbbb"));
-// // console.log(lengthOfLongestSubstring("pwwkew"));
-// // console.log(lengthOfLongestSubstring("aab"));
-// // console.log(lengthOfLongestSubstring("dvdf"));
+// console.log(lengthOfLongestSubstring("abcabcbb"));
+// console.log(lengthOfLongestSubstring("bbbbb"));
+// console.log(lengthOfLongestSubstring("pwwkew"));
+// console.log(lengthOfLongestSubstring("aab"));
+// console.log(lengthOfLongestSubstring("dvdf"));
+// console.log(lengthOfLongestSubstring("ckilbkd"));
+
+// USING MAPS
+// var lengthOfLongestSubstring = function(s) {
+//     var start = 0, maxLen = 0;
+//     var map = new Map();
+
+//     for(var i = 0; i < s.length; i++) {
+//         var ch = s[i];
+//         if(map.get(ch) >= start) start = map.get(ch) + 1;
+//         map.set(ch, i);
+//         if(i - start + 1 > maxLen) maxLen = i - start + 1;
+//     }
+
+//     return maxLen;
+//   };
+// console.log(lengthOfLongestSubstring("abcabcbb"));
+// console.log(lengthOfLongestSubstring("bbbbb"));
+// console.log(lengthOfLongestSubstring("pwwkew"));
+// console.log(lengthOfLongestSubstring("aab"));
+// console.log(lengthOfLongestSubstring("dvdf"));
+// console.log(lengthOfLongestSubstring("ckilbkd"));
+
+// USING STRING
+// var lengthOfLongestSubstring = function(s) {
+//     let length = s.length;
+//     if (length < 2) {
+//         return length;
+//     }
+//     let start = 0;
+//     let i = 1;
+//     let res = 1;
+//     while (i<length) {
+//         let str = s.slice(start,i);
+//         let check = str.indexOf(s[i]);
+//         if (check !== -1) {
+//             start = start+check+1
+//         }
+//         i++
+//         res = i-start > res ? i-start : res;
+//     }
+//     return res;
+// };
+// console.log(lengthOfLongestSubstring("abcabcbb"));
+// console.log(lengthOfLongestSubstring("bbbbb"));
+// console.log(lengthOfLongestSubstring("pwwkew"));
+// console.log(lengthOfLongestSubstring("aab"));
+// console.log(lengthOfLongestSubstring("dvdf"));
+// console.log(lengthOfLongestSubstring("ckilbkd"));
 
 // // 1051. Height Checker
 // // SLOW BECAUSE OF SLICE
@@ -5572,3 +5615,518 @@
 // }
 // console.log(amazing(10))
 
+// // 128. Longest Consecutive Sequence
+// var longestConsecutive = function(nums) {
+//     let res = -Infinity;
+//     let set = new Set (nums);
+//     for (let i=0; i<nums.length; i++) {
+//         if (!set.has(nums[i]-1)) {
+//             let next = nums[i]+1;
+//             while (set.has(next)) {
+//                 next++;
+//             }
+//             if (next-nums[i] > res) {
+//                 res = next-nums[i]
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(longestConsecutive([100, 4, 200, 1, 3, 2]))
+
+// // 33. Search in Rotated Sorted Array
+// var search = function(nums, target) {
+//     let start = 0;
+//     let end = nums.length-1;
+//     if (target === nums[start]) return start;
+//     if (target === nums[end]) return end;
+//     while (start < end) {
+//         if (target === nums[start]) return start;
+//         if (target === nums[end]) return end;
+//         let mid = Math.floor((end+start)/2);
+//         if (target === nums[mid]) return mid;
+//         if (nums[start] < nums[mid]) {
+//             if (target > nums[start] && target < nums[mid]) {
+//                 end = mid-1;
+//             } else {
+//                 start = mid+1;
+//             }
+//         } else {
+//             if ( target > nums[mid] && target < nums[end]) {
+//                 start = mid+1;
+//             } else {
+//                 end = mid-1;
+//             }
+//         }
+//     }
+//     return -1;
+// };
+// console.log(search([4,5,6,7,0,1,2], 0));
+// console.log(search([4,5,6,7,0,1,2], 3));
+// console.log(search([4,5,6,7,0,1,2], 1));
+// console.log(search([4,5,6,7,8,1,2,3], 8));
+
+// // 153. Find Minimum in Rotated Sorted Array
+// var findMin = function(nums) {
+//     let start = 0;
+//     let end = nums.length-1;
+//     while (end - start > 1) {
+//         let mid = Math.floor((end+start)/2);
+//         if (nums[mid] > nums[end]) {
+//             start = mid;
+//         } else {
+//             end = mid;
+//         }
+//     }
+//     return Math.min(nums[start],nums[end]);
+// };
+// console.log(findMin([3,4,5,1,2], 1));
+
+// function reverseStringInArrays (arr) {
+//     for (let i=0; i<arr.length; i++) {
+//         arr[i] = helper(arr[i]);
+//     }
+//     return arr;
+
+//     function helper(el) {
+//         let temp = el.split("").reverse().join("");
+//         return temp
+//     }
+// }
+// console.log(reverseStringInArrays(['eno', 'owt', 'eerht']))
+
+// function reverseStringInArrays (arr) {
+//     for (let i=0; i<arr.length; i++) {
+//         arr[i] = helper(arr[i]);
+//     }
+//     return arr;
+
+//     function helper(el) {
+//         let arr = el.split("");
+//         for (let i=0; i<el.length/2; i++) {
+//             let temp = arr[i];
+//             arr[i] = arr[el.length-1-i];
+//             arr[el.length-1-i] = temp;
+//         }
+//         return arr.join("")
+//     }
+// }
+// console.log(reverseStringInArrays(['eno', 'owt', 'eerht']))
+
+// // 297. Serialize and Deserialize Binary Tree
+// WITH STRINGS
+// var serialize = function(root) {
+//     let serial = "";
+//     helper(root);
+//     return serial;
+
+//     function helper(node) {
+//         if (!node) {
+//             serial += "null ";
+//         } else {
+//             serial += node.val + " ";
+//             helper(node.left);
+//             helper(node.right);
+//         }
+//     }
+
+// };
+
+// var deserialize = function(data) {
+//     let nodes = data.split(" ");
+//     return helper();
+
+//     function helper() {
+//         let value = nodes.shift();
+//         if (value === "null") {
+//             return null;
+//         }
+//         let node = new TreeNode(parseInt(value));
+//         node.left = helper();
+//         node.right = helper();
+//         return node;
+//     }
+// };
+
+// // CHEATING USING ARRAYS WITHOUT CONVERTING TO STRING 
+// var serialize = function(root) {
+//     let serial = [];
+//     helper(root);
+//     return serial;
+
+//     function helper(node) {
+//         if (!node) {
+//             serial.push(null);
+//         } else {
+//             serial.push(node.val);
+//             helper(node.left);
+//             helper(node.right);
+//         }
+//     }
+// };
+
+// var deserialize = function(data) {
+//     return helper();
+
+//     function helper() {
+//         let value = data.shift();
+//         if (value === null) {
+//             return null;
+//         }
+//         let node = new TreeNode(value);
+//         node.left = helper();
+//         node.right = helper();
+//         return node;
+//     }
+// };
+
+// // 378. Kth Smallest Element in a Sorted Matrix
+// var kthSmallest = function(matrix, k) {
+//     let rows = matrix.length;
+//     let cols = matrix[0].length;
+//     let left = matrix[0][0];
+//     let right = matrix[rows-1][cols-1];
+//     while (left < right) {
+//         const mid = Math.floor((left+right)/2);
+//         let count = 0;
+//         let j = cols-1;
+
+//         for (let i=0; i<rows; i++) {
+//             while (j>=0 && matrix[i][j]>mid) {
+//                 j--
+//             }
+//             count += j+1
+//         }
+//         if (count < k) {
+//             left = mid+1;
+//         } else {
+//             right = mid;
+//         }
+//     }
+//     return left;
+// };
+// let matrix = [
+//     [ 1,  5,  9],
+//     [10, 11, 13],
+//     [12, 13, 15]
+// ];
+// let k = 3;
+// console.log(kthSmallest(matrix, k))
+
+// var kthSmallest = function(matrix, k) {
+//     var n = matrix.length, lo = matrix[0][0]
+//     var hi = matrix[n-1][n-1];
+//     var mid, count;
+
+//     while(lo < hi) {
+//         mid = (lo + (hi - lo) / 2) >> 0;
+//         count = countLEQ(matrix, mid);
+//         if (count < k) {
+//             lo = mid + 1;
+//         } else {
+//             hi = mid;
+//         }
+//     }
+//     return lo;
+// };
+
+// var countLEQ = function (matrix, x) {
+//     var n = matrix.length;
+//     var count = 0;
+//     var j;
+
+//     matrix.forEach(function(row){
+//         for(j = 0; j < n && row[j] <= x; j++){ ;}
+//         count += j
+//     });
+//     return count;
+// };
+// let matrix = [
+//     [ 1,  5,  9],
+//     [10, 11, 13],
+//     [12, 13, 15]
+// ];
+// let k = 3;
+// console.log(kthSmallest(matrix, k))
+// let matrix2 = [
+//     [1,2],
+//     [1,3]
+// ];
+// let k2 = 2;
+// console.log(kthSmallest(matrix2, k2))
+
+// // 912. Sort an Array
+// CHEATING USING BUILT IN FUNCTION
+// var sortArray = function(nums) {
+//     return nums.sort((a,b) => a-b);
+// };
+// console.log(sortArray([5,2,3,1]));
+// console.log(sortArray([5,1,1,2,0,0]));
+
+// // 912. Sort an Array
+// var sortArray = function(nums) {
+//     helper(0, nums.length-1, nums);
+//     return nums;
+
+//     function helper(start, end, nums) {
+//         if (start >= end) return;
+//         let pivot = start;
+//         let left = start+1;
+//         let right = end;
+
+//         while (left <= right) {
+//             if (nums[left] > nums[pivot] && nums[right] < nums[pivot]) {
+//                 swap(left, right, nums)
+//             }
+//             if (nums[left] <= nums[pivot]) left++;
+//             if (nums[right] >= nums[pivot]) right--;
+//         }
+//         swap(pivot, right, nums);
+//         helper(start, right-1, nums);
+//         helper(right+1, end, nums);
+//     }
+
+//     function swap(idx1, idx2, nums) {
+//         let temp = nums[idx1];
+//         nums[idx1] = nums[idx2];
+//         nums[idx2] = temp;
+//     }
+// };
+// console.log(sortArray([5,2,3,1]));
+// console.log(sortArray([5,1,1,2,0,0]));
+
+// function treasureIsland(grid) {
+//     helper(0,0);
+
+//     function helper(i,j);
+// }
+// let grid = [
+//     [0, 0, 0, 0],
+//     [2, 0, 2, 0],
+//     [0, 0, 0, 0],
+//     [1, 2, 2, 0]
+// ];
+// console.log(treasureIsland(grid));
+
+// SHORTEST PATH OF TWO POINTS
+// var matrix = [
+//     [0, 1, 0, 1, 0],
+//     [0, 0, 1, 0, 0],
+//     [0, 0, 1, 1, 0],
+//     [0, 0, 1, 0, 0],
+//     [0, 1, 0, 1, 0]
+// ];
+
+// var start = [0, 0];
+// var end = [4, 2];
+
+// function findWay(position, end) {
+//     var queue = [];
+
+//     matrix[position[0]][position[1]] = 1;
+//     queue.push([position]); // store a path, not just a position
+//     // console.log(queue)
+//     while (queue.length > 0) {
+//         console.log(queue)
+//         var path = queue.shift(); // get the path out of the queue
+//         var pos = path[path.length - 1]; // ... and then the last position from it
+//         //   console.log(path)
+//         var direction = [
+//             [pos[0] + 1, pos[1]],
+//             [pos[0], pos[1] + 1],
+//             [pos[0] - 1, pos[1]],
+//             [pos[0], pos[1] - 1]
+//         ];
+
+//         for (var i = 0; i < direction.length; i++) {
+//             // Perform this check first:
+//             if (direction[i][0] == end[0] && direction[i][1] == end[1]) {
+//                 // return the path that led to the find
+//                 return path.concat([end]);
+//             }
+
+//             if (direction[i][0] < 0 || direction[i][0] >= matrix[0].length
+//                 || direction[i][1] < 0 || direction[i][1] >= matrix[0].length
+//                 || matrix[ direction[i][0] ] [ direction[i][1] ] != 0) {
+//                 continue;
+//             }
+
+//             matrix[ direction[i][0] ] [ direction[i][1] ] = 1;
+//             // extend and push the path on the queue
+//             queue.push(path.concat([direction[i]]));
+//         }
+//     }
+// }
+
+// var path = findWay(start, end);
+// console.log(JSON.stringify(path));
+
+// // 1091. Shortest Path in Binary Matrix
+// var shortestPathBinaryMatrix = function(grid) {
+//     if(grid[0][0] != 0) return -1
+//     if(grid[grid.length-1][grid.length-1] != 0) return -1
+//     var queue = [[[0,0]]];
+//     let N = grid.length;
+//     while (queue.length > 0) {
+//         var path = queue.shift();
+//         var pos = path[path.length - 1]; // [0,0]
+//         var direction = [
+//             [pos[0] + 1, pos[1]],
+//             [pos[0], pos[1] + 1],
+//             [pos[0] - 1, pos[1]],
+//             [pos[0], pos[1] - 1],
+//             [pos[0] + 1, pos[1] + 1],
+//             [pos[0] + 1, pos[1] - 1],
+//             [pos[0] - 1, pos[1] - 1],
+//             [pos[0] - 1, pos[1] + 1],
+//         ];
+//         for (var i = 0; i < direction.length; i++) {
+//             if (direction[i][0] === N-1 && direction[i][1] === N-1) {
+//                 return path.length + 1;
+//             }
+//             if (direction[i][0] < 0 || direction[i][0] >= grid[0].length
+//                 || direction[i][1] < 0 || direction[i][1] >= grid[0].length
+//                 || grid[direction[i][0]][direction[i][1]] != 0) {
+//                 continue;
+//             }
+//             grid[direction[i][0]][direction[i][1]] = 1;
+//             queue.push(path.concat([direction[i]]));
+//         }
+//     }  
+//     return -1
+// };
+// console.log(shortestPathBinaryMatrix([[0,1],[1,0]], 2));
+// console.log(shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]], 4));
+
+// 
+// var shortestPathBinaryMatrix = function(grid) {
+//     let N = grid.length;
+//     if (N < 1) return -1;
+//     if (grid[0][0] === 1 || grid[N-1][N-1] === 1) return -1;
+//     if (N === 1) return 1;
+//     var queue = [[0,0]];
+//     grid[0][0] = 1;
+
+//     while (queue.length != 0) {
+//         let cur = queue.shift();
+//         let cX = cur[0];
+//         let cY = cur[1];
+//         let aList = [
+//             [ cX+1, cY ],
+//             [ cX-1, cY ],
+//             [ cX, cY+1 ],
+//             [ cX, cY-1 ],
+//             [ cX+1, cY+1 ],
+//             [ cX+1, cY-1 ],
+//             [ cX-1, cY-1 ],
+//             [ cX-1, cY+1 ],
+//         ]
+//         for (let i=0, length=aList.length; i<length; i++){
+//             let adj = aList[i];
+//             let aX = adj[0];
+//             let aY = adj[1];
+//             if (aX < 0 || aX >= N || aY < 0 || aY >= N || grid[aX][aY] !== 0){
+//                 continue; 
+//             }
+//             if(aX >= (N-1) && aY >= (N-1)){
+//                 return grid[cX][cY] + 1;
+//             }
+//             queue.push([aX,aY])
+//             grid[aX][aY] = grid[cX][cY] + 1;
+//         }
+//     }
+//     return -1 ;
+// };
+// console.log(shortestPathBinaryMatrix([[0,0,0],[1,1,0],[1,1,0]], 4));
+
+// // 783. Minimum Distance Between BST Nodes
+// var minDiffInBST = function(root) {
+//     let prev = null;
+//     let min = Infinity;
+//     helper(root);
+//     return min;
+
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         if (prev) {
+//             min = Math.min(min, Math.abs(node.val - prev.val));
+//         }
+//         prev = node;
+//         helper(node.right);
+//     };
+// };
+
+// // WITH EXTRA SPACE
+// var minDiffInBST = function(root) {
+//     if (root === null) return null;
+//     var res = [];
+//     var min = Infinity;
+//     helper(root);
+//     for(var i=0, length=res.length-1; i<length; i++){
+//         min = Math.min(min, res[i+1] - res[i]);
+//     }
+//     return min;
+
+//     function helper(node) {
+//         if (node) {
+//             helper(node.left);
+//             res.push(node.val);
+//             helper(node.right);
+//         }
+//     }
+// };
+    
+// // 45. Jump Game II
+// var jump = function(nums) {
+//     let length = nums.length;
+//     if (length < 2) {
+//         return 0;
+//     }
+
+//     let max = nums[0];
+//     let start = 0
+//     let end = nums[0];
+//     let count = 1;
+        
+//     while (max < length - 1) {
+//         let left = start
+//         let right = end;
+//         start = end + 1;
+//         for (let i=left; i<=right; i++) {
+//             if (i + nums[i] > max) {
+//                 max = i + nums[i];
+//                 end = max;
+//             }
+//         }
+//         count++;
+//     } 
+//     return count;
+// };
+// console.log(jump([2,3,1,1,4]));
+
+// // 55. Jump Game
+// var canJump = function(nums) {
+//     let jump = 0
+//     let len = nums.length;
+//     for (var i = 0; i < len; i++){
+//         jump = Math.max(nums[i], jump);
+//         if(jump === 0 && i !== len -1 )return false;
+//         jump--;
+//     }
+//     return true;
+// };
+// console.log(canJump([2,3,1,1,4]));
+
+// var canJump = function(nums) {
+//     let lastGood = nums.length - 1;
+    
+//     for (let i = nums.length - 1; i >= 0; i--) {
+//         if (nums[i] + i >= lastGood) {
+//             lastGood = i;
+//         }
+//     }
+    
+//     return lastGood === 0;
+// };
+// console.log(canJump([2,3,1,1,4]))
