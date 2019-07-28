@@ -4494,6 +4494,8 @@
 // console.log(addToArrayForm([9,9,9,9,9,9,9,9,9,9], 1));
 // console.log(addToArrayForm([1,2,6,3,0,7,1,7,1,9,7,5,6,6,4,4,0,0,6,3], 516));
 
+// // 692. Top K Frequent Words
+// USING LOCALE COMPARE TO SORT
 // var topKFrequent = function(words, k) {
 //     const dict = {};
 //     for (let el in words) {
@@ -4504,6 +4506,33 @@
 //         }
 //     }
 //     return Object.keys(dict).sort((a, b) => dict[b] - dict[a] || a.localeCompare(b)).slice(0, k);
+// };
+// console.log(topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2));
+// console.log(topKFrequent(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4));
+
+// IF STATEMENTS FOR SORTING
+// var topKFrequent = function(words, k) {
+//     const dict = {};
+//     for (let el in words) {
+//         if (dict[words[el]]) {
+//             dict[words[el]]++;
+//         } else {
+//             dict[words[el]] = 1;
+//         }
+//     }
+//     return Object.keys(dict).sort((a,b) => {
+//         if (dict[a] > dict[b]) {
+//             return -1
+//         } else if (dict[b] > dict[a]) {
+//             return 1
+//         } else {
+//             if (a < b) {
+//                 return -1
+//             } else if (b < a) {
+//                 return 1
+//             }
+//         }
+//     }).slice(0, k);
 // };
 // console.log(topKFrequent(["i", "love", "leetcode", "i", "love", "coding"], 2));
 // console.log(topKFrequent(["the", "day", "is", "sunny", "the", "the", "the", "sunny", "is", "is"], 4));
@@ -6130,3 +6159,5 @@
 //     return lastGood === 0;
 // };
 // console.log(canJump([2,3,1,1,4]))
+
+
