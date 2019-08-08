@@ -6105,7 +6105,7 @@
 //         }
 //     }
 // };
-    
+
 // // 45. Jump Game II
 // var jump = function(nums) {
 //     let length = nums.length;
@@ -6117,7 +6117,7 @@
 //     let start = 0
 //     let end = nums[0];
 //     let count = 1;
-        
+
 //     while (max < length - 1) {
 //         let left = start
 //         let right = end;
@@ -6149,15 +6149,224 @@
 
 // var canJump = function(nums) {
 //     let lastGood = nums.length - 1;
-    
+
 //     for (let i = nums.length - 1; i >= 0; i--) {
 //         if (nums[i] + i >= lastGood) {
 //             lastGood = i;
 //         }
 //     }
-    
+
 //     return lastGood === 0;
 // };
 // console.log(canJump([2,3,1,1,4]))
 
+// // 1122. Relative Sort Array
+// var relativeSortArray = function(arr1, arr2) {
+//     const dict = {};
+//     let end = [];
+//     let res = [];
+//     for (let i=0, length=arr1.length; i<length; i++) {
+//         let num = arr1[i];
+//         if (!arr2.includes(num)) {
+//             end.push(num);
+//         } else {
+//             if (dict[num] && arr2.includes(num)) {
+//                 dict[num]++;
+//             } else {
+//             dict[num] = 1;
+//             }
+//         }
 
+//     }
+//     for (let num of arr2) {
+//         if (dict[num]) {
+//             for (let i=0; i<dict[num]; i++) {
+//                 res.push(num)
+//             }
+//         }
+//     }
+//     end = end.sort((a,b) => a-b);
+//     return res.concat(end);
+// };
+// console.log(relativeSortArray([2,3,1,3,2,4,6,7,9,2,19], [2,1,4,3,9,6]));
+
+// // 139. Word Break
+// DOESNT WORK
+// var wordBreak = function(s, wordDict) {
+// 	for (let i = 0; i < wordDict.length; i++) {
+//         s = s.split(wordDict[i]).join('.');
+//         console.log(s)
+//     }
+//     return s.split('.').join('').length === 0;
+// };
+// console.log(wordBreak("leetcode",["leet", "code"]));
+// console.log(wordBreak("applepenapple", ["apple", "pen"]));
+// console.log(wordBreak("catsandog", ["cats", "dog", "sand", "and", "cat"]));
+
+// // 1025. Divisor Game
+// var divisorGame = function(N) {
+//     return !(N%2);
+// };
+// console.log(divisorGame(2));
+// console.log(divisorGame(3));
+
+// // 394. Decode String
+// var decodeString = function(s) {
+//     return helper (s, 0, s.length-1);
+
+//     function helper(s, left, right,) {
+//         let repeat = 1;
+//         let open = 0;
+//         let bracketStart;
+//         let res = '';
+
+//         while (left <= right) {
+//             if (s[left] === '[') {
+//                 if (open === 0) {
+//                     bracketStart = left;
+//                 }
+//                 open++;
+//                 left++;
+//             } else if (s[left] === ']') {
+//                 open--;
+//                 if (open === 0) {
+//                     const repeatText = helper(s, bracketStart + 1, left);
+//                     res += repeatText.repeat(repeat);
+//                 }
+//                 left++;
+//             } else if (open > 0) {
+//                 left++;
+//             } else if (!isNaN(s[left])) {
+//                 repeat = 0;
+//                 while (!isNaN(s[left])) {
+//                     repeat *= 10;
+//                     repeat += Number(s[left]);
+//                     left++;
+//                 }
+//             } else {
+//                 res += s[left];
+//                 left++;
+//             }
+//         }
+//         return res;
+//     }
+// };
+// console.log(decodeString("3[a]2[bc]"));
+// console.log(decodeString("3[a2[c]]"));
+
+// var decodeString = function(s) {
+//     return helper (0, s.length-1);
+
+//     function helper(left, right) {
+//         let repeat = 1;
+//         let open = 0;
+//         let bracketStart;
+//         let res = '';
+
+//         while (left <= right) {
+//             if (s[left] === '[') {
+//                 if (open === 0) {
+//                     bracketStart = left;
+//                 }
+//                 open++;
+//                 left++;
+//             } else if (s[left] === ']') {
+//                 open--;
+//                 if (open === 0) {
+//                     const repeatText = helper(bracketStart + 1, left);
+//                     res += repeatText.repeat(repeat);
+//                 }
+//                 left++;
+//             } else if (open > 0) {
+//                 left++;
+//             } else if (!isNaN(s[left])) {
+//                 let num = "";
+//                 while (!isNaN(s[left])) {
+//                     num += s[left];
+//                     left++;
+//                 }
+//                 repeat = parseInt(num)
+//             } else {
+//                 res += s[left];
+//                 left++;
+//             }
+//         }
+//         return res;
+//     }
+// };
+// console.log(decodeString("3[a]2[bc]"));
+// console.log(decodeString("3[a2[c]]"));
+
+// // 893. Groups of Special-Equivalent Strings
+// var numSpecialEquivGroups = function(A) {
+//     let set = new Set();
+//     for (let el of A) {
+//         let temp = helper(el);
+//         if (!set.has(temp)) {
+//             set.add(temp)
+//         }
+//     }
+//     return set.size;
+
+//     function helper(str) {
+//         let odd = [];
+//         let even = [];
+//         for (let i=0; i<str.length; i++) {
+//             if (i%2 == 0) {
+//                 even.push(str[i]); 
+//             } else {
+//                 odd.push(str[i]);
+//             }
+//         }
+//         odd = odd.sort().join("");
+//         even = even.sort().join("");
+//         return even+odd;
+//     }
+// };
+// console.log(numSpecialEquivGroups(["a","b","c","a","c","c"]));
+// console.log(numSpecialEquivGroups(["aa","bb","ab","ba"]));
+
+
+
+// // 1046. Last Stone Weight
+// var lastStoneWeight = function(stones) {
+//     stones.sort((a,b) => b-a);
+//     while (stones.length>1) {
+//         if (stones[0] !== stones[1]) {
+//             stones.push(stones[0] - stones[1]);
+//         }
+//         stones.shift();
+//         stones.shift();
+//         stones.sort((a,b) => b-a);
+//     }
+//     if (!stones.length) return 0;
+//     return stones[0];
+// };
+// console.log(lastStoneWeight([2,7,4,1,8,1]));
+
+// var lastStoneWeight = function(stones) {
+//     while (stones.length>1) {
+//         let max1 = Math.max(...stones);
+//         stones.splice(stones.indexOf(max1),1)
+//         let max2 = Math.max(...stones);
+//         stones.splice(stones.indexOf(max2),1)
+//         if (max1 !== max2) {
+//             stones.push(max1-max2);
+//         }
+//     }
+//     return stones[0] || 0;
+// };
+// console.log(lastStoneWeight([2,7,4,1,8,1]));
+
+// // 1137. N-th Tribonacci Number
+// var tribonacci = function(n) {
+//     let arr = [0,1,1];
+//     for (let i=3; i<=n; i++) {
+//         arr[i] = arr[i-3] + arr[i-2] + arr[i-1];
+//         // could be faster to push than to set
+//         // arr.push(arr[i-3] + arr[i-2] + arr[i-1]);
+//     }
+//     return arr[n];
+// };
+// console.log(tribonacci(4));
+// console.log(tribonacci(25));
