@@ -6370,3 +6370,132 @@
 // };
 // console.log(tribonacci(4));
 // console.log(tribonacci(25));
+
+// // 669. Trim a Binary Search Tree
+// var trimBST = function(root, L, R) {
+//     if (!root) return null;
+//     if (root.val < L) {
+//         return trimBST(root.right, L, R);
+//     }
+//     if (root.val > R) {
+//         return trimBST(root.left, L, R);
+//     }
+//     root.left = trimBST(root.left, L, R);
+//     root.right = trimBST(root.right, L, R);
+//     return root;
+// };
+
+// // 429. N-ary Tree Level Order Traversal
+// var levelOrder = function (root) {
+//     if (!root) return [];
+//     let res = [];
+//     let queue = [root];
+//     while (queue.length) {
+//         let len = queue.length;
+//         let temp = [];
+//         for (let i=0; i<len; i++) {
+//             let node = queue.shift();
+//             temp.push(node.val);
+//             for (let child of node.children) {
+//                 queue.push(child)
+//             }
+//         }
+//         res.push(temp);
+//     }
+//     return res;
+// };
+
+// // // 1150. Check If a Number Is Majority Element in a Sorted Array
+// var isMajorityElement = function(nums, target) {
+//     let dict = {};
+//     let length = nums.length;
+//     for (let i=0; i<length; i++) {
+//         let num = nums[i];
+//         if (!dict[num]) {
+//             dict[num] = 1;
+//         } else {
+//             dict[num]++;
+//         }
+//     }
+//     return dict[target]>(length/2);
+// };
+// console.log(isMajorityElement([2,4,5,5,5,5,5,6,6], 5))
+
+// // 762. Prime Number of Set Bits in Binary Representation
+// var countPrimeSetBits = function(L, R) {
+//     let res = 0;
+//     let primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+//     for (let i=L; i<=R; i++) {
+//         let count = 0;
+//         let binary = i.toString(2);
+//         for (let j=0; j<binary.length; j++) {
+//             if (binary[j] === "1") {
+//                 count++;
+//             }
+//         }
+//         if (primes.indexOf(count) !== -1) {
+//             res++;
+//         }
+//     }
+//     return res;
+// };
+// console.log(countPrimeSetBits(6,10));
+
+// var countPrimeSetBits = function(L, R) {
+//     let res = 0;
+//     let primes = [2, 3, 5, 7, 11, 13, 17, 19, 23];
+//     for (let i=L; i<=R; i++) {
+//         let count = 0;
+//         let temp = i;
+//         while (temp) {
+//             if (temp % 2 === 1) {
+//                 count++;
+//             }
+//             temp = Math.floor(temp/2);
+//         }
+//         if (primes.indexOf(count) !== -1) {
+//             res++;
+//         }
+//     }
+//     return res;
+// };
+// console.log(countPrimeSetBits(6,10));
+
+// // 868. Binary Gap
+// var binaryGap = function(N) {
+//     let str = N.toString(2);
+//     let last = 0;
+//     let max = 0;
+//     for (let i=0, length=str.length; i<length; i++) {
+//         if (str[i] === "1") {
+//             max = Math.max(max, i-last);
+//             last = i;
+//         }
+//     }
+//     return max
+// };
+// console.log(binaryGap(22));
+// console.log(binaryGap(5));
+// console.log(binaryGap(6));
+// console.log(binaryGap(8));
+// console.log(binaryGap(13));
+
+// // 637. Average of Levels in Binary Tree
+// var averageOfLevels = function(root) {
+//     if (!root) return [];
+//     let res = [];
+//     let queue = [root];
+//     while (queue.length) {
+//         let len = queue.length;
+//         let sum = 0;
+//         for (let i=0; i<len; i++) {
+//             let node = queue.shift();
+//             if (node.left) queue.push(node.left)
+//             if (node.right) queue.push(node.right)
+//             sum += node.val
+//         }
+//         res.push(sum/len);
+//     }
+//     return res;
+// };
+
