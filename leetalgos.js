@@ -6499,3 +6499,254 @@
 //     return res;
 // };
 
+// // 226. Invert Binary Tree
+// var invertTree = function (root) {
+//     if (root) {
+//         let temp = root.left;
+//         root.left = invertTree(root.right);
+//         root.right = invertTree(temp)
+//     }
+//     return root;
+
+// };
+
+// var invertTree = function (root) {
+//     if (!root) return root
+//     let temp = root.left
+//     root.left = root.right
+//     root.right = temp
+
+//     invertTree(root.left)
+//     invertTree(root.right)
+
+//     return root
+// };
+
+// function invertTree(root) {
+//     if (root) {
+//         [root.left, root.right] = [invertTree(root.right), invertTree(root.left)];
+//     }
+//     return root;
+// }
+
+// function invertTree(root) {
+//     let stack = [root];
+//     while (stack.length) {
+//         let node = stack.pop();
+//         if (!node) {
+//             continue;
+//         }
+//         [node.left, node.right] = [node.right, node.left];
+//         stack.push(node.left, node.right);
+//     }
+//     return root;
+// }
+
+// // 1089. Duplicate Zeros
+// // REPLACING VALUES
+// var duplicateZeros = function(arr) {
+//     let length = arr.length;
+//     for (let i=0; i<length-1; i++) {
+//         if (arr[i] === 0) {
+//             for (let j=length-1; j>i+1; j--) {
+//                 arr[j] = arr[j-1]
+//             }
+//             arr[i+1] = 0;
+//             i++;
+//         }
+//     }
+//     return arr;
+// };
+// console.log(duplicateZeros([1,0,2,3,0,4,5,0]));
+// console.log(duplicateZeros([1,2,3]));
+
+// // USING SPLICE METHOD (MIGHT NOT BE CONSIDERED IN PLACE)
+// var duplicateZeros = function(arr) {
+//     let length = arr.length;
+//     for (let i=0; i<length; i++) {
+//         if (arr[i] === 0) {
+//             // splice(start,delete count, add)
+//             arr.splice(i,0,0);
+//             arr.pop();
+//             i++;
+//         }
+//     }
+//     return arr;
+// };
+// console.log(duplicateZeros([1,0,2,3,0,4,5,0]));
+// console.log(duplicateZeros([1,2,3]));
+
+// // 1009. Complement of Base 10 Integer
+// USING NEW STRING
+// var bitwiseComplement = function(N) {
+//     let binary = N.toString(2);
+//     let res = "";
+//     for (let letters of binary) {
+//         if (letters === "0") {
+//             res += 1;
+//         } else {
+//             res += 0;
+//         }
+//     }
+//     return parseInt(res, 2);
+// };
+// console.log(bitwiseComplement(5))
+
+// REVERSING BITS
+// var bitwiseComplement = function(N) {
+//     let binary = N.toString(2).split("");
+//     for (let i=0; i<binary.length; i++) {
+//         if (binary[i] === "0") {
+//             binary[i] = "1";
+//         } else {
+//             binary[i] = "0";
+//         }
+//     }
+//     return parseInt(binary.join(""), 2);
+// };
+// console.log(bitwiseComplement(5));
+
+// // 784. Letter Case Permutation
+// var letterCasePermutation = function(S) {
+//     let res = [];
+//     helper(S, 0);
+//     return res;
+
+//     function helper(S, idx) {
+//         if (idx === S.length) {
+//            res.push(S);
+//         } else if (isNaN(S.charAt(idx))) {
+//             helper(S.substring(0, idx) + S.charAt(idx).toLowerCase() + S.substring(idx+1, S.length), idx+1);
+//             helper(S.substring(0, idx) + S.charAt(idx).toUpperCase() + S.substring(idx+1, S.length), idx+1);
+//         } else {
+//             helper(S, idx+1);
+//         }
+//     }
+// };
+// console.log(letterCasePermutation("a1b2"));
+
+// // 693. Binary Number with Alternating Bits
+// var hasAlternatingBits = function(n) {
+//     let binary = n.toString(2);
+//     for (let i=0; i<binary.length-1; i++) {
+//         if (binary[i] === binary[i+1]) return false;
+//     }
+//     return true;
+// };
+// console.log(hasAlternatingBits(5));
+// console.log(hasAlternatingBits(7));
+// console.log(hasAlternatingBits(11));
+// console.log(hasAlternatingBits(10));
+
+// var hasAlternatingBits = function(n) {
+//     let last = n%2;
+//     n = Math.floor(n/2);
+//     while (n) {
+//         let cur = n%2;
+//         if (cur === last) return false;
+//         last = cur;
+//         n = Math.floor(n/2);
+//     }
+//     return true;
+// };
+// console.log(hasAlternatingBits(5));
+// console.log(hasAlternatingBits(7));
+// console.log(hasAlternatingBits(11));
+// console.log(hasAlternatingBits(10));
+
+// // 706. Design HashMap
+// var MyHashMap = function() {
+//     this.dict = {};
+// };
+
+// MyHashMap.prototype.put = function(key, value) {
+//    this.dict[key] = value;
+// };
+
+// MyHashMap.prototype.get = function(key) {
+//     let value = this.dict[key];
+//     return value === undefined ? -1: value;
+// };
+
+// MyHashMap.prototype.remove = function(key) {
+//     delete this.dict[key];
+// };
+
+// // 812. Largest Triangle Area
+// var largestTriangleArea = function(points) {
+//     let res = 0;
+//     let iLength = points.length-2;
+//     let jLength = points.length-1;
+//     let kLength = points.length;
+
+//     for (let i=0; i<iLength; i++) {
+//         for (let j=i+1; j<jLength; j++) {
+//             for (let k=i+2; k<kLength; k++) {
+//                 let temp = helper(points[i],points[j],points[k]);
+//                 res = Math.max(temp, res);
+//             }
+//         }
+//     }
+//     return res;
+
+//     function helper([x1, y1], [x2, y2], [x3, y3]) {
+//         // let area = Math.abs( (x2-x1)*(y3-y1) - (x3-x1)*(y2-y1) ) / 2;
+//         let area = Math.abs( x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2) ) / 2;
+
+
+//         return area;
+//     }
+// };
+// console.log(largestTriangleArea([[0,0],[0,1],[1,0],[0,2],[2,0]]));
+
+// // 892. Surface Area of 3D Shapes
+// USING HELPER FUNCTION
+// var surfaceArea = function(grid) {
+//     let res = 0;
+//     for (let i=0; i<grid.length; i++) {
+//         for (let j=0; j<grid[0].length; j++) {
+//             let value = grid[i][j];
+//             if (value) {
+//                 res += value*4 + 2;
+//                 helper(i+1,j, value);
+//                 helper(i,j+1, value);
+//             }
+//         }
+//     }
+//     return res;
+
+//     function helper(i,j,value) {
+//         if (i>grid.length-1 || j>grid[0].length-1) {
+//             return;
+//         }
+//         res -= 2*Math.min(value, grid[i][j]);
+//     }
+// };
+// console.log(surfaceArea([[1]]));
+// console.log(surfaceArea([[2]]));
+// console.log(surfaceArea([[1,2],[3,4]]));
+// console.log(surfaceArea([[1,0],[0,2]]));
+// console.log(surfaceArea([[1,1,1],[1,0,1],[1,1,1]]));
+// console.log(surfaceArea([[2,2,2],[2,1,2],[2,2,2]]));
+
+// var surfaceArea = function(grid) {
+//     let res = 0;
+//     let length = grid.length;
+//     for (let i=0; i<length; i++) {
+//         for (let j=0; j<length; j++) {
+//             let value = grid[i][j];
+//             if (value) {
+//                 res += value*4 + 2;
+//                 if (i<length-1) res -= 2*Math.min(value, grid[i+1][j]);
+//                 if (j<length-1) res -= 2*Math.min(value, grid[i][j+1]);
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(surfaceArea([[1]]));
+// console.log(surfaceArea([[2]]));
+// console.log(surfaceArea([[1,2],[3,4]]));
+// console.log(surfaceArea([[1,0],[0,2]]));
+// console.log(surfaceArea([[1,1,1],[1,0,1],[1,1,1]]));
+// console.log(surfaceArea([[2,2,2],[2,1,2],[2,2,2]]));
