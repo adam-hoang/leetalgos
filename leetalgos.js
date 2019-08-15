@@ -6750,3 +6750,240 @@
 // console.log(surfaceArea([[1,0],[0,2]]));
 // console.log(surfaceArea([[1,1,1],[1,0,1],[1,1,1]]));
 // console.log(surfaceArea([[2,2,2],[2,1,2],[2,2,2]]));
+
+// // 705. Design HashSet
+// var MyHashSet = function() {
+//     this.hash = {};
+// };
+
+// MyHashSet.prototype.add = function(key) {
+//     this.hash[key] = true;
+// };
+
+// MyHashSet.prototype.remove = function(key) {
+//     delete this.hash[key];
+// };
+
+// MyHashSet.prototype.contains = function(key) {
+//     if (this.hash[key]) {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// };
+
+// // 1029. Two City Scheduling
+// var twoCitySchedCost = function(costs) {
+//     // sort smaller to bigger difference
+//     costs.sort( (a,b) => ( (a[1]-a[0]) - (b[1]-b[0]) ) );
+//     let res = 0;
+//     // add city B starting from the beginning of list and add city A starting from the end of list
+//     for(let i=0; i<costs.length/2; i++){
+//         res += costs[i][1] + costs[costs.length-1-i][0];
+//     }
+//     return res;
+// };
+// console.log(twoCitySchedCost([[10,20],[30,200],[400,50],[30,20]]))
+
+// var twoCitySchedCost = function(costs) {
+//     // sort smaller to bigger difference
+//     costs.sort( (a,b) => ( (a[1]-a[0]) - (b[1]-b[0]) ) );
+//     let res = 0;
+//     // add city B until halfway point then add city A fir the rest
+//     for(let i=0; i<costs.length; i++){
+//         if (i<costs.length/2) {
+//             res += costs[i][1]
+//         } else {
+//             res += costs[i][0]
+//         }
+//     }
+//     return res;
+// };
+// console.log(twoCitySchedCost([[10,20],[30,200],[400,50],[30,20]]))
+
+// // 1071. Greatest Common Divisor of Strings
+// USING EUCLIDEAN ALGORITHM
+// var gcdOfStrings = function(str1, str2) {
+//     if (str1+str2 !== str2+str1) {
+//         return "";
+//     } else if (str1 === str2) {
+//         return str1;
+//     } else if (str1.length > str2.length) {
+//         return gcdOfStrings(str1.slice(str2.length), str2);
+//     } else {
+//         return gcdOfStrings(str2.slice(str1.length), str1);
+//     }
+// };
+// console.log(gcdOfStrings("ABCABC", "ABC"));
+// console.log(gcdOfStrings("ABABAB", "ABAB"));
+// console.log(gcdOfStrings("LEET", "CODE"));
+
+// FINDING THE GCD OF STRING LENGTHS THEN RETURNING SUBSTRING FROM 0 TO GCD
+// var gcdOfStrings = function(str1, str2) {
+// if (str1 + str2 !== str2 + str1) return '';
+// const gcd = (a, b) => (0 === b ? a : gcd(b, a % b));
+// return str1.substring(0, gcd(str1.length, str2.length));
+// };
+// console.log(gcdOfStrings("ABCABC", "ABC"));
+// console.log(gcdOfStrings("ABABAB", "ABAB"));
+// console.log(gcdOfStrings("LEET", "CODE"));
+
+// // 448. Find All Numbers Disappeared in an Array
+// DIRTY SOLUTION SLOW
+// var findDisappearedNumbers = function(nums) {
+//     let res = [];
+//     for (let i=1; i<=nums.length; i++) {
+//         if (nums.indexOf(i) === -1) {
+//             res.push(i)
+//         }
+//     }
+//     return res;
+// };
+// console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+
+// MANUALLY BUILDING ARRAY
+// var findDisappearedNumbers = function(nums) {
+//     let res = [];
+//     for (let i=1; i<=nums.length; i++) {
+//         res[i] = i;
+//     }
+//     for (let i=0; i<nums.length; i++) {
+//         res[nums[i]] = 0;
+//     }
+//     return res.filter(i => (i>0));
+// };
+// console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+// console.log(findDisappearedNumbers([1,1]))
+
+// USING BUILD ARRAY TRICK
+// var findDisappearedNumbers = function(nums) {
+//     let res = [...Array(nums.length+1).keys()]
+//     for (let i=0; i<nums.length; i++) {
+//         res[nums[i]] = 0;
+//     }
+//     return res.filter(i => (i>0));
+// };
+// console.log(findDisappearedNumbers([4,3,2,7,8,2,3,1]))
+// console.log(findDisappearedNumbers([1,1]))
+
+// // 653. Two Sum IV - Input is a BST
+// USING DICTIONARY
+// var findTarget = function(root, k) {
+//     let dict = {};
+//     let found = false;
+//     helper(root);
+//     return found;
+
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         if (dict[k-node.val]) {
+//             found = true;
+//             return;
+//         } else {
+//             dict[node.val] = true;
+//         }
+//         helper(node.right);
+//     }
+// };
+
+// USING SET
+// var findTarget = function (root, k) {
+//     const set = new Set()
+//     return helper(root);
+
+//     function helper(node) {
+//         if (!node) return false;
+//         if (set.has(k - node.val)) return true;
+//         set.add(node.val);
+//         return helper(node.left) || helper(node.right);
+//     }
+// };
+
+// USING SORTED ARRAY
+// var findTarget = function(root, k) {
+//     let arr = [];
+//     helper(root);
+
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         arr.push(node.val);
+//         helper(node.right);
+//     }
+
+//     let left = 0;
+//     let right = arr.length-1
+//     while (left<right) {
+//         if (arr[left]+arr[right] > k) {
+//             right--;
+//         } else if (arr[left]+arr[right] < k) {
+//             left++;
+//         } else {
+//             return true;
+//         }
+//     }
+//     return false;
+// };
+
+// // 993. Cousins in Binary Tree
+// UGLY SOLUTION 
+// var isCousins = function(root, x, y) {
+//     let xDepth = -1;
+//     let yDepth = -1;
+//     findDepth(root, 0);
+
+//     function findDepth(node, depth) {
+//         if (!node || (xDepth !== -1 && yDepth !== -1) ) return;
+//         if (node.val === x) xDepth = depth;
+//         if (node.val === y) yDepth = depth;
+//         findDepth(node.left,depth+1);
+//         findDepth(node.right,depth+1);
+//     }
+
+//     if (xDepth !== yDepth) return false;
+//     var cousins = true;
+//     findParent(root);
+//     return cousins;
+
+//     function findParent(node) {
+//         if (!node) return;
+//         if (node.left && node.right) {
+//             if (node.left.val === x && node.right.val === y) {
+//                 cousins = false;
+//                 return;
+//             }
+//             if (node.left.val === y && node.right.val === x) {
+//                 cousins = false;
+//                 return;
+//             }
+//         }
+//         findParent(node.left);
+//         findParent(node.right);
+//     }
+// };
+
+// CLEANER BUT SAME SPEED
+// var isCousins = function (root, x, y) {
+//     let xDepth = 0;
+//     let xParent = -1;
+//     let yDepth = 0;
+//     let yParent = -1;
+//     helper(root, -1, -1);
+//     return xDepth == yDepth && xParent !== yParent;
+
+//     function helper(node, depth, parent) {
+//         if (node) {
+//             helper(node.left, depth+1, node);
+//             helper(node.right, depth+1, node);
+//             if (node.val === x) {
+//                 xParent = parent;
+//                 xDepth = depth+1;
+//             }
+//             if (node.val === y) {
+//                 yParent = parent;
+//                 yDepth = depth+1;
+//             }
+//         }
+//     }
+// };
