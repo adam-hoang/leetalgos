@@ -6987,3 +6987,165 @@
 //         }
 //     }
 // };
+
+// // 538. Convert BST to Greater Tree
+// var convertBST = function(root) {
+//     let count = 0;
+//     helper(root);
+//     return root;    
+    
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.right);
+//         node.val += count;
+//         count = node.val;
+//         helper(node.left);
+//     }
+// };
+
+// // 1154. Day of the Year
+// USING SUBSTRING
+// var dayOfYear = function(date) {
+//     let year = parseInt(date.substring(0,4));
+//     const months = [31,28,31,30,31,30,31,31,30,31,30,31];
+//     if (year%400 === 0) {
+//         months[1] = 29;
+//     } else if (year%100 === 0) {
+//     } else if (year%4 === 0) {
+//         months[1] = 29;
+//     }
+//     let month = parseInt(date.substring(5,8));
+//     let daysTotal = 0;
+//     let i = 0;
+//     while (i<month-1) {
+//         daysTotal += months[i];
+//         i++;
+//     }
+//     let days = parseInt(date.substring(8));
+//     daysTotal += days;
+//     return daysTotal;
+// };
+// console.log(dayOfYear("2019-01-09"));
+// console.log(dayOfYear("2019-02-10"));
+// console.log(dayOfYear("2003-03-01"));
+// console.log(dayOfYear("2004-03-01"));
+
+// USING SPLIT
+// var dayOfYear = function(date) {
+//     let res = 0;
+//     date = date.split("-");
+//     let year = parseInt(date[0]);
+//     let month = parseInt(date[1]);
+//     let days = parseInt(date[2]);
+//     const months = [31,28,31,30,31,30,31,31,30,31,30,31];
+//     if (year%400 === 0) {
+//         months[1] = 29;
+//     } else if (year%100 === 0) {
+//     } else if (year%4 === 0) {
+//         months[1] = 29;
+//     }
+//     let i = 0;
+//     while (i<month-1) {
+//         res += months[i];
+//         i++;
+//     }
+//     res += days;
+//     return res;
+// };
+// console.log(dayOfYear("2019-01-09"));
+// console.log(dayOfYear("2019-02-10"));
+// console.log(dayOfYear("2003-03-01"));
+// console.log(dayOfYear("2004-03-01"));
+
+// // 530. Minimum Absolute Difference in BST
+// var getMinimumDifference = function(root) {
+//     let res = Infinity;
+//     let arr =[];
+//     helper(root);
+//     for (let i=0, length=arr.length-1; i<length; i++) {
+//         if (arr[i+1]-arr[i] < res) {
+//             res = arr[i+1]-arr[i];
+//         }
+//     }
+//     return res;
+    
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         arr.push(node.val);
+//         helper(node.right);
+//     }
+// };
+
+// // 404. Sum of Left Leaves
+// var sumOfLeftLeaves = function(root) {
+//     let res = 0;
+//     helper(root);
+//     return res;
+    
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         if (node.left && node.left.left === null && node.left.right === null) {
+//             res += node.left.val;
+//         }
+//         helper(node.right);
+//     }
+// };
+
+// // 453. Minimum Moves to Equal Array Elements
+// var minMoves = function(nums) {
+//     let min = nums[0];
+//     let sum = min;
+//     let length = nums.length;
+//     for (let i=1; i<length; i++) {
+//         let num = nums[i];
+//         sum += num;
+//         min = Math.min(min, num)
+//     }
+//     return sum - length * min;
+// };
+// console.log(minMoves([1,2,3]));
+
+// var minMoves = function(nums) {
+//     let min = Math.min(...nums);
+//     let sum = 0;
+//     for (let num of nums) {
+//         sum += num;
+//     }
+//     return sum - nums.length * min;
+// };
+// console.log(minMoves([1,2,3]));
+
+// var minMoves = function(nums) {
+//     let min = Infinity;
+//     let sum = 0;
+//     for (let num of nums) {
+//         sum += num;
+//         min = Math.min(min, num)
+//     }
+//     return sum - nums.length * min;
+// };
+// console.log(minMoves([1,2,3]));
+
+// // 997. Find the Town Judge
+// var findJudge = function(N, trust) {
+//     let truster = new Array(N + 1).fill(0);
+//     let trusted = new Array(N + 1).fill(0);
+    
+//     for (let i=0; i<trust.length; i++) {
+//         truster[trust[i][0]]++;
+//         trusted[trust[i][1]]++;
+//     }
+//     let allTrust = N - 1;
+//     for (let i=1; i<=N; i++) {
+//         if (truster[i] === 0 && trusted[i] === allTrust) {
+//             return i;
+//         }
+//     }
+//     return -1;
+// };
+// console.log(findJudge(2,[[1,2]]));
+// console.log(findJudge(3,[[1,3], [2,3]]));
+// console.log(findJudge(3,[[1,3], [2,3], [3,1]]));
+// console.log(findJudge(3,[[1,2], [2,3]]));
