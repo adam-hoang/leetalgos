@@ -6993,7 +6993,7 @@
 //     let count = 0;
 //     helper(root);
 //     return root;    
-    
+
 //     function helper(node) {
 //         if (!node) return;
 //         helper(node.right);
@@ -7068,7 +7068,7 @@
 //         }
 //     }
 //     return res;
-    
+
 //     function helper(node) {
 //         if (!node) return;
 //         helper(node.left);
@@ -7082,7 +7082,7 @@
 //     let res = 0;
 //     helper(root);
 //     return res;
-    
+
 //     function helper(node) {
 //         if (!node) return;
 //         helper(node.left);
@@ -7132,7 +7132,7 @@
 // var findJudge = function(N, trust) {
 //     let truster = new Array(N + 1).fill(0);
 //     let trusted = new Array(N + 1).fill(0);
-    
+
 //     for (let i=0; i<trust.length; i++) {
 //         truster[trust[i][0]]++;
 //         trusted[trust[i][1]]++;
@@ -7149,3 +7149,354 @@
 // console.log(findJudge(3,[[1,3], [2,3]]));
 // console.log(findJudge(3,[[1,3], [2,3], [3,1]]));
 // console.log(findJudge(3,[[1,2], [2,3]]));
+
+// // 717. 1-bit and 2-bit Characters
+// USING FOR LOOP IF ITERATOR LANDS ON THE LAST BIT THEN ITS TRUE
+// var isOneBitCharacter = function(bits) {
+//     for (let i=0, length=bits.length; i<length; i++) {
+//         if (i === length-1) return true;
+//         if (bits[i] === 1) i++;
+//     }
+//     return false;
+// };
+// console.log(isOneBitCharacter([1, 0, 0]));
+// console.log(isOneBitCharacter([1, 1, 1, 0]));
+
+// USING WHILE LOOP AND IF STATEMENT
+// var isOneBitCharacter = function(bits) {
+//     let i=0;
+//     let length = bits.length-1;
+//     while (i<length) {
+//         if (bits[i] === 1) i++;
+//         i++;
+//     }
+//     return i === length;
+// };
+// console.log(isOneBitCharacter([1, 0, 0]));
+// console.log(isOneBitCharacter([1, 1, 1, 0]));
+
+// USING WHILE LOOP AND IF STATEMENT
+// var isOneBitCharacter = function(bits) {
+//     let i=0;
+//     let length = bits.length-1;
+//     while (i<length) {
+//         i += bits[i] + 1;
+//     }
+//     return i === length;
+// };
+// console.log(isOneBitCharacter([1, 0, 0]));
+// console.log(isOneBitCharacter([1, 1, 1, 0]));
+
+// // 661. Image Smoother
+// MAKING A NEW EMPTY ARRAY
+// var imageSmoother = function(M) {
+//     let res = [];
+//     for (let i=0; i<M.length; i++) {
+//         let temp = [];
+//         for (let j=0; j<M[0].length; j++) {
+//             temp.push([])
+//         }
+//         res.push(temp)
+//     }
+
+//     for (let i=0; i<M.length; i++) {
+//         for (let j=0; j<M[0].length; j++) {
+//             var sum = M[i][j];
+//             var cells = 1;
+//             helper(i+1, j);
+//             helper(i-1, j);
+//             helper(i, j+1);
+//             helper(i, j-1);
+//             helper(i+1, j+1);
+//             helper(i-1, j-1);
+//             helper(i+1, j-1);
+//             helper(i-1, j+1);
+//             res[i][j] = Math.floor(sum/cells);
+//         }
+//     }
+//     return res;
+
+//     function helper(x,y) {
+//         if (x<0 || x>=M.length || y<0 || y>=M[0].length) return;
+//         sum += M[x][y];
+//         cells++;
+//     }
+// };
+// let M = [
+//     [1,1,1],
+//     [1,0,1],
+//     [1,1,1]
+// ]
+// console.log(imageSmoother(M));
+// let M2 = [
+//     [2,3,4],
+//     [5,6,7],
+//     [8,9,10],
+//     [11,12,13],
+//     [14,15,16]
+// ]
+// console.log(imageSmoother(M2))
+
+// USING SLICE TO MAKE DEEP COPY OF 2D ARRAY
+// var imageSmoother = function(M) {
+//     let res = [];
+//     for (let i of M) {
+//         res.push(i.slice())
+//     }
+
+//     for (let i=0; i<M.length; i++) {
+//         for (let j=0; j<M[0].length; j++) {
+//             var sum = M[i][j];
+//             var cells = 1;
+//             helper(i+1, j);
+//             helper(i-1, j);
+//             helper(i, j+1);
+//             helper(i, j-1);
+//             helper(i+1, j+1);
+//             helper(i-1, j-1);
+//             helper(i+1, j-1);
+//             helper(i-1, j+1);
+//             res[i][j] = Math.floor(sum/cells);
+//         }
+//     }
+//     return res;
+
+//     function helper(x,y) {
+//         if (x<0 || x>=M.length || y<0 || y>=M[0].length) return;
+//         sum += M[x][y];
+//         cells++;
+//     }
+// };
+// let M = [
+//     [1,1,1],
+//     [1,0,1],
+//     [1,1,1]
+// ]
+// console.log(imageSmoother(M));
+// let M2 = [
+//     [2,3,4],
+//     [5,6,7],
+//     [8,9,10],
+//     [11,12,13],
+//     [14,15,16]
+// ]
+// console.log(imageSmoother(M2))
+
+// // 392. Is Subsequence
+// var isSubsequence = function(s, t) {
+//     if (!s.length) return true;
+//     for (let i=0; i<s.length; i++) {
+//         for (let j=0; j<t.length; j++) {
+//             if (s[i] === t[j]) {
+//                 if (i === s.length-1) return true;
+//                 i++;
+//             }
+//         }
+//         return false;
+//     }
+// };
+// console.log(isSubsequence("abc", "ahbgdc"));
+// console.log(isSubsequence("axc", "ahbgdc"));
+
+// var isSubsequence = function(s, t) {
+//     let i = 0;
+//     let j = 0;
+//     let sLength = s.length;
+//     let tLength = t.length;
+
+//     while (i<sLength && j<tLength) {
+//         if (s[i] === t[j]) {
+//             i++;
+//         }
+//         j++
+//     }
+//     return i === s.length
+// };
+// console.log(isSubsequence("abc", "ahbgdc"));
+// console.log(isSubsequence("axc", "ahbgdc"));
+
+// // 543. Diameter of Binary Tree
+// var diameterOfBinaryTree = function (root) {
+//     let res = 0;
+//     helper(root);
+//     return res;
+
+//     function helper(node) {
+//         if (!node) return 0;
+//         let left = helper(node.left);
+//         let right = helper(node.right);
+//         let path = left + right;
+//         res = Math.max(max, path);
+//         return Math.max(left, right) + 1;
+//     }
+// };
+
+// // 563. Binary Tree Tilt
+// var findTilt = function(root) {
+//     let res = 0;
+//     helper (root);
+//     return res;
+
+//     function helper(node) {
+//         if (!node) return 0;
+//         let left = helper(node.left);
+//         let right = helper(node.right);
+//         tilt += Math.abs(left-right);
+//         return node.val + left + right;
+//     }
+// };
+
+// // 257. Binary Tree Paths
+// var binaryTreePaths = function (root) {
+//     if (!root) return [];
+//     var res = [];
+//     helper(root, "");
+//     return res;
+
+//     function helper(node, str) {
+//         if (!node.left && !node.right) {
+//             res.push(str + node.val);
+//         }
+//         if (node.left) {
+//             helper(node.left, str + node.val + "->");
+//         }
+//         if (node.right) {
+//             helper(node.right, str + node.val + "->");
+//         }
+//     }
+// };
+
+// // 1018. Binary Prefix Divisible By 5
+// FAILS FOR BIGGER NUMBERS
+// var prefixesDivBy5 = function(A) {
+//     let res = [];
+//     let str = "";
+//     for (let i=0; i<A.length; i++) {
+//         let binary = str + A[i];
+//         let num = parseInt(binary,2);
+//         res.push(num%5 === 0)
+//         str += A[i];
+//     }
+//     return res;
+// };
+// console.log(prefixesDivBy5([0,1,1]));
+// console.log(prefixesDivBy5([1,1,1]));
+// console.log(prefixesDivBy5([0,1,1,1,1,1]));
+// console.log(prefixesDivBy5([1,1,1,0,1]));
+
+// var prefixesDivBy5 = function (A) {
+//     let res = [];
+//     let num = 0;
+//     for (let bit of A) {
+//         num = (num * 2 + bit) % 5;
+//         res.push(num === 0)
+//     }
+//     return res;
+// };
+// console.log(prefixesDivBy5([0, 1, 1]));
+// console.log(prefixesDivBy5([1, 1, 1]));
+// console.log(prefixesDivBy5([0, 1, 1, 1, 1, 1]));
+// console.log(prefixesDivBy5([1, 1, 1, 0, 1]));
+
+// var prefixesDivBy5 = function (A) {
+//     let value = 0;
+
+//     let b = A.map(digit => {
+//         value = (value * 2 + digit) % 5;
+//         return !value;
+//     });
+// };
+// console.log(prefixesDivBy5([0, 1, 1]));
+// console.log(prefixesDivBy5([1, 1, 1]));
+// console.log(prefixesDivBy5([0, 1, 1, 1, 1, 1]));
+// console.log(prefixesDivBy5([1, 1, 1, 0, 1]));
+
+// // 235. Lowest Common Ancestor of a Binary Search Tree
+// WHILE LOOP
+// var lowestCommonAncestor = function(root, p, q) {
+//     while (root) {
+//         if (p.val < root.val && q.val < root.val) {
+//             root = root.left;
+//         } else if (p.val > root.val && q.val > root.val) {
+//             root = root.right;
+//         } else {
+//             return root;
+//         }
+//     }
+//     return root;
+// };
+
+// RECURSIVE
+// var lowestCommonAncestor = function(root, p, q) {
+//     if (p.val < root.val && q.val < root.val) {
+//         return lowestCommonAncestor(root.left, p, q);
+//     } else if (p.val > root.val && q.val > root.val) {
+//         return lowestCommonAncestor(root.right, p, q);
+//     } else {
+//         return root;
+//     }
+// };
+
+// RECURSIVE W/ HELPER
+// var lowestCommonAncestor = function(root, p, q) {
+//     return helper(root,p.val,q.val);
+
+//     function helper(node, p, q) {
+//         if (p < node.val && q < node.val) {
+//             return helper(node.left, p, q);
+//         } else if (p > node.val && q > node.val) {
+//             return helper(node.right, p, q);
+//         } else {
+//             return node;
+//         }
+//     }
+// };
+
+// // 1010. Pairs of Songs With Total Durations Divisible by 60
+// VERY SLOW
+// var numPairsDivisibleBy60 = function(time) {
+//     let count = 0;
+//     for (let i=0; i<time.length-1; i++) {
+//         for (let j=i+1; j<time.length; j++) {
+//             if ((time[i]+time[j]) % 60 === 0) {
+//                 count++;
+//             }
+//         }
+//     }
+//     return count;
+// };
+// console.log(numPairsDivisibleBy60([30,20,150,100,40]));
+// console.log(numPairsDivisibleBy60([60,60,60]));
+
+// OPTIMIZED USING A DICT TO STORE MATCHES
+// var numPairsDivisibleBy60 = function(time) {
+//     let count = 0;
+//     let dict = {};
+//     for (let i=0; i<time.length; i++) {
+//         let num = time[i] % 60;
+//         let match = (60-num) % 60;
+//         if (dict[match]) {
+//             count += dict[match];
+//         }
+//         if (dict[num]) {
+//             dict[num]++;
+//         } else {
+//             dict[num] = 1;
+//         }
+//     }
+//     return count;
+// };
+// console.log(numPairsDivisibleBy60([30,20,150,100,40]));
+// console.log(numPairsDivisibleBy60([269,230,318,468,171,158,350,60,287,27,11,384,332,267,412,478,280,303,242,378,129,131,164,467,345,146,264,332,276,479,284,433,117,197,430,203,100,280,145,287,91,157,5,475,288,146,370,199,81,428,278,2,400,23,470,242,411,470,330,144,189,204,62,318,475,24,457,83,204,322,250,478,186,467,350,171,119,245,399,112,252,201,324,317,293,44,295,14,379,382,137,280,265,78,38,323,347,499,238,110,18,224,473,289,198,106,256,279,275,349,210,498,201,175,472,461,116,144,9,221,473]));
+
+// // 401. Binary Watch
+var readBinaryWatch = function(num) {
+    
+    let hour = 24
+    console.log(hour.toString(2))
+    console.log(hour.toString(2).split(1))
+    let numBits = hour.toString(2).split(1).length - 1;
+    console.log(numBits)
+
+};
+console.log(readBinaryWatch(1))
