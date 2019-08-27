@@ -7688,3 +7688,84 @@
 // console.log(numSmallerByFrequency(["cbd"], ["zaaaz"]));
 // console.log(numSmallerByFrequency(["bbb", "cc"], ["a", "aa", "aaa", "aaaa"]));
 
+// // 447. Number of Boomerangs
+// var numberOfBoomerangs = function(points) {
+//     let res = 0;
+//     let length = points.length;
+//     for (let i=0; i<length; i++) {
+//         let dict = {};
+//         for (let j=0; j<length; j++) {
+//             if (i === j) continue;
+//             let xTemp = points[i][0] - points[j][0];
+//             let yTemp = points[i][1] - points[j][1];
+//             let dTemp = xTemp*xTemp + yTemp*yTemp;
+//             if (dict[dTemp]) {
+//                 res += dict[dTemp]*2;
+//                 dict[dTemp]++;
+//             } else {
+//                 dict[dTemp] = 1;
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(numberOfBoomerangs([[0,0],[1,0],[2,0]]));
+
+// // 703. Kth Largest Element in a Stream
+// var KthLargest = function(k, nums) {
+//     this.k = k;
+//     this.nums = nums.sort((a,b) => a-b);
+// };
+
+// KthLargest.prototype.add = function(val) {
+//     let left = 0;
+//     let right = this.nums.length;
+    
+//     while (left<right) {
+//         let mid = Math.floor((right+left)/2);
+//         if (this.nums[mid] < val) {
+//             left = mid+1;
+//         } else {
+//             right = mid;
+//         }
+//     }
+
+//     this.nums.splice(left,0,val);
+//     return this.nums[this.nums.length-this.k];
+// };
+// let test2 = new KthLargest(3,[4,5,8,2]);
+// console.log(test2.add(3));
+// console.log(test2.add(5));
+// console.log(test2.add(10));
+// console.log(test2.add(9));
+// console.log(test2.add(4));
+
+// USING ARRAY OF K LENGTH;
+// var KthLargest = function(k, nums) {
+//     this.k = k;
+//     this.nums = nums.sort((a,b) => b-a);
+// };
+
+// KthLargest.prototype.add = function(val) {
+//     let cur = this.nums[this.k - 1];
+//     if (val <= cur) {
+//       return cur;
+//     }
+//     let i = this.k;
+//     while (i >= 0) {
+//       if (this.nums[i] > val) {
+//         break;
+//       }
+//       this.nums[i + 1] = this.nums[i];
+//       i--;
+//     }
+//     i++;
+//     this.nums[i] = val;
+//     return this.nums[this.k - 1];
+// };
+// let test2 = new KthLargest(3,[4,5,8,2]);
+// console.log(test2.add(3));
+// console.log(test2.add(5));
+// console.log(test2.add(10));
+// console.log(test2.add(9));
+// console.log(test2.add(4));
