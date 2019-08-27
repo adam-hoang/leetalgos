@@ -7490,13 +7490,201 @@
 // console.log(numPairsDivisibleBy60([269,230,318,468,171,158,350,60,287,27,11,384,332,267,412,478,280,303,242,378,129,131,164,467,345,146,264,332,276,479,284,433,117,197,430,203,100,280,145,287,91,157,5,475,288,146,370,199,81,428,278,2,400,23,470,242,411,470,330,144,189,204,62,318,475,24,457,83,204,322,250,478,186,467,350,171,119,245,399,112,252,201,324,317,293,44,295,14,379,382,137,280,265,78,38,323,347,499,238,110,18,224,473,289,198,106,256,279,275,349,210,498,201,175,472,461,116,144,9,221,473]));
 
 // // 401. Binary Watch
-var readBinaryWatch = function(num) {
-    
-    let hour = 24
-    console.log(hour.toString(2))
-    console.log(hour.toString(2).split(1))
-    let numBits = hour.toString(2).split(1).length - 1;
-    console.log(numBits)
+// NEED TO FINISH
+// var readBinaryWatch = function(num) {
 
-};
-console.log(readBinaryWatch(1))
+//     let hour = 24
+//     console.log(hour.toString(2))
+//     console.log(hour.toString(2).split(1))
+//     let numBits = hour.toString(2).split(1).length - 1;
+//     console.log(numBits)
+
+// };
+// console.log(readBinaryWatch(1))
+
+// // 1160. Find Words That Can Be Formed by Characters
+// var countCharacters = function(words, chars) {
+//     let count = 0;
+//     let arr = new Array(26).fill(0);
+
+//     for (let i=0; i<chars.length; i++) {
+// 		arr[chars.charCodeAt(i) - 97]++;
+//     }
+
+//     for (let i=0; i<words.length; i++) {
+//         let temp = arr.slice();
+//         let valid = true;
+//         for (let j=0; j<words[i].length; j++) {
+//             temp[words[i].charCodeAt(j) - 97]--;
+//             if (temp[words[i].charCodeAt(j) - 97] < 0) {
+//                 valid = false;
+//                 break;
+//             }
+//         }
+//         if (valid === true) {
+//             count += words[i].length;
+//         }
+//     }
+//     return count;
+// };
+// console.log(countCharacters(["cat","bt","hat","tree"], "atach"));
+
+// // 690. Employee Importance
+// PHP CANT TEST BECAUSE BROKEN TEST CASES
+// function getImportance($employees, $id) {
+//     function helper($id2) {
+//         $res = dict[$id2];
+//         foreach ($subs[$id2] as $sub) {
+//             $res += helper($sub);
+//         }
+//         return $res;
+//     }
+//     $dict = array();
+//     $subs = array();
+//     foreach ($employees as $employee) {
+//         $dict[$employee] = $employee->importance;
+//         $subs[$employee] = $employee->subordinates;
+//     }
+//     return helper($id);
+// }
+// console.log(getImportance([[1, 5, [2, 3]], [2, 3, []], [3, 3, []]], 1))
+
+// // 1170. Compare Strings by Frequency of the Smallest Character
+// USING REGULAR FOR LOOPS IS FASTER
+// SORT FOR FASTER EXIT
+// var numSmallerByFrequency = function (queries, words) {
+//     let res = [];
+//     let qArray = [];
+//     let wArray = [];
+
+//     for (let i=0; i<words.length; i++) {
+//         let temp = helper(words[i]);
+//         wArray.push(temp);
+//     }
+//     wArray.sort((a,b) => b-a);
+
+//     for (let i=0; i<queries.length; i++) {
+//         let temp = helper(queries[i]);
+//         qArray.push(temp);
+//     }
+
+//     for (let i=0; i<qArray.length; i++) {
+//         let count = 0;
+//         for (let j=0; j<wArray.length; j++) {
+//             if (qArray[i] < wArray[j]) {
+//                 count++;
+//             } else {
+//                 break;
+//             }
+//         }
+//         res.push(count);
+//     }
+//     return res;
+
+//     function helper(str) {
+//         let min = str[0];
+//         let mCount = 1;
+//         for (let i=1; i < str.length; i++) {
+//             if (str[i] < min) {
+//                 min = str[i];
+//                 mCount = 1;
+//             } else if (str[i] === min) {
+//                 mCount++;
+//             }
+//         }
+//         return mCount;
+//     }
+// };
+// console.log(numSmallerByFrequency(["cbd"], ["zaaaz"]));
+// console.log(numSmallerByFrequency(["bbb", "cc"], ["a", "aa", "aaa", "aaaa"]));
+
+// SLOW NO FAST EXIT
+// var numSmallerByFrequency = function (queries, words) {
+//     let res = [];
+//     let qArray = [];
+//     let wArray = [];
+
+//     for (let word in words) {
+//         let temp = helper(words[word]);
+//         wArray.push(temp);
+//     }
+//     for (let query in queries) {
+//         let temp = helper(queries[query]);
+//         qArray.push(temp);
+//     }
+
+//     for (let query in qArray) {
+//         let count = 0;
+//         for (let word in wArray) {
+//             if (qArray[query] < wArray[word]) count++;
+//         }
+//         res.push(count);
+//     }
+//     return res;
+
+//     function helper(str) {
+//         let dict = {};
+//         let min = str[0];
+//         for (let i=0; i < str.length; i++) {
+//             if (str[i] < min) {
+//                 min = str[i];
+//             }
+//             if (dict[str[i]]) {
+//                 dict[str[i]]++;
+//             } else {
+//                 dict[str[i]] = 1;
+//             }
+//         }
+//         return dict[min];
+//     }
+// };
+// console.log(numSmallerByFrequency(["cbd"], ["zaaaz"]));
+// console.log(numSmallerByFrequency(["bbb", "cc"], ["a", "aa", "aaa", "aaaa"]));
+
+// SORT WORDS ARRAY FOR FAST EXIT
+// var numSmallerByFrequency = function (queries, words) {
+//     let res = [];
+//     let qArray = [];
+//     let wArray = [];
+
+//     for (let word in words) {
+//         let temp = helper(words[word]);
+//         wArray.push(temp);
+//     }
+//     wArray.sort((a,b) => b-a);
+
+//     for (let query in queries) {
+//         let temp = helper(queries[query]);
+//         qArray.push(temp);
+//     }
+
+//     for (let query in qArray) {
+//         let count = 0;
+//         for (let word in wArray) {
+//             if (qArray[query] < wArray[word]) {
+//                 count++;
+//             } else {
+//                 break;
+//             }
+//         }
+//         res.push(count);
+//     }
+//     return res;
+
+//     function helper(str) {
+//         let min = str[0];
+//         let mCount = 1;
+//         for (let i=1; i < str.length; i++) {
+//             if (str[i] < min) {
+//                 min = str[i];
+//                 mCount = 1;
+//             } else if (str[i] === min) {
+//                 mCount++;
+//             }
+//         }
+//         return mCount;
+//     }
+// };
+// console.log(numSmallerByFrequency(["cbd"], ["zaaaz"]));
+// console.log(numSmallerByFrequency(["bbb", "cc"], ["a", "aa", "aaa", "aaaa"]));
+
