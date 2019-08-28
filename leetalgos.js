@@ -7769,3 +7769,205 @@
 // console.log(test2.add(10));
 // console.log(test2.add(9));
 // console.log(test2.add(4));
+
+// // 720. Longest Word in Dictionary
+// var longestWord = function(words) {
+//     words.sort();
+//     let set = new Set(words);
+//     let res = "";
+//     for (let i=0, length=words.length; i<length; i++) {
+//         let valid = true;
+//         let temp = "";
+//         let wLength = words[i].length;
+//         for (let j=0; j<wLength; j++) {
+//             temp += words[i][j];
+//             if (!set.has(temp)) {
+//                 valid = false;
+//                 break;
+//             }
+//         }
+//         if (valid && wLength > res.length) {
+//             res = words[i];
+//         }
+//     }
+//     return res;
+// };
+// console.log(longestWord(["w","wo","wor","worl", "world"]));
+
+// FAST EXITS
+// var longestWord = function(words) {
+//     let set = new Set(words);
+//     let res = "";
+//     for (let i=0, length=words.length; i<length; i++) {
+//         let isValid = true;
+//         if (words[i].length < res.length) continue;
+//         if (words[i].length === res.length && words[i] > res) continue;
+//         for (let j=length-1; j>0; j--) {
+//             if (!set.has(words[i].substring(0,j))) {
+//                 isValid = false;
+//                 continue;
+//             }
+//         }
+//         if (isValid) res = words[i];
+//     }
+//     return res;
+// };
+// console.log(longestWord(["w","wo","wor","worl", "world"]));
+
+// // 1128. Number of Equivalent Domino Pairs
+// var numEquivDominoPairs = function(dominoes) {
+//     let dict = {};
+//     let res = 0;
+
+//     for (let [a,b] of dominoes) {
+//         let strA = a.toString();
+//         let strB = b.toString();
+//         let key = "";
+//         if ( a < b) {
+//             key = strA + strB;
+//         } else {
+//             key = strB + strA;
+//         }
+
+//         if (dict[key] !== undefined) {
+//             dict[key]++;
+//             res += dict[key];
+//         } else {
+//             dict[key] = 0;
+//         }
+//     }
+//     return res;
+// };
+// console.log(numEquivDominoPairs([[1,2],[2,1],[3,4],[5,6]]));
+
+// var numEquivDominoPairs = function(dominoes) {
+//     let res = 0;
+//     for (let i in dominoes) {
+//         if (dominoes[i][1] < dominoes[i][0]) {
+//             let temp = dominoes[i][1];
+//             dominoes[i][1] = dominoes[i][0];
+//             dominoes[i][0] = temp;
+//         }
+//     }
+//     for (let i=0; i<dominoes.length-1; i++) {
+//         for (let j=i+1; j<dominoes.length; j++) {
+//             if (dominoes[i][0] === dominoes[j][0]) {
+//                 if (dominoes[i][1] === dominoes[j][1]) {
+//                     res++;
+//                 }
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(numEquivDominoPairs([[1,2],[2,1],[3,4],[5,6]]))
+
+// var numEquivDominoPairs = function(dominoes) {
+//     let res = 0;
+//     for (let i=0; i<dominoes.length-1; i++) {
+//         for (let j=i+1; j<dominoes.length; j++) {
+//             if (dominoes[i][0] === dominoes[j][0]) {
+//                 if (dominoes[i][1] === dominoes[j][1]) {
+//                     res++;
+//                 }
+//             } else if (dominoes[i][0] === dominoes[j][1]) {
+//                 if (dominoes[i][1] === dominoes[j][0]) {
+//                     res++;
+//                 }
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(numEquivDominoPairs([[1,2],[2,1],[3,4],[5,6]]));
+
+// // 232. Implement Queue using Stacks
+// var MyQueue = function() {
+//     this.stack = [];
+// };
+
+// MyQueue.prototype.push = function(x) {
+//     this.stack.push(x);
+// };
+
+// MyQueue.prototype.pop = function() {
+//     let stack2 = [];
+//     while (this.stack.length) {
+//         stack2.push(this.stack.pop());
+//     }
+//     let el = stack2.pop();
+//     while (stack2.length) {
+//         this.stack.push(stack2.pop());
+//     }
+//     return el;
+// };
+
+// MyQueue.prototype.peek = function() {
+//     let stack2 = [];
+//     while (this.stack.length) {
+//         stack2.push(this.stack.pop());
+//     }
+//     let el = stack2[stack2.length-1];
+//     while (stack2.length) {
+//         this.stack.push(stack2.pop());
+//     }
+//     return el;
+// };
+
+// MyQueue.prototype.empty = function() {
+//     return !this.stack.length;
+// };
+
+// // 415. Add Strings
+// var addStrings = function(num1, num2) {
+//     let res = "";
+//     let length = Math.max(num1.length, num2.length);
+//     let carry = 0;
+//     let i = 1;
+//     while (i<=length || carry > 0) {
+//         let a = num1[num1.length - i] || 0;
+//         let b = num2[num2.length - i] || 0;
+//         let temp = parseInt(a) + parseInt(b) + carry;
+//         if (temp >= 10) {
+//             carry = Math.floor(temp/10);
+//         } else {
+//             carry = 0;
+//         }
+//         temp %= 10;
+//         i++;
+//         res = temp + res;
+//     }
+//     return res;
+// };
+// console.log(addStrings("8234", "8888"));
+
+// // 437. Path Sum III
+// var pathSum = function(root, sum) {
+//     if (!root) return 0;
+//     let res = 0;
+//     helper(root, 0);
+//     res += pathSum(root.left, sum);
+//     res += pathSum(root.right, sum);
+//     return res;
+
+//     function helper(node, temp) {
+//         if (!node) return;
+//         temp += node.val;
+//         if (temp === sum) res++;
+//         helper(node.left, temp);
+//         helper(node.right, temp);
+//     }
+// };
+
+// CLEANER CODE BUT SAME
+// let pathSum = function(root, sum) {
+//     if (!root) return 0;
+//     return helper(root, 0) + pathSum(root.left, sum) + pathSum(root.right, sum);
+
+//     function helper(node, temp) {
+//         if (!node) return 0;
+//         temp += node.val;
+//         return (temp === sum) + helper(node.left, temp) + helper(node.right, temp);
+//     };
+// };
+
