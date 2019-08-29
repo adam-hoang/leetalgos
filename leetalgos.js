@@ -7971,3 +7971,161 @@
 //     };
 // };
 
+// // 405. Convert a Number to Hexadecimal
+// var toHex = function(num) {
+//     const arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
+//     let res = "";
+
+//     if (num == 0) return "0";
+//     if (num < 0) {
+//         num += Math.pow(2,32);
+//     }
+
+//     while (num > 0) {
+//         let digit = num % 16;
+//         res = arr[digit] + res;
+//         num = Math.floor(num/16);
+//     }
+//     return res;
+// };
+// console.log(toHex(26));
+// console.log(toHex(-1));
+
+// // 572. Subtree of Another Tree
+// preorder to build strings and check if t is a substring of s
+// fix so i only need one helper 
+// var isSubtree = function(s, t) {
+//     let str1 = "";
+//     let str2 = "";
+//     helper(s);
+//     helper2(t);
+ 
+//     function helper(node) {
+//         if (!node) {
+//             str1 += "[" +null+ "]";
+//             return;
+//         }
+//         str1 += "[" +node.val+ "]";
+//         helper(node.left);
+//         helper(node.right);
+//     }
+//     function helper2(node) {
+//         if (!node) {
+//             str2 += "[" +null+ "]";
+//             return;
+//         }
+//         str2 += "[" +node.val+ "]";
+//         helper2(node.left);
+//         helper2(node.right);
+//     }
+//     if (str1.includes(str2)) return true;
+//     return false;
+// };
+
+// // 110. Balanced Binary Tree
+// var isBalanced = function(root) {
+//     if (!root) return true;
+
+//     let res = true;
+//     let left = helper(root.left);
+//     let right = helper(root.right);
+//     let diff = Math.abs(left-right);
+
+//     if (diff>1) res = false;
+
+//     return res && isBalanced(root.left) && isBalanced(root.right);
+
+//     function helper(node) {
+//         if (!node) return 0;
+//         let left = helper(node.left);
+//         let right = helper(node.right);
+
+//         return Math.max(left, right) + 1;
+//     }
+// };
+
+// var isBalanced = function(root) {
+//     return helper(root) !== -1
+
+//     function helper(node) {
+//         if (!node) return 0;
+//         let left = helper(node.left);
+//         if (left === -1) return -1;
+//         let right = helper(node.right);
+//         if (right === -1) return -1;
+//         if (Math.abs(left-right) > 1) return -1;
+//         return Math.max(left, right) + 1;
+//     }
+// };
+
+// // 645. Set Mismatch
+// var findErrorNums = function(nums) {
+//     let res = [];
+//     let arr = Array(nums.length+1).fill(0);
+//     for (let i=0; i<nums.length; i++) {
+//         let num = nums[i];
+//         if (arr[num]) {
+//             arr[num]++
+//         } else {
+//             arr[num] = 1;
+//         }
+//     }
+//     let count = 0;
+//     for (let i=1; i<arr.length; i++) {
+//         if (arr[i] === 0) {
+//             res[1] = i;
+//             count++;
+//         } else if (arr[i] === 2) {
+//             res[0] = i;
+//             count++;
+//         }
+//         if (count > 1) break;
+//     }
+//     return res;
+// };
+// console.log(findErrorNums([1,2,2,4]));
+
+// var findErrorNums = function(nums) {
+//     let res = [];
+//     let arr = Array(nums.length+1).fill(0);
+//     let sum = (nums.length * (nums.length+1)) / 2;
+//     let fSum = 0;
+
+//     for (let i=0; i<nums.length; i++) {
+//         let num = nums[i];
+//         if (arr[num]) {
+//             res[0] = num;
+//         } else {
+//             arr[num] = 1;
+//         }
+//         fSum += nums[i];
+//     }
+//     if (sum-fSum > 0) {
+//         res[1] = res[0] + Math.abs(sum-fSum);
+//     } else {
+//         res[1] = res[0] - Math.abs(sum-fSum);
+//     }
+//     return res;
+// };
+// console.log(findErrorNums([1,2,2,4]));
+// console.log(findErrorNums([2,2]));
+
+// // 287. Find the Duplicate Number
+// var findDuplicate = function(nums) {
+//     let slow = nums[0];
+//     let fast = nums[nums[0]];
+    
+//     while (slow !== fast) {
+//         slow = nums[slow];
+//         fast = nums[nums[fast]];
+//     }
+//     fast = 0;
+//     while (slow !== fast) {
+//         slow = nums[slow];
+//         fast = nums[fast];
+//     }
+//     return slow;
+// };
+// console.log(findDuplicate([1,3,4,2,2]));
+// console.log(findDuplicate([3,1,3,4,2]));
+
