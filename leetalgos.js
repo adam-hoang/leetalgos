@@ -8129,3 +8129,41 @@
 // console.log(findDuplicate([1,3,4,2,2]));
 // console.log(findDuplicate([3,1,3,4,2]));
 
+// // 263. Ugly Number
+// RECURSIVE
+// var isUgly = function(num) {
+//     if (num <= 0) return false;
+//     if (num === 1 || num === 2|| num === 3|| num === 5) return true;
+//     if (num % 2 === 0) return isUgly(num/2);
+//     else if (num % 3 === 0) return isUgly(num/3);
+//     else if (num % 5 === 0) return isUgly(num/5);
+//     else return false;
+// };
+// console.log(isUgly(6));
+// console.log(isUgly(8));
+// console.log(isUgly(14));
+
+// // WHILE LOOPS
+// var isUgly = function(num) {
+//     if (num <= 0) return false;
+//     while (num % 2 === 0) num /= 2;
+//     while (num % 3 === 0) num /= 3;
+//     while (num % 5 === 0) num /= 5;
+//     return num === 1;
+// };
+// console.log(isUgly(6));
+// console.log(isUgly(8));
+// console.log(isUgly(14));
+
+// // USING DOUBLE TILDA AND DIVISION FOR BETTER SPEED
+// var isUgly = function(num) {
+//     if (num <= 0) return false;
+//     while (~~(num / 2) === num/2) num /= 2;
+//     while (~~(num / 3) === num/3) num /= 3;
+//     while (~~(num / 5) === num/5) num /= 5;
+//     return num === 1;
+// };
+// console.log(isUgly(6));
+// console.log(isUgly(8));
+// console.log(isUgly(14));
+
