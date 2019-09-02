@@ -8167,3 +8167,100 @@
 // console.log(isUgly(8));
 // console.log(isUgly(14));
 
+// // 225. Implement Stack using Queues
+// var MyStack = function() {
+//     this.q = [];
+// };
+
+// MyStack.prototype.push = function(x) {
+//     this.q.push(x);
+// };
+
+// MyStack.prototype.pop = function() {
+//     for (let i=0; i<this.q.length-1; i++) {
+//         this.q.push(this.q.shift());
+//     }
+//     return this.q.shift();
+// };
+
+// MyStack.prototype.top = function() {
+//     return this.q[this.q.length-1];
+// };
+
+// MyStack.prototype.empty = function() {
+//     return this.q.length === 0;
+// };
+
+// NO JS AVAIABLE SO THIS IS IN JAVA
+// // 374. Guess Number Higher or Lower
+// public class Solution extends GuessGame {
+//     public int guessNumber(int n) {
+//         int left = 1;
+//         int right = n;
+        
+//         while (left < right) {
+//             int mid = left + (right-left)/2;
+//             int res = guess(mid);
+//             if (res == 0)
+//                 return mid;
+//             else if (res == -1)
+//                 right = mid-1;
+//             else
+//                 left = mid+1;
+        
+//         }
+//         return left;
+//     }
+// }
+
+// // 501. Find Mode in Binary Search Tree
+// var findMode = function(root) {
+//     let dict = {};
+//     let res = [];
+//     let max = 1;
+//     helper(root);
+//     return res;
+
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         if (dict[node.val]) {
+//             dict[node.val]++;
+//         } else {
+//             dict[node.val] = 1;
+//         }
+//         if (dict[node.val] === max) {
+//             res.push(node.val);
+//         } else if (dict[node.val] > max) {
+//             res = [node.val];
+//             max = dict[node.val];
+//         }
+//         helper(node.right);
+//     }
+// };
+
+// // 970. Powerful Integers
+// var powerfulIntegers = function(x, y, bound) {
+//     let res = [];
+//     let i=0;
+//     while (Math.pow(x,i) < bound) {
+//         let j=0;
+//         while (Math.pow(y,j) < bound) {
+//             let temp = Math.pow(x,i)+Math.pow(y,j);
+//             if (temp <= bound) {
+//                 if (!res.includes(temp)) res.push(temp);
+//             }
+//             if (y === 1) break;
+//             j++;
+//         }
+//         if (x === 1) break;
+//         i++;
+//     }
+//     return res;
+// };
+// console.log(powerfulIntegers(3, 5, 15));
+// console.log(powerfulIntegers(2, 3, 10));
+// console.log(powerfulIntegers(2, 3, 2));
+// console.log(powerfulIntegers(2, 1, 10));
+
+
