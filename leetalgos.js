@@ -8263,4 +8263,285 @@
 // console.log(powerfulIntegers(2, 3, 2));
 // console.log(powerfulIntegers(2, 1, 10));
 
+// // 303. Range Sum Query - Immutable
+// BRUTE FORCE
+// var NumArray = function(nums) {
+//     this.nums = nums;
+// };
+
+// NumArray.prototype.sumRange = function(i, j) {
+//     let sum = 0;
+//     for (;i<=j; i++) {
+//         sum += this.nums[i];
+//     }
+//         return sum;
+// };
+
+
+// DYNAMIC PROGRAMMING WITH MEMO
+// var NumArray = function(nums) {
+//     let sum = 0;
+//     this.memo = [];
+//     for (let i=0; i<nums.length; i++) {
+//         let num = nums[i];
+//         sum += num;
+//         this.memo.push(sum);
+//     }
+// };
+// NumArray.prototype.sumRange = function(i, j) {
+//     if (i === 0) return this.memo[j];
+//     return this.memo[j] - this.memo[i - 1];
+// };
+
+// DYNAMIC PROGRAMMING WITH MEMO USING MAP
+// var NumArray = function(nums) {
+//     let sum = 0;
+//     this.memo = nums.map(num => (sum += num));
+// };
+// NumArray.prototype.sumRange = function(i, j) {
+//     if (i === 0) return this.memo[j];
+//     return this.memo[j] - this.memo[i - 1];
+// };
+
+// // 112. Path Sum
+// var hasPathSum = function(root, sum) {
+//     let res = false;
+//     helper(root, 0);
+//     return res;
+    
+//     function helper(node, temp) {
+//         if (!node) return;
+//         temp += node.val;
+//         helper(node.left, temp);
+//         helper(node.right, temp);
+//         if (!node.left && !node.right) {
+//             if (temp === sum) res = true;
+//         }
+//     }
+// };
+
+// // 1033. Moving Stones Until Consecutive
+// var numMovesStones = function(a, b, c) {
+//     let arr = [a, b, c];
+//     arr.sort((a,b) => a-b);
+
+//     let max = arr[2] - arr[0] - 2;
+//     let min = 2;
+//     if (arr[2] - arr[1] < 3 || arr[1] - arr[0] < 3) min = 1;
+//     if (arr[2] - arr[1] === 1 && arr[1] - arr[0] === 1) min = 0;
+
+//     return [min, max];
+// };
+// console.log(numMovesStones(1, 2, 5));
+// console.log(numMovesStones(4, 3, 2));
+// console.log(numMovesStones(3, 5, 1));
+
+// var numMovesStones = function(a, b, c) {
+//     let arr = [a, b, c];
+//     arr.sort((a,b) => a-b);
+
+//     let max = arr[2] - arr[0] - 2;
+//     let min;
+
+//     let d1 = arr[1] - arr[0];
+//     let d2 = arr[2] - arr[1];
+
+//     if (d1 === 1 && d2 === 1) {
+//         min = 0;
+//     } else if (d1 < 3 || d2 < 3) {
+//         min = 1;
+//     } else {
+//         min = 2;
+//     }
+
+//     return [min, max];
+// };
+// console.log(numMovesStones(1, 2, 5));
+// console.log(numMovesStones(4, 3, 2));
+// console.log(numMovesStones(3, 5, 1));
+// console.log(numMovesStones(7, 4, 1));
+
+// // 1037. Valid Boomerang
+// var isBoomerang = function(points) {
+//     let p1 = points[0];
+//     let p2 = points[1];
+//     let p3 = points[2];
+    
+//     if ((p1[0] == p2[0] && p1[1] == p2[1]) || 
+//         (p1[0] == p3[0] && p1[1] == p3[1]) ||
+//         (p2[0] == p3[0] && p2[1] == p3[1])) {
+//         return false;
+//     }
+
+//     let x = p1[0] - p2[0];
+//     let y = p1[1] - p2[1];
+//     let slope = y/x;
+    
+//     let x2 = p2[0] - p3[0];
+//     let y2 = p2[1] - p3[1];
+//     let slope2 = y2/x2;
+    
+//     let x3 = p1[0] - p3[0];
+//     let y3 = p1[1] - p3[1];
+//     let slope3 = y3/x3;
+    
+//     if (slope === slope2 && slope === slope3) return false;
+//     return true;
+// };
+// console.log(isBoomerang([[1,1],[2,3],[3,2]]));
+
+// // 203. Remove Linked List Elements
+// var removeElements = function(head, val) {
+//     let prev = null;
+//     let node = head;
+    
+//     while (node) {
+//         if (node.val === val) {
+//             if (prev === null) {
+//                 head = node.next;
+//             } else {
+//                 prev.next = node.next;
+//             }
+//         } else {
+//             prev = node;
+//         }
+//         node = node.next;
+//     }
+//     return head;
+// };
+
+// // 840. Magic Squares In Grid
+// var numMagicSquaresInside = function(grid) {
+//     if (!grid || grid.length < 3 || grid[0].length < 3) return 0;
+
+//     let row = grid.length;
+//     let col = grid[0].length;
+//     let count = 0;
+
+//     for (let i=1; i<row-1; i++) {
+//         for (let j=1; j<col-1; j++) {
+//             if (grid[i][j] === 5) {
+//                 let isValid = helper(i,j);
+//                 if (isValid) {
+//                     let top = [i-1];
+//                     let bottom = [i+1];
+//                     let left = [j-1];
+//                     let right = [j+1];
+
+//                     // CHECK ROWS
+//                     if (grid[top][left] + grid[top][j] + grid[top][right] !== 15) continue;
+//                     if (grid[i][left] + grid[i][right] !== 10) continue;
+//                     if (grid[bottom][left] + grid[bottom][j] + grid[bottom][right] !== 15) continue;
+
+//                     // CHECK COLUMNS
+//                     if (grid[top][left] + grid[i][left] + grid[bottom][left] !== 15) continue;
+//                     if (grid[top][j] + grid[bottom][j] !== 10) continue;
+//                     if (grid[top][right] + grid[i][right] + grid[bottom][right] !== 15) continue;
+
+//                     count++;
+//                 }
+//             }
+//         }
+//     }
+//     return count;
+
+//     function helper(x,y) {
+//         let set = new Set();
+//         for (let i=-1; i<=1; i++) {
+//             for (let j=-1; j<=1; j++) {
+//                 if (set.has(grid[x+i][y+j]) || grid[x+i][y+j] < 1 || grid[x+i][y+j] > 9) {
+//                     return false;
+//                 } else {
+//                     set.add(grid[x+i][y+j]);
+//                 }
+//             }
+//         }
+//         return true;
+//     }
+// };
+// let grid = [
+//     [4,3,8,4],
+//     [9,5,1,9],
+//     [2,7,6,2]
+// ]
+// console.log(numMagicSquaresInside(grid));
+
+// // 111. Minimum Depth of Binary Tree
+// var minDepth = function (root) {
+// 	if (!root === null) return 0;
+//     let res = Infinity;
+//     helper(root, 1);
+//     return res;
+
+//     function helper(node, depth) {
+//         if (!node.left && !node.right) {
+//             res = Math.min(res, depth);
+//         }
+//         if (node.left) helper(node.left, depth+1);
+//         if (node.right) helper(node.right, depth+1);
+//     }
+// };
+
+// var minDepth = function(root) {
+//     if (!root) return 0;
+//     if (!root.left || !root.right) {
+//         return Math.max(minDepth(root.left), minDepth(root.right)) + 1;
+//     } else {
+//         return Math.min(minDepth(root.left), minDepth(root.right)) + 1;
+//     }
+// };
+
+// // NEED TO FIX THIS DOES NOT WORK
+// // 687. Longest Univalue Path
+// var longestUnivaluePath = function(root) {
+//     if (!root) return 0;
+//     let res = 0;
+//     let arr = [];
+//     helper(root);
+//     let temp = 0;
+//     for (let i=1; i<arr.length; i++) {
+//         if (arr[i] === arr[i-1]) {
+//             temp++;
+//             res = Math.max(res, temp);
+//         } else {
+//             temp = 0;
+//         }
+//     }
+//     return res;
+    
+//     function helper(node) {
+//         if (!node) return;
+//         helper(node.left);
+//         arr.push(node.val);
+//         helper(node.right);
+//     }
+// };
+
+// var longestUnivaluePath = function(root) {
+//     let counts = [];
+//     let result = 0;
+
+//     getLongestPath(node);
+//     result = Math.max(...counts);
+
+//     return result;
+
+//     function getLongestPath(node){
+//         if (node == null) return 0;
+
+//         let longestLeftPath = getLongestPath(node.left);
+//         let longestRightPath = getLongestPath(node.right);
+//         let countLeft = 0;
+//         let countRight = 0;
+
+//         if (node.left != null && node.val == node.left.val) {
+//             countLeft = longestLeftPath + 1            
+//         }
+//         if (node.right != null && node.val == node.right.val) {
+//             countRight = longestRightPath + 1            
+//         }
+//         counts.push(countLeft + countRight)
+//         return Math.max(countLeft, countRight)
+//     }
+// }
 
