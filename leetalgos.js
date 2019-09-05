@@ -8545,3 +8545,149 @@
 //     }
 // }
 
+// // 874. Walking Robot Simulation
+// var robotSim = function(commands, obstacles) {
+//     let facing = 0;
+//     let position = [0,0];
+//     let res = 0;
+//     let set = new Set();
+//     for (let i=0; i<obstacles.length; i++) {
+//         set.add(obstacles[i].toString())
+//     }
+//     for (let i=0; i<commands.length; i++) {
+//         if (commands[i] === -2) {
+//             facing--;
+//             if (facing === -1) facing = 3;
+//         } else if (commands[i] < 0) {
+//             facing++;
+//             if (facing > 3) facing = 0;
+//         } else {
+//             let j = 0;
+//             if (facing === 0) {
+//                 while (!set.has(([position[0],position[1]+1]).toString()) && j<commands[i]) {
+//                     position[1]++;
+//                     j++;
+//                 }
+//             } else if (facing === 2) {
+//                 while (!set.has(([position[0],position[1]-1]).toString()) && j<commands[i]) {
+//                     position[1]--;
+//                     j++;
+//                 }
+//             } else if (facing === 1) {
+//                 while (!set.has(([position[0]+1,position[1]]).toString()) && j<commands[i]) {
+//                     position[0]++;
+//                     j++;
+//                 }
+//             } else {
+//                 while (!set.has(([position[0]-1,position[1]]).toString()) && j<commands[i]) {
+//                     position[0]--;
+//                     j++;
+//                 }
+//             }
+//             res = Math.max(res, position[0]*position[0] + position[1]*position[1])
+//         }
+//     }
+//     return res;
+// };
+// console.log(robotSim([4, -1, 3], []));
+// console.log(robotSim([4,-1,4,-2,4], [[2,4],[4,4]]));
+
+// // 475. Heaters
+// var findRadius = function(houses, heaters) {
+//     houses.sort((a,b) => a-b);
+//     heaters.sort((a,b) => a-b);
+
+//     let len1 = houses.length;
+//     let len2 = heaters.length;
+//     let res = 0;
+//     let j = 0;
+//     for (let i=0; i<len1; i++) {
+//         while (j<len2-1 && (Math.abs(heaters[j]-houses[i]) >= Math.abs(heaters[j+1]-houses[i]))) {
+//             j++;
+//         }
+//         res = Math.max(res, Math.abs(heaters[j] - houses[i]));
+//     }
+//     return res;
+// };
+// console.log(findRadius([1, 2, 3], [2]));
+// console.log(findRadius([1, 2, 3, 4], [1, 4]));
+
+// // 686. Repeated String Match
+// var repeatedStringMatch = function(A, B) {
+//     let str = "";
+//     let count = 0;
+//     let length = A.length + B.length;
+
+//     while (str.length <= length) {
+//         str += A;
+//         count++;
+//         if (str.includes(B)) return count;
+//     }
+//     return -1;
+// };
+
+// var repeatedStringMatch = function(A, B) {
+//     let count =  Math.ceil(B.length/A.length);
+//     let str =  A.repeat(count);
+//     if (str.includes(B)){
+//         return count;
+//     } else if ((str + A).includes(B)) {
+//         return count + 1;
+//     }
+//     return -1;
+// };
+
+// // 532. K-diff Pairs in an Array
+// var findPairs = function(nums, k) {
+//     let res = 0;
+//     let arr = nums.sort((a,b) => a-b);
+
+//     for (let i=0; i<arr.length; i++) {
+//         while (arr[i] === arr[i-1]) i++;
+//         for (let j=i+1; j<arr.length; j++) {
+//             let diff = Math.abs(arr[i] - arr[j]);
+//             if (diff > k) {
+//                 break;
+//             } else if (diff === k) {
+//                 res++;
+//                 break;
+//             }
+//         }
+//     }
+//     return res;
+// };
+// console.log(findPairs([3, 1, 4, 1, 5], 2));
+// console.log(findPairs([1, 2, 3, 4, 5], 1));
+// console.log(findPairs([1, 3, 1, 5, 4], 0));
+
+// var findPairs = function(nums, k) {
+//     if (k < 0) return 0;
+
+//     if (k === 0) {
+//         let set2 = new Set();
+//         let set3 = new Set();
+//         for (let i=0, length=nums.length; i<length; i++) {
+//             if (set2.has(nums[i])) {
+//                 set3.add(nums[i]);
+//             } else {
+//                 set2.add(nums[i]);
+//             }
+//         }
+//         return set3.size;
+//     }
+
+//     let res = 0;
+//     let set = new Set(nums);
+//     set.forEach(
+//         function helper(key) {
+//             if (set.has(key-k)) {
+//                 res++;
+//             }
+//         }
+//     )
+//     return res;
+// };
+// console.log(findPairs([3, 1, 4, 1, 5], 2));
+// console.log(findPairs([1, 2, 3, 4, 5], 1));
+// console.log(findPairs([1, 3, 1, 5, 4], 0));
+// console.log(findPairs([1, 2, 3, 4, 5], -1));
