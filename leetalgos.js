@@ -4320,56 +4320,6 @@
 // console.log(validMountainArray([0, 3, 2, 1]));
 // console.log(validMountainArray([0,1,2,3,4,5,6,7,8,9]));
 
-// // 949. Largest Time for Given Digits
-// NEED TO FIX THIS
-// var largestTimeFromDigits = function (A) {
-//     let res = "";
-//     A.sort((a, b) => a - b);
-//     let test = A.filter((x) => x < 3);
-//     if (test.length === 0) {
-//         return ""
-//     }
-//     let overSix = A.filter((x) => x < 6);
-//     if (overSix.length < 3 && test.includes(2)) test.pop();
-//     let del = test[test.length - 1];
-//     let idx = A.indexOf(del)
-//     A.splice(idx, 1);
-//     res += test[test.length - 1];
-//     console.log(res)
-
-//     if (res[0] === "2") {
-//         let test2 = A.filter((x) => x < 4)
-//         if (test2.length === 0) {
-//             return ""
-//         }
-//         let del2 = test2[test2.length - 1];
-//         let idx2 = A.indexOf(del2)
-//         A.splice(idx2, 1);
-//         res += test2[test2.length - 1];
-//     } else {
-//         res += A[A.length - 1];
-//         A.pop();
-//     }
-//     console.log(res)
-//     res += ":";
-//     let test3 = A.filter((x) => x < 6)
-//     if (test3.length === 0) {
-//         return ""
-//     }
-//     let del3 = test3[test3.length - 1];
-//     let idx3 = A.indexOf(del3)
-//     A.splice(idx3, 1);
-//     res += test3[test3.length - 1];
-//     res += A[0];
-//     return res;
-// };
-// console.log(largestTimeFromDigits([4, 2, 3, 1]));
-// console.log(largestTimeFromDigits([6, 8, 3, 1]));
-// console.log(largestTimeFromDigits([5,5,5,5]));
-// console.log(largestTimeFromDigits([0,0,0,0]));
-// console.log(largestTimeFromDigits([0,4,0,0]));
-// console.log(largestTimeFromDigits([2,0,6,6]));
-
 // var isAlienSorted = function (words, order) {
 //     for (let i=0, length=words.length-1; i<length; i++) {
 //         let longer = Math.max(words[i].length, words[i + 1].length);
@@ -8691,3 +8641,178 @@
 // console.log(findPairs([1, 2, 3, 4, 5], 1));
 // console.log(findPairs([1, 3, 1, 5, 4], 0));
 // console.log(findPairs([1, 2, 3, 4, 5], -1));
+
+// // 168. Excel Sheet Column Title
+// var convertToTitle = function(n) {
+//     if (n < 27) {
+//         return String.fromCharCode(n+64);
+//     }
+//     let res = "";
+//     while (n > 0) {
+//         let temp = n % 26;
+//         if (temp === 0) temp = 26;
+//         res = String.fromCharCode(temp+64) + res;
+//         n -= temp;
+//         n /= 26;
+//     }
+//     return res;
+// };
+// console.log(convertToTitle(1));
+// console.log(convertToTitle(28));
+// console.log(convertToTitle(701));
+
+// var convertToTitle = function(n) {
+//     let res = [];
+//     while (n > 0) {
+//         let temp = n % 26;
+//         if (temp === 0) {
+//             temp = 26;
+//             n = Math.floor(n/26)-1;
+
+//         } else {
+//             n = Math.floor(n/26);
+//         }
+//         res.unshift(String.fromCharCode(temp+64));
+//     }
+//     return res.join("");
+// };
+// console.log(convertToTitle(1));
+// console.log(convertToTitle(28));
+// console.log(convertToTitle(701));
+
+// // 707. Design Linked List
+// var MyLinkedList = function() {
+//     this.head = null;
+//     this.length = 0;
+// };
+
+// MyLinkedList.prototype.get = function(index) {
+//     if (index > this.length-1 || index < 0) return -1;
+//     let i = 0;
+//     let cur = this.head;
+//     while (i < index) {
+//         cur = cur.next;
+//         i++;
+//     }
+//     return cur.val;
+// };
+
+// MyLinkedList.prototype.addAtHead = function(val) {
+//     let node = new Node(val);
+//     node.next = this.head;
+//     this.head = node;
+//     this.length++;
+// };
+
+// MyLinkedList.prototype.addAtTail = function(val) {
+//     let node = new Node(val);
+//     let cur = this.head;
+
+//     if (!cur) {
+//         this.head = node;
+//     } else {
+//         while (cur.next) {
+//             cur = cur.next;
+//         }
+//         cur.next = node;
+//     }
+//     this.length++;
+// };
+
+// MyLinkedList.prototype.addAtIndex = function(index, val) {
+//     if (index > this.length) return;
+//     if (index === this.length) {
+//         this.addAtTail(val);
+//         return;
+//     }
+//     if (index < 1) {
+//         this.addAtHead(val);
+//         return;
+//     }
+
+//     let node = new Node(val);
+//     let cur = this.head;
+//     let i = 0;
+//     while (i < index-1) {
+//         cur = cur.next;
+//         i++;
+//     }
+//     node.next = cur.next;
+//     cur.next = node;
+//     this.length++;
+// };
+
+// MyLinkedList.prototype.deleteAtIndex = function(index) {
+//     if (index >= this.length || index < 0) return;
+//     let cur = this.head;
+//     let i=0;
+//     if (index === 0) {
+//         this.head = cur.next;
+//         return;
+//     }
+//     while (i < index-1) {
+//         cur = cur.next;
+//         i++;
+//     }
+//     cur.next = cur.next.next;
+//     this.length--;
+// };
+
+// // 949. Largest Time for Given Digits
+var largestTimeFromDigits = function(A) {
+    let res = ""
+    for (let i=23; i>=0; i--) {
+        let hourTens = Math.floor(i/10);
+        let hourOnes = i%10;
+        let indexTens = A.indexOf(hourTens);
+        if (indexTens >= 0) {
+            let copy = [...A];
+            copy.splice(indexTens,1);
+            let indexOnes = copy.indexOf(hourOnes);
+            if (indexOnes >= 0) {
+                copy.splice(indexOnes,1);
+                let check = helper(copy);
+                if (check.length > 0) {
+                    res = "" + hourTens + hourOnes + ":" + check;
+                    return res;
+                }
+            } else {
+                continue;
+            }
+        }
+    }
+    return res;
+
+    function helper(arr) {
+        let min1 = arr[0]*10 + arr[1];
+        let min2 = arr[1]*10 + arr[0];
+        let min1Valid = false;
+        let min2Valid = false;
+        if (min1<60 && min1 >=0) {
+            min1Valid = true;
+        }
+        if (min2<60 && min2 >=0) {
+            min2Valid = true;
+        }
+        let res2 = "";
+        if (min1Valid && min2Valid) {
+            res2 = Math.max(min1, min2);
+        } else if (min1Valid) {
+            res2 = min1;
+        } else if (min2Valid) {
+            res2 = min2;
+        } else {
+            return res2;
+        }
+        if (res2 < 10) {
+            return "0"+res2;
+        }
+        return res2.toString();
+    }
+}
+console.log(largestTimeFromDigits([1,2,3,4]));
+console.log(largestTimeFromDigits([0,0,0,0]));
+console.log(largestTimeFromDigits([1,9,6,0]));
+console.log(largestTimeFromDigits([9,0,7,7]));
+
+
