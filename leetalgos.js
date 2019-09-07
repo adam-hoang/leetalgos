@@ -8441,29 +8441,47 @@
 //     }
 // };
 
-// // NEED TO FIX THIS DOES NOT WORK
 // // 687. Longest Univalue Path
 // var longestUnivaluePath = function(root) {
-//     if (!root) return 0;
 //     let res = 0;
-//     let arr = [];
 //     helper(root);
-//     let temp = 0;
-//     for (let i=1; i<arr.length; i++) {
-//         if (arr[i] === arr[i-1]) {
-//             temp++;
-//             res = Math.max(res, temp);
-//         } else {
-//             temp = 0;
-//         }
-//     }
 //     return res;
-    
+
 //     function helper(node) {
-//         if (!node) return;
-//         helper(node.left);
-//         arr.push(node.val);
-//         helper(node.right);
+//         if (!node) return 0;
+
+//         let left = helper(node.left);
+//         let right = helper(node.right);
+
+//         let leftLen = 0;
+//         let rightLen = 0;
+
+//         if (node.left && node.left.val === node.val) {
+//             leftLen = left + 1;
+//         }
+//         if (node.right && node.right.val === node.val) {
+//             rightLen = right + 1;
+//         }
+//         res = Math.max(res, leftLen + rightLen);
+
+//         return Math.max(leftLen, rightLen)
+//     }
+// };
+
+// var longestUnivaluePath = function(root) {
+//     if (!root) return 0;
+//     return Math.max(
+//         longestUnivaluePath(root.left),
+//         longestUnivaluePath(root.right),
+//         helper(root.left,root.val) + helper(root.right, root.val)
+//     );
+
+//     function helper(node, univalue) {
+//         if (!node || node.val !== univalue) return 0;
+//         return Math.max(
+//             helper(node.left, univalue),
+//             helper(node.right, univalue)
+//         ) + 1;
 //     }
 // };
 
