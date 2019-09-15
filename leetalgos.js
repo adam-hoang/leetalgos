@@ -8777,60 +8777,91 @@
 // };
 
 // // 949. Largest Time for Given Digits
-var largestTimeFromDigits = function(A) {
-    let res = ""
-    for (let i=23; i>=0; i--) {
-        let hourTens = Math.floor(i/10);
-        let hourOnes = i%10;
-        let indexTens = A.indexOf(hourTens);
-        if (indexTens >= 0) {
-            let copy = [...A];
-            copy.splice(indexTens,1);
-            let indexOnes = copy.indexOf(hourOnes);
-            if (indexOnes >= 0) {
-                copy.splice(indexOnes,1);
-                let check = helper(copy);
-                if (check.length > 0) {
-                    res = "" + hourTens + hourOnes + ":" + check;
-                    return res;
-                }
-            } else {
-                continue;
-            }
-        }
-    }
-    return res;
+// var largestTimeFromDigits = function(A) {
+//     let res = ""
+//     for (let i=23; i>=0; i--) {
+//         let hourTens = Math.floor(i/10);
+//         let hourOnes = i%10;
+//         let indexTens = A.indexOf(hourTens);
+//         if (indexTens >= 0) {
+//             let copy = [...A];
+//             copy.splice(indexTens,1);
+//             let indexOnes = copy.indexOf(hourOnes);
+//             if (indexOnes >= 0) {
+//                 copy.splice(indexOnes,1);
+//                 let check = helper(copy);
+//                 if (check.length > 0) {
+//                     res = "" + hourTens + hourOnes + ":" + check;
+//                     return res;
+//                 }
+//             } else {
+//                 continue;
+//             }
+//         }
+//     }
+//     return res;
 
-    function helper(arr) {
-        let min1 = arr[0]*10 + arr[1];
-        let min2 = arr[1]*10 + arr[0];
-        let min1Valid = false;
-        let min2Valid = false;
-        if (min1<60 && min1 >=0) {
-            min1Valid = true;
-        }
-        if (min2<60 && min2 >=0) {
-            min2Valid = true;
-        }
-        let res2 = "";
-        if (min1Valid && min2Valid) {
-            res2 = Math.max(min1, min2);
-        } else if (min1Valid) {
-            res2 = min1;
-        } else if (min2Valid) {
-            res2 = min2;
-        } else {
-            return res2;
-        }
-        if (res2 < 10) {
-            return "0"+res2;
-        }
-        return res2.toString();
-    }
-}
-console.log(largestTimeFromDigits([1,2,3,4]));
-console.log(largestTimeFromDigits([0,0,0,0]));
-console.log(largestTimeFromDigits([1,9,6,0]));
-console.log(largestTimeFromDigits([9,0,7,7]));
+//     function helper(arr) {
+//         let min1 = arr[0]*10 + arr[1];
+//         let min2 = arr[1]*10 + arr[0];
+//         let min1Valid = false;
+//         let min2Valid = false;
+//         if (min1<60 && min1 >=0) {
+//             min1Valid = true;
+//         }
+//         if (min2<60 && min2 >=0) {
+//             min2Valid = true;
+//         }
+//         let res2 = "";
+//         if (min1Valid && min2Valid) {
+//             res2 = Math.max(min1, min2);
+//         } else if (min1Valid) {
+//             res2 = min1;
+//         } else if (min2Valid) {
+//             res2 = min2;
+//         } else {
+//             return res2;
+//         }
+//         if (res2 < 10) {
+//             return "0"+res2;
+//         }
+//         return res2.toString();
+//     }
+// }
+// console.log(largestTimeFromDigits([1,2,3,4]));
+// console.log(largestTimeFromDigits([0,0,0,0]));
+// console.log(largestTimeFromDigits([1,9,6,0]));
+// console.log(largestTimeFromDigits([9,0,7,7]));
 
+// // 1185. Day of the Week
+// var dayOfTheWeek = function(day, month, year) {
+//     const dayOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+//     const months = [31,28,31,30,31,30,31,31,30,31,30,31];
+//     let incrementDay = 1;
+//     if (year%400 === 0 || (year%100 !== 0 && year%4 === 0)) {
+//         months[1]++;
+//         incrementDay++;
+//     }
+//     let daysTotal = 4;
+//     for (let i=1971; i<year; i++) {
+//         daysTotal += 365;
+//         if (i%400 === 0 || (i%100 !== 0 && i%4 === 0)) {
+//             daysTotal++;
+//         }
+//     }
+//     let i = 0;
+//     while (i<month-1) {
+//         daysTotal += months[i];
+//         i++;
+//     }
+//     daysTotal += day;
 
+//     let res = daysTotal%7;
+//     return dayOfWeek[res];
+// };
+// console.log(dayOfTheWeek(31, 8, 1971));
+// console.log(dayOfTheWeek(31, 8, 2019));
+// console.log(dayOfTheWeek(31, 8, 2020));
+// console.log(dayOfTheWeek(31, 8, 2021));
+// console.log(dayOfTheWeek(31, 8, 2022));
+// console.log(dayOfTheWeek(31, 8, 2100));
