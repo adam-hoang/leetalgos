@@ -7440,17 +7440,27 @@
 // console.log(numPairsDivisibleBy60([269,230,318,468,171,158,350,60,287,27,11,384,332,267,412,478,280,303,242,378,129,131,164,467,345,146,264,332,276,479,284,433,117,197,430,203,100,280,145,287,91,157,5,475,288,146,370,199,81,428,278,2,400,23,470,242,411,470,330,144,189,204,62,318,475,24,457,83,204,322,250,478,186,467,350,171,119,245,399,112,252,201,324,317,293,44,295,14,379,382,137,280,265,78,38,323,347,499,238,110,18,224,473,289,198,106,256,279,275,349,210,498,201,175,472,461,116,144,9,221,473]));
 
 // // 401. Binary Watch
-// NEED TO FINISH
 // var readBinaryWatch = function(num) {
-
-//     let hour = 24
-//     console.log(hour.toString(2))
-//     console.log(hour.toString(2).split(1))
-//     let numBits = hour.toString(2).split(1).length - 1;
-//     console.log(numBits)
-
+//     let res =[];
+//     for (let i=0; i<12; i++) {
+//         let bits = 0;
+//         for (let j=0; j<60; j++) {
+//             bits = i.toString(2).split(1).length - 1;
+//             bits += j.toString(2).split(1).length - 1;
+//             if (bits === num) {
+//                 let hours = i.toString();
+//                 let minutes = j.toString();
+//                 if (j<10) {
+//                     minutes = "0" + minutes;
+//                 }
+//                 let str =  hours + ":" + minutes;
+//                 res.push(str);
+//             }
+//         }
+//     }
+//     return res;
 // };
-// console.log(readBinaryWatch(1))
+// console.log(readBinaryWatch(1));
 
 // // 1160. Find Words That Can Be Formed by Characters
 // var countCharacters = function(words, chars) {
@@ -7670,7 +7680,7 @@
 // KthLargest.prototype.add = function(val) {
 //     let left = 0;
 //     let right = this.nums.length;
-    
+
 //     while (left<right) {
 //         let mid = Math.floor((right+left)/2);
 //         if (this.nums[mid] < val) {
@@ -7949,7 +7959,7 @@
 //     let str2 = "";
 //     helper(s);
 //     helper2(t);
- 
+
 //     function helper(node) {
 //         if (!node) {
 //             str1 += "[" +null+ "]";
@@ -8064,7 +8074,7 @@
 // var findDuplicate = function(nums) {
 //     let slow = nums[0];
 //     let fast = nums[nums[0]];
-    
+
 //     while (slow !== fast) {
 //         slow = nums[slow];
 //         fast = nums[nums[fast]];
@@ -8147,7 +8157,7 @@
 //     public int guessNumber(int n) {
 //         int left = 1;
 //         int right = n;
-        
+
 //         while (left < right) {
 //             int mid = left + (right-left)/2;
 //             int res = guess(mid);
@@ -8157,7 +8167,7 @@
 //                 right = mid-1;
 //             else
 //                 left = mid+1;
-        
+
 //         }
 //         return left;
 //     }
@@ -8258,7 +8268,7 @@
 //     let res = false;
 //     helper(root, 0);
 //     return res;
-    
+
 //     function helper(node, temp) {
 //         if (!node) return;
 //         temp += node.val;
@@ -8316,7 +8326,7 @@
 //     let p1 = points[0];
 //     let p2 = points[1];
 //     let p3 = points[2];
-    
+
 //     if ((p1[0] == p2[0] && p1[1] == p2[1]) || 
 //         (p1[0] == p3[0] && p1[1] == p3[1]) ||
 //         (p2[0] == p3[0] && p2[1] == p3[1])) {
@@ -8326,15 +8336,15 @@
 //     let x = p1[0] - p2[0];
 //     let y = p1[1] - p2[1];
 //     let slope = y/x;
-    
+
 //     let x2 = p2[0] - p3[0];
 //     let y2 = p2[1] - p3[1];
 //     let slope2 = y2/x2;
-    
+
 //     let x3 = p1[0] - p3[0];
 //     let y3 = p1[1] - p3[1];
 //     let slope3 = y3/x3;
-    
+
 //     if (slope === slope2 && slope === slope3) return false;
 //     return true;
 // };
@@ -8344,7 +8354,7 @@
 // var removeElements = function(head, val) {
 //     let prev = null;
 //     let node = head;
-    
+
 //     while (node) {
 //         if (node.val === val) {
 //             if (prev === null) {
@@ -8865,3 +8875,103 @@
 // console.log(dayOfTheWeek(31, 8, 2021));
 // console.log(dayOfTheWeek(31, 8, 2022));
 // console.log(dayOfTheWeek(31, 8, 2100));
+
+// // 1189. Maximum Number of Balloons
+// var maxNumberOfBalloons = function (text) {
+//     let dict = {
+//         b: 0,
+//         a: 0,
+//         l: 0,
+//         o: 0,
+//         n: 0
+//     };
+
+//     for (let i=0; i<text.length; i++) {
+//         let letter = text[i];
+//         if (dict[letter] !== undefined) {
+//             dict[letter]++;
+//         }
+//     }
+//     let res = Math.min(dict["b"], dict["a"], Math.floor(dict["l"] / 2), Math.floor(dict["o"] / 2), dict["n"]);
+//     return res;
+// };
+// console.log(maxNumberOfBalloons("nlaebolko"));
+// console.log(maxNumberOfBalloons("loonbalxballpoon"));
+
+// // 1184. Distance Between Bus Stops
+// var distanceBetweenBusStops = function(distance, start, destination) {
+//     let cw = 0;
+//     let ccw = 0;
+//     let length = distance.length-1;
+//     let i=start;
+//     while (i !== destination) {
+//         cw += distance[i];
+//         i++;
+//         if (i > length) i = 0;
+//     }
+//     let j=start;
+//     while (j !== destination) {
+//         j--;
+//         if (j < 0) j = length;
+//         ccw += distance[j];
+//     }
+//     return Math.min(cw,ccw);
+// };
+// console.log(distanceBetweenBusStops([1,2,3,4], 0, 1));
+// console.log(distanceBetweenBusStops([1,2,3,4], 0, 2));
+// console.log(distanceBetweenBusStops([1,2,3,4], 0, 3));
+
+// // QUICK EXIT
+// var distanceBetweenBusStops = function(distance, start, destination) {
+//     if (start === destination) return 0;
+
+//     let cw = 0;
+//     let ccw = 0;
+//     let length = distance.length-1;
+//     let i = start;
+//     let j = start;
+
+//     while (true) {
+//         cw += distance[i];
+//         i++;
+//         if (i > length) i = 0;
+//         j--;
+//         if (j < 0) j = length;
+//         ccw += distance[j];
+        
+//         if (i === destination) return cw;
+//         if (j === destination) return ccw;
+//     }
+// };
+// console.log(distanceBetweenBusStops([1,2,3,4], 0, 1));
+// console.log(distanceBetweenBusStops([1,2,3,4], 0, 2));
+// console.log(distanceBetweenBusStops([1,2,3,4], 0, 3));
+
+// // 1175. Prime Arrangements
+// var numPrimeArrangements = function(n) {
+//     let count = 0;
+//     const mod = BigInt(1e9 + 7);
+//     const dict = [1n]
+
+//     for(let i=1; i<=n; i++) {
+//         dict[i] = BigInt(dict[i-1] * BigInt(i) % mod);
+//     }
+
+//     for(let i=2; i<=n; i++){
+//         count += isPrime(i)
+//     }
+//     return dict[count] * dict[n-count] % mod;
+
+//     function isPrime(num){
+//         for(let i=2; i*i<=num; i++){
+//             if(num%i === 0) return 0;
+//         }
+//         return 1;
+//     }
+// };
+// console.log(numPrimeArrangements(5));
+// console.log(numPrimeArrangements(100));
+// console.log(numPrimeArrangements(99));
+// console.log(numPrimeArrangements(90));
+
+// // 
