@@ -8974,4 +8974,59 @@
 // console.log(numPrimeArrangements(99));
 // console.log(numPrimeArrangements(90));
 
-// // 
+// // 558. Quad Tree Intersection
+// var intersect = function(quadTree1, quadTree2) {
+//     if (quadTree1.isLeaf) {
+//         return quadTree1.val ? quadTree1 : quadTree2;
+//     }
+
+//     if(quadTree2.isLeaf) {
+//         return quadTree2.val ? quadTree2 : quadTree1;
+//     }
+
+//     let topLeft = intersect(quadTree1.topLeft, quadTree2.topLeft);
+//     let topRight = intersect(quadTree1.topRight, quadTree2.topRight);
+//     let bottomLeft = intersect(quadTree1.bottomLeft, quadTree2.bottomLeft);
+//     let bottomRight = intersect(quadTree1.bottomRight, quadTree2.bottomRight);
+
+//     if (topLeft.isLeaf && 
+//         topRight.isLeaf && 
+//         bottomLeft.isLeaf && 
+//         bottomRight.isLeaf && 
+//         topLeft.val === topRight.val &&
+//         topRight.val === bottomLeft.val && 
+//         bottomLeft.val === bottomRight.val) {
+//             let leafNode = new Node(topLeft.val, true, null, null, null, null)
+//         return leafNode;
+//     } else {
+//         let node = new Node(false, false, topLeft, topRight, bottomLeft, bottomRight)
+//         return node;
+//     }
+// };
+
+// // 807. Max Increase to Keep City Skyline
+// var maxIncreaseKeepingSkyline = function(grid) {
+//     let res = 0;
+//     let rLength = grid.length;
+//     let cLength = grid[0].length;
+//     let maxRow = new Array(cLength).fill(0);
+//     let maxCol = new Array(rLength).fill(0);
+
+//     for (let i=0; i<rLength; i++) {
+//         for (let j=0; j<cLength; j++) {
+//             let cur = grid[i][j];
+//             if (maxRow[i] < cur) maxRow[i] = cur;
+//             if (maxCol[j] < cur) maxCol[j] = cur;
+//         }
+//     }
+
+//     for (let i=0; i<rLength; i++) {
+//         for (let j=0; j<cLength; j++) {
+//             let cur = grid[i][j];
+//             let max = Math.min(maxRow[i], maxCol[j]);
+//             if (max > cur) res += (max - cur);
+//         }
+//     }
+//     return res;
+// };
+// console.log(maxIncreaseKeepingSkyline([[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]))
