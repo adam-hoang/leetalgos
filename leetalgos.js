@@ -9030,3 +9030,108 @@
 //     return res;
 // };
 // console.log(maxIncreaseKeepingSkyline([[3,0,8,4],[2,4,5,7],[9,2,6,3],[0,3,1,0]]))
+
+// // 535. Encode and Decode TinyURL
+// let dict = {};
+// var encode = function(longUrl) {
+//     let random = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+//     let tinyurl = "";
+//     for (let i=0; i<6; i++) {
+//         let idx = Math.floor(Math.random()*62);
+//         tinyurl += random[idx];
+//     }
+//     dict[tinyurl] = longUrl;
+//     return "http://tinyurl.com/" + tinyurl;
+// };
+// var decode = function(shortUrl) {
+//     let tinyurl = shortUrl.substring(shortUrl.length-6);
+//     return dict[tinyurl];
+// };
+// console.log(encode("https://leetcode.com/problems/design-tinyurl"));
+// console.log(decode("http://tinyurl.com/abcdef"));
+
+// // 1079. Letter Tile Possibilities
+// USING DICTIONARY
+// var numTilePossibilities = function(tiles) {
+//     let dict = {};
+//     for (let i=0; i<tiles.length; i++) {
+//         let tile = tiles[i];
+//         if (!dict[tile]) {
+//             dict[tile] = 1;
+//         } else {
+//             dict[tile]++;
+//         }
+//     }
+//     return helper(dict);
+
+//     function helper(dict2) {
+//         let res = 0;
+//         for (let key in dict2) {
+//             if (dict2[key] === 0) continue;
+//             res++;
+//             dict2[key]--;
+//             res += helper(dict2);
+//             dict2[key]++;
+//         }
+//         return res;
+//     }
+// };
+
+// console.log(numTilePossibilities("AAB"));
+// console.log(numTilePossibilities("AAABBC"));
+
+// USING ARRAYS
+// var numTilePossibilities = function(tiles) {
+//     let res = 0;
+//     let sequences = [];
+//     let sortedArr = tiles.split("").sort();
+
+//     helper(sortedArr, sequences);
+    
+//     return res;
+    
+//     function helper(arr, used) {
+//         for (let i=0; i<tiles.length; i++) {
+//             if (used[i] || i > 0 && arr[i] == arr[i-1] && !used[i-1]){
+//                 continue;
+//             }
+//             used[i] = true;
+//             res++;
+//             helper(arr, used);
+//             used[i] = false;
+//         }
+//     }
+// };
+// console.log(numTilePossibilities("AAB"));
+// console.log(numTilePossibilities("AAABBC"));
+
+// // 1008. Construct Binary Search Tree from Preorder Traversal
+// var bstFromPreorder = function(preorder) {
+//     let node = null;
+//     for (let val of preorder) {
+//         node = helper(node, val);
+//     }
+//     return node;
+
+//     function helper(node, val) {
+//         if (node === null) return new TreeNode(val);
+//         if (val < node.val) {
+//             node.left = helper(node.left, val);
+//         } else {
+//             node.right = helper(node.right, val)
+//         }
+//         return node;
+//     }
+// };
+
+// // 950. Reveal Cards In Increasing Order
+// var deckRevealedIncreasing = function(deck) {
+//     deck = deck.sort((a, b) => a - b);
+//     let res = [deck.pop()]
+//     while (deck.length > 0) {
+//       res.unshift(deck.pop(), res.pop());
+//     };
+//     return res;
+// };
+// console.log(deckRevealedIncreasing([17,13,11,2,3,5,7]));
+
