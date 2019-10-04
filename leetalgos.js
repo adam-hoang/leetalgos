@@ -9135,3 +9135,46 @@
 // };
 // console.log(deckRevealedIncreasing([17,13,11,2,3,5,7]));
 
+// // 1200. Minimum Absolute Difference
+// var minimumAbsDifference = function(arr) {
+//     let sorted = arr.sort((a,b) => a-b);
+//     let min = Infinity;
+//     let res = [];
+//     for (let i=0; i<arr.length-1; i++) {
+//         let j = i+1;
+//         while (j<arr.length && (arr[j]-arr[i])<=min) {
+//             if (arr[j]-arr[i] === min) {
+//                 res.push([arr[i],arr[j]])
+//             } else {
+//                 min = arr[j]-arr[i];
+//                 res = [[arr[i],arr[j]]];
+//             }
+//             j++;
+//         }
+//     }
+//     return res;
+// };
+// console.log(minimumAbsDifference([4,2,1,3]))
+
+// // 1207. Unique Number of Occurrences
+// var uniqueOccurrences = function(arr) {
+//     const dict = {};
+//     for (let i=0, length=arr.length; i<length; i++) {
+//         let num = arr[i];
+//         if (dict[num]) {
+//             dict[num]++;
+//         } else {
+//             dict[num] = 1;
+//         }
+//     }
+//     const check = {};
+//     for (let key in dict) {
+//         if (!check[dict[key]]) {
+//             check[dict[key]] = true;
+//         } else {
+//             return false;
+//         }
+//     }
+//     return true;
+// };
+// console.log(uniqueOccurrences([1,2,2,1,1,3]))
