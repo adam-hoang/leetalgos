@@ -9177,4 +9177,21 @@
 //     }
 //     return true;
 // };
-// console.log(uniqueOccurrences([1,2,2,1,1,3]))
+// console.log(uniqueOccurrences([1,2,2,1,1,3]));
+
+// // 1217. Play with Chips
+// var minCostToMoveChips = function(chips) {
+//     let odd = 0;
+//     let even = 0;
+//     for (let i=0; i<chips.length; i++) {
+//         if (chips[i] % 2 === 0) {
+//             even++;
+//         } else {
+//             odd++;
+//         }
+//     }
+//     return Math.min(even, odd);
+// };
+// console.log(minCostToMoveChips([1,2,3]));
+// console.log(minCostToMoveChips([2,2,2,3,3]));
+
